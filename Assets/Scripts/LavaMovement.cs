@@ -22,13 +22,4 @@ public class LavaMovement : MonoBehaviour {
             transform.position = new Vector3(-225, startMarker.position.y, startMarker.position.z);
         }
     }
-
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag=="Player")
-        {
-            //if not fire type || !IsImmolating kill
-        }
-    }
 }

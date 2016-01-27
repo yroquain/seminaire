@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Lave")
         {
+            //if not fire type -> kill
             if (IsOnGrass)
             {
                 heigh = transform.position.y;
