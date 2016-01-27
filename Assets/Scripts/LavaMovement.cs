@@ -16,10 +16,10 @@ public class LavaMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(startMarker.position, endMarker.position, step);
-        if (transform.position == endMarker.position)
+        transform.position = Vector3.MoveTowards(startMarker.position, new Vector3 (endMarker.position.x, startMarker.position.y, startMarker.position.z), step);
+        if (transform.position.x > (endMarker.position.x-15))
         {
-            transform.position = new Vector3(startMarker.position.x - 180, startMarker.position.y, startMarker.position.z);
+            transform.position = new Vector3(-223, startMarker.position.y, startMarker.position.z);
         }
     }
 
