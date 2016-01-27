@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     #region Variables
     //Movement
@@ -12,6 +13,10 @@ public class PlayerController : MonoBehaviour {
     private bool IsWalking;
     private string animationtoplay;
 
+    //Moving in lava
+    private bool IsOnLava;
+    private bool IsOnGrass;
+    private float heigh;
 
     //Animation triggers
     bool IsAttacking;
@@ -27,12 +32,15 @@ public class PlayerController : MonoBehaviour {
 
     #region Initialisation
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         IsAttacking = false;
         IsMoving = false;
         IsJumping = false;
         IsWalking = false;
         IsRunning = true;
+        IsOnGrass = true;
+        IsOnLava = false;
         animationtoplay = "Run";
         Attackelapsed = 0.0f;
     }
@@ -40,7 +48,8 @@ public class PlayerController : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
         if (Time.time > Attackelapsed + 1)
         {
@@ -85,7 +94,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //When not doing anything
-            if (!IsAttacking && !IsMoving && !IsJumping)
+        if (!IsAttacking && !IsMoving && !IsJumping)
             GetComponent<Animation>().Play("CombatModeA");
 
 
@@ -99,7 +108,7 @@ public class PlayerController : MonoBehaviour {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
 
         //Switching between running and walking
-        if(Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             if (IsRunning)
             {
@@ -113,6 +122,31 @@ public class PlayerController : MonoBehaviour {
             }
             IsRunning = !IsRunning;
             IsWalking = !IsWalking;
+        }
+
+        //When on lava
+        if (IsOnLava)
+        {
+            transform.position = new Vector3(transform.position.x, heigh - 0.2f, transform.position.z);
+        }
+    }
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Lave")
+        {
+            if (IsOnGrass)
+            {
+                heigh = transform.position.y;
+                IsOnGrass = false;
+                IsOnLava = true;
+            }
+
+        }
+        if (collision.gameObject.tag == "Grass")
+        {
+                IsOnGrass = true;
+                IsOnLava = false;
+
         }
     }
 }

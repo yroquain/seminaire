@@ -17,9 +17,9 @@ public class LavaMovement : MonoBehaviour {
 	void Update () {
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(startMarker.position, new Vector3 (endMarker.position.x, startMarker.position.y, startMarker.position.z), step);
-        if (transform.position.x > (endMarker.position.x-15))
+        if (transform.position.x > (endMarker.position.x-25))
         {
-            transform.position = new Vector3(-223, startMarker.position.y, startMarker.position.z);
+            transform.position = new Vector3(-225, startMarker.position.y, startMarker.position.z);
         }
     }
 
