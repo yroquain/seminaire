@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{B90585FF-1389-0F90-7466-A4CCDC73F7FF}") = "seminaire", "Assembly-CSharp.csproj", "{285E2726-0A46-A7C4-5505-91BE839CF3DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{285E2726-0A46-A7C4-5505-91BE839CF3DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285E2726-0A46-A7C4-5505-91BE839CF3DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285E2726-0A46-A7C4-5505-91BE839CF3DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285E2726-0A46-A7C4-5505-91BE839CF3DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
