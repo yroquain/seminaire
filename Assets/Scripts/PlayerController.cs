@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool IsRunning;
     private bool IsWalking;
     private string animationtoplay;
+    private Animator anim;	
 
     //Moving in lava
     private bool IsOnLava;
@@ -41,8 +42,10 @@ public class PlayerController : MonoBehaviour
         IsRunning = true;
         IsOnGrass = true;
         IsOnLava = false;
+        rotate = 0;
         animationtoplay = "Run";
         Attackelapsed = 0.0f;
+        anim = GetComponent<Animator>();
     }
     #endregion
 
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
         if (Time.time > Attackelapsed + 1)
         {
@@ -62,41 +66,43 @@ public class PlayerController : MonoBehaviour
         }
 
         //When Moving
+        
         if (Input.GetAxis("Vertical") != 0)
         {
             if (!IsAttacking)
             {
                 transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
-                if (!IsJumping)
+                /*if (!IsJumping)
                 {
-                    GetComponent<Animation>().Play("Run");
-                }
+                    // GetComponent<Animation>().Play("Run");
+                }*/
                 IsMoving = true;
             }
         }
         else
+        {
             IsMoving = false;
+        }
 
         //When Attacking
         if ( Input.GetButtonDown("Frapper") && !IsJumping)
         {
             Attackelapsed = Time.time;
-            GetComponent<Animation>().Play("StaffHit");
+            //GetComponent<Animation>().Play("StaffHit");
             IsAttacking = true;
         }
 
         //When Jumping
         if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05 && Input.GetButtonDown("Jump"))
         {
-            Debug.Log("jump enfoncé");
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 250, 0), ForceMode.Force);
             IsJumping = true;
-            GetComponent<Animation>().Play("JumoRun");
+            //GetComponent<Animation>().Play("JumoRun");
         }
 
         //When not doing anything
         if (!IsAttacking && !IsMoving && !IsJumping)
-            GetComponent<Animation>().Play("CombatModeA");
+            //GetComponent<Animation>().Play("CombatModeA");
 
 
         //Rotating
@@ -109,8 +115,10 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
 
         //Switching between running and walking
+    
         if (Input.GetButtonDown("SwitchSpeed"))
         {
+            
             if (IsRunning)
             {
                 movementSpeed = walkingSpeed;
@@ -130,6 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, heigh - 0.2f, transform.position.z);
         }
+        miseAJourVarAnimation();
     }
     void OnCollisionStay(Collision collision)
     {
@@ -148,7 +157,13 @@ public class PlayerController : MonoBehaviour
         {
                 IsOnGrass = true;
                 IsOnLava = false;
-
         }
+        
+    }
+
+    private void miseAJourVarAnimation()
+    {
+        anim.SetBool("isMoving", IsMoving);
+        anim.SetBool("isWalking", IsWalking);
     }
 }
