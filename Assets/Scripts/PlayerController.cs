@@ -109,7 +109,6 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
 
         //Switching between running and walking
-        //Input.GetKeyDown(KeyCode.V)
         if (Input.GetButtonDown("SwitchSpeed"))
         {
             if (IsRunning)
