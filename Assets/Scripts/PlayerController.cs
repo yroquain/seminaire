@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             IsMoving = false;
 
         //When Attacking
-        if (Input.GetKeyDown(KeyCode.E) && !IsJumping)
+        if ( Input.GetButtonDown("Frapper") && !IsJumping)
         {
             Attackelapsed = Time.time;
             GetComponent<Animation>().Play("StaffHit");
@@ -86,8 +86,9 @@ public class PlayerController : MonoBehaviour
         }
 
         //When Jumping
-        if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05 && Input.GetKeyDown("space"))
+        if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05 && Input.GetButtonDown("Jump"))
         {
+            Debug.Log("jump enfoncé");
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 250, 0), ForceMode.Force);
             IsJumping = true;
             GetComponent<Animation>().Play("JumoRun");
@@ -108,7 +109,8 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
 
         //Switching between running and walking
-        if (Input.GetKeyDown(KeyCode.V))
+        //Input.GetKeyDown(KeyCode.V)
+        if (Input.GetButtonDown("SwitchSpeed"))
         {
             if (IsRunning)
             {
