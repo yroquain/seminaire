@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Lave
   - Grass
+  - Mage_Feu
+  - Mage_Eau
+  - Mage_Air
   layers:
   - Default
   - TransparentFX
