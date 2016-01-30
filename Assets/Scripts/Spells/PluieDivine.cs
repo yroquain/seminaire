@@ -41,4 +41,10 @@ public class PluieDivine : MonoBehaviour {
     void Update () {
 
     }
+
+
+    void Cast(){
+
+
+    }
 }

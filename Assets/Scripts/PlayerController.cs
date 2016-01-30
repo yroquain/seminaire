@@ -12,7 +12,14 @@ public class PlayerController : MonoBehaviour
     private bool IsRunning;
     private bool IsWalking;
     private string animationtoplay;
-    private Animator anim;	
+    private Animator anim;
+
+
+    private GameObject fireMage;
+    private GameObject waterMage;
+    private GameObject airMage;
+    public string elementOfMage;
+
 
     //Moving in lava
     private bool IsOnLava;
@@ -24,6 +31,8 @@ public class PlayerController : MonoBehaviour
     bool IsMoving;
     bool IsJumping;
     private float Attackelapsed;
+
+
 
     //Rotation
     public float speed = 50.0f;
@@ -46,6 +55,19 @@ public class PlayerController : MonoBehaviour
         animationtoplay = "Run";
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
+
+        fireMage = GameObject.FindWithTag("Mage_Feu");
+        if (fireMage != null)
+            fireMage.AddComponent<Sorts_Feu>();
+        /*
+                 GameObject.FindWithTag("Mage_Eau").AddComponent<Sorts_Eau>();
+                if (waterMage != null)
+                    //fireMage.AddComponent<Sorts_Eau>();
+
+                GameObject.FindWithTag("Mage_Air").AddComponent<Sorts_Air>();
+                if (airMage != null)
+                    fireMage.AddComponent<Sorts_Air>();
+                    */
     }
     #endregion
 
@@ -53,7 +75,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
         if (Time.time > Attackelapsed + 1)
         {
@@ -66,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //When Moving
-        
+
         if (Input.GetAxis("Vertical") != 0)
         {
             if (!IsAttacking)
@@ -85,7 +106,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //When Attacking
-        if ( Input.GetButtonDown("Frapper") && !IsJumping)
+        if (Input.GetButtonDown("Frapper") && !IsJumping)
         {
             Attackelapsed = Time.time;
             //GetComponent<Animation>().Play("StaffHit");
@@ -105,20 +126,20 @@ public class PlayerController : MonoBehaviour
             //GetComponent<Animation>().Play("CombatModeA");
 
 
-        //Rotating
-        if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
-        {
-            rotate += Input.GetAxis("Horizontal");
-            qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
-        }
+            //Rotating
+            if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
+            {
+                rotate += Input.GetAxis("Horizontal");
+                qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
+            }
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
 
         //Switching between running and walking
-    
+
         if (Input.GetButtonDown("SwitchSpeed"))
         {
-            
+
             if (IsRunning)
             {
                 movementSpeed = walkingSpeed;
@@ -131,6 +152,13 @@ public class PlayerController : MonoBehaviour
             }
             IsRunning = !IsRunning;
             IsWalking = !IsWalking;
+        }
+
+
+        //when casting spell 1
+        if (Input.GetButtonDown("Sort 1"))
+        {
+            fireMage.GetComponent<Sorts_Feu>().CastSpell(1);
         }
 
         //When on lava
@@ -155,10 +183,10 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.tag == "Grass")
         {
-                IsOnGrass = true;
-                IsOnLava = false;
+            IsOnGrass = true;
+            IsOnLava = false;
         }
-        
+
     }
 
     private void miseAJourVarAnimation()
