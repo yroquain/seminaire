@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private GameObject fireMage;
     private GameObject waterMage;
     private GameObject airMage;
-    public string elementOfMage;
 
 
     //Moving in lava
@@ -56,18 +55,23 @@ public class PlayerController : MonoBehaviour
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
 
-        fireMage = GameObject.FindWithTag("Mage_Feu");
-        if (fireMage)
-            fireMage.AddComponent<Sorts_Feu>();
-        /*
-                 GameObject.FindWithTag("Mage_Eau").AddComponent<Sorts_Eau>();
-                if (waterMage != null)
-                    //fireMage.AddComponent<Sorts_Eau>();
 
-                GameObject.FindWithTag("Mage_Air").AddComponent<Sorts_Air>();
-                if (airMage != null)
-                    fireMage.AddComponent<Sorts_Air>();
-                    */
+        if (this.gameObject.tag == "Mage_Feu")
+        {
+            fireMage = this.gameObject;
+            fireMage.AddComponent<Sorts_Feu>();
+        }
+        else if (this.gameObject.tag == "Mage_Eau")
+        {
+            waterMage = this.gameObject;
+            waterMage.AddComponent<Sorts_Eau>();
+        }
+        else if (this.gameObject.tag == "Mage_Air")
+        {
+            airMage = this.gameObject;
+            airMage.AddComponent<Sorts_Air>();
+        }
+
     }
     #endregion
 
@@ -160,12 +164,25 @@ public class PlayerController : MonoBehaviour
         {
             if (fireMage)
                 fireMage.GetComponent<Sorts_Feu>().CastSpell(1);
+
+            if (waterMage)
+                waterMage.GetComponent<Sorts_Eau>().CastSpell(1);
+
+            if (airMage)
+                airMage.GetComponent<Sorts_Air>().CastSpell(1);
         }
 
+        //when casting spell 2
         if (Input.GetButtonDown("Sort 2"))
         {
             if (fireMage)
                 fireMage.GetComponent<Sorts_Feu>().CastSpell(2);
+
+            if (waterMage)
+                waterMage.GetComponent<Sorts_Eau>().CastSpell(2);
+
+            if (airMage)
+                airMage.GetComponent<Sorts_Air>().CastSpell(2);
         }
 
         //When on lava

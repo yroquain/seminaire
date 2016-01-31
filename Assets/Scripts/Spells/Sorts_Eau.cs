@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sorts_Feu : MonoBehaviour
-{
+public class Sorts_Eau : MonoBehaviour {
 
 
 
@@ -36,13 +35,13 @@ public class Sorts_Feu : MonoBehaviour
     {
         if (numberSpell == 1) //trait de feu
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
-            Vector3 position = new Vector3(player.transform.position.x+ camera.transform.forward.x * 2, 
+            GameObject player = GameObject.FindGameObjectWithTag("Mage_Eau");
+            Vector3 position = new Vector3(player.transform.position.x + camera.transform.forward.x * 2,
                 player.transform.position.y + 2,
-                player.transform.position.z+ camera.transform.forward.z * 2);
+                player.transform.position.z + camera.transform.forward.z * 2);
             Instantiate(trait, position, Quaternion.identity);
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
-            
+
 
             Debug.Log("trait de feu tiré");
         }
@@ -53,5 +52,4 @@ public class Sorts_Feu : MonoBehaviour
 
 
     }
-
 }
