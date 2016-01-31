@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         fireMage = GameObject.FindWithTag("Mage_Feu");
-        if (fireMage != null)
+        if (fireMage)
             fireMage.AddComponent<Sorts_Feu>();
         /*
                  GameObject.FindWithTag("Mage_Eau").AddComponent<Sorts_Eau>();
@@ -158,7 +158,14 @@ public class PlayerController : MonoBehaviour
         //when casting spell 1
         if (Input.GetButtonDown("Sort 1"))
         {
-            fireMage.GetComponent<Sorts_Feu>().CastSpell(1);
+            if (fireMage)
+                fireMage.GetComponent<Sorts_Feu>().CastSpell(1);
+        }
+
+        if (Input.GetButtonDown("Sort 2"))
+        {
+            if (fireMage)
+                fireMage.GetComponent<Sorts_Feu>().CastSpell(2);
         }
 
         //When on lava
