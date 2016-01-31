@@ -33,7 +33,8 @@ public class Sorts_Eau : MonoBehaviour {
 
     public void CastSpell(int numberSpell)
     {
-        if (numberSpell == 1) //trait de feu
+        //Choc aquatique
+        if (numberSpell == 1)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Mage_Eau");
             Vector3 position = new Vector3(player.transform.position.x + camera.transform.forward.x * 2,
@@ -43,9 +44,9 @@ public class Sorts_Eau : MonoBehaviour {
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
 
 
-            Debug.Log("trait de feu tiré");
         }
-        else if (numberSpell == 2) //immolation
+        //Pluie divine
+        else if (numberSpell == 2)
         {
             throw new System.Exception("not implemented yet");
         }

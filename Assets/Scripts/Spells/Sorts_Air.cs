@@ -33,7 +33,8 @@ public class Sorts_Air : MonoBehaviour {
 
     public void CastSpell(int numberSpell)
     {
-        if (numberSpell == 1) //trait de feu
+        //Bourrasque infernale
+        if (numberSpell == 1)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Mage_Air");
             Vector3 position = new Vector3(player.transform.position.x + camera.transform.forward.x * 2,
@@ -42,10 +43,9 @@ public class Sorts_Air : MonoBehaviour {
             Instantiate(trait, position, Quaternion.identity);
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
 
-
-            Debug.Log("trait de feu tiré");
         }
-        else if (numberSpell == 2) //immolation
+        //Mur d'Éole
+        else if (numberSpell == 2)
         {
             throw new System.Exception("not implemented yet");
         }
