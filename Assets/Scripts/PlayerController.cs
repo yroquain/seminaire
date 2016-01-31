@@ -26,10 +26,17 @@ public class PlayerController : MonoBehaviour
     private float heigh;
 
     //Animation triggers
-    bool IsAttacking;
-    bool IsMoving;
-    bool IsJumping;
+    private bool IsAttacking;
+    private bool IsMoving;
+    private bool IsJumping;
     private float Attackelapsed;
+
+    //Enigme2
+    private bool IsUnderAnimation;
+    private bool IsSavingCamInfo;
+    private Vector3 CamPos;
+    private Quaternion CamRot;
+    public GameObject MainCamera;
 
 
 
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        IsUnderAnimation = false;
         IsAttacking = false;
         IsMoving = false;
         IsJumping = false;
@@ -50,12 +58,13 @@ public class PlayerController : MonoBehaviour
         IsRunning = true;
         IsOnGrass = true;
         IsOnLava = false;
+        IsSavingCamInfo = true;
         rotate = 0;
         animationtoplay = "Run";
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
 
-
+        
         if (this.gameObject.tag == "Mage_Feu")
         {
             fireMage = this.gameObject;
@@ -79,118 +88,132 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
-        if (Time.time > Attackelapsed + 1)
+        if (!IsUnderAnimation)
         {
-            IsMoving = false;
-            IsAttacking = false;
-        }
-        if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05)
-        {
-            IsJumping = false;
-        }
-
-        //When Moving
-
-        if (Input.GetAxis("Vertical") != 0)
-        {
-            if (!IsAttacking)
+            GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
+            if (Time.time > Attackelapsed + 1)
             {
-                transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
-                /*if (!IsJumping)
-                {
-                    // GetComponent<Animation>().Play("Run");
-                }*/
-                IsMoving = true;
+                IsMoving = false;
+                IsAttacking = false;
             }
+            if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05)
+            {
+                IsJumping = false;
+            }
+
+            //When Moving
+
+            if (Input.GetAxis("Vertical") != 0)
+            {
+                if (!IsAttacking)
+                {
+                    transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
+                    /*if (!IsJumping)
+                    {
+                        // GetComponent<Animation>().Play("Run");
+                    }*/
+                    IsMoving = true;
+                }
+            }
+            else
+            {
+                IsMoving = false;
+            }
+
+            //When Attacking
+            if (Input.GetButtonDown("Frapper") && !IsJumping)
+            {
+                Attackelapsed = Time.time;
+                //GetComponent<Animation>().Play("StaffHit");
+                IsAttacking = true;
+            }
+
+            //When Jumping
+            if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05 && Input.GetButtonDown("Jump"))
+            {
+                GetComponent<Rigidbody>().AddForce(new Vector3(0, 250, 0), ForceMode.Force);
+                IsJumping = true;
+                //GetComponent<Animation>().Play("JumoRun");
+            }
+
+            //When not doing anything
+            if (!IsAttacking && !IsMoving && !IsJumping)
+                //GetComponent<Animation>().Play("CombatModeA");
+
+
+                //Rotating
+                if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
+                {
+                    rotate += Input.GetAxis("Horizontal");
+                    qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
+                }
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
+
+            //Switching between running and walking
+
+            if (Input.GetButtonDown("SwitchSpeed"))
+            {
+
+                if (IsRunning)
+                {
+                    movementSpeed = walkingSpeed;
+                    animationtoplay = "Walk";
+                }
+                if (IsWalking)
+                {
+                    movementSpeed = runningSpeed;
+                    animationtoplay = "Run";
+                }
+                IsRunning = !IsRunning;
+                IsWalking = !IsWalking;
+            }
+
+
+            //when casting spell 1
+            if (Input.GetButtonDown("Sort 1"))
+            {
+                if (fireMage)
+                    fireMage.GetComponent<Sorts_Feu>().CastSpell(1);
+
+                if (waterMage)
+                    waterMage.GetComponent<Sorts_Eau>().CastSpell(1);
+
+                if (airMage)
+                    airMage.GetComponent<Sorts_Air>().CastSpell(1);
+            }
+
+            //when casting spell 2
+            if (Input.GetButtonDown("Sort 2"))
+            {
+                if (fireMage)
+                    fireMage.GetComponent<Sorts_Feu>().CastSpell(2);
+
+                if (waterMage)
+                    waterMage.GetComponent<Sorts_Eau>().CastSpell(2);
+
+                if (airMage)
+                    airMage.GetComponent<Sorts_Air>().CastSpell(2);
+            }
+
+            //When on lava
+            if (IsOnLava)
+            {
+                transform.position = new Vector3(transform.position.x, heigh - 0.2f, transform.position.z);
+            }
+            miseAJourVarAnimation();
         }
         else
         {
-            IsMoving = false;
-        }
-
-        //When Attacking
-        if (Input.GetButtonDown("Frapper") && !IsJumping)
-        {
-            Attackelapsed = Time.time;
-            //GetComponent<Animation>().Play("StaffHit");
-            IsAttacking = true;
-        }
-
-        //When Jumping
-        if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05 && Input.GetButtonDown("Jump"))
-        {
-            GetComponent<Rigidbody>().AddForce(new Vector3(0, 250, 0), ForceMode.Force);
-            IsJumping = true;
-            //GetComponent<Animation>().Play("JumoRun");
-        }
-
-        //When not doing anything
-        if (!IsAttacking && !IsMoving && !IsJumping)
-            //GetComponent<Animation>().Play("CombatModeA");
-
-
-            //Rotating
-            if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
+            if (IsSavingCamInfo)
             {
-                rotate += Input.GetAxis("Horizontal");
-                qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
+                CamPos = MainCamera.transform.position;
+                CamRot = MainCamera.transform.rotation;
+                IsSavingCamInfo = false;
             }
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
-
-        //Switching between running and walking
-
-        if (Input.GetButtonDown("SwitchSpeed"))
-        {
-
-            if (IsRunning)
-            {
-                movementSpeed = walkingSpeed;
-                animationtoplay = "Walk";
-            }
-            if (IsWalking)
-            {
-                movementSpeed = runningSpeed;
-                animationtoplay = "Run";
-            }
-            IsRunning = !IsRunning;
-            IsWalking = !IsWalking;
+            MainCamera.transform.position = new Vector3(28.95f, 21f, -170.0f);
+            MainCamera.transform.rotation = Quaternion.Euler(27.0f, -90f, 0.0f);
         }
-
-
-        //when casting spell 1
-        if (Input.GetButtonDown("Sort 1"))
-        {
-            if (fireMage)
-                fireMage.GetComponent<Sorts_Feu>().CastSpell(1);
-
-            if (waterMage)
-                waterMage.GetComponent<Sorts_Eau>().CastSpell(1);
-
-            if (airMage)
-                airMage.GetComponent<Sorts_Air>().CastSpell(1);
-        }
-
-        //when casting spell 2
-        if (Input.GetButtonDown("Sort 2"))
-        {
-            if (fireMage)
-                fireMage.GetComponent<Sorts_Feu>().CastSpell(2);
-
-            if (waterMage)
-                waterMage.GetComponent<Sorts_Eau>().CastSpell(2);
-
-            if (airMage)
-                airMage.GetComponent<Sorts_Air>().CastSpell(2);
-        }
-
-        //When on lava
-        if (IsOnLava)
-        {
-            transform.position = new Vector3(transform.position.x, heigh - 0.2f, transform.position.z);
-        }
-        miseAJourVarAnimation();
     }
     void OnCollisionStay(Collision collision)
     {
@@ -217,5 +240,15 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool("isMoving", IsMoving);
         anim.SetBool("isWalking", IsWalking);
+    }
+    public void Animation()
+    {
+        if (IsUnderAnimation && !IsSavingCamInfo)
+        {
+            MainCamera.transform.position = CamPos;
+            MainCamera.transform.rotation = CamRot;
+            IsSavingCamInfo = true;
+        }
+        IsUnderAnimation = !IsUnderAnimation;
     }
 }

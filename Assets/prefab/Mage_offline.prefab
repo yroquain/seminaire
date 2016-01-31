@@ -1964,7 +1964,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154804}
-  m_LocalRotation: {x: 0.034920998, y: -0, z: -0, w: 0.99939007}
+  m_LocalRotation: {x: 0.034921, y: -0, z: -0, w: 0.9993901}
   m_LocalPosition: {x: -0.15301625, y: 0, z: -0.00000007999999}
   m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
   m_Children: []
@@ -2119,7 +2119,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168690}
-  m_LocalRotation: {x: -0.50582325, y: 0.505839, z: 0.49409217, w: 0.4941081}
+  m_LocalRotation: {x: -0.5058232, y: 0.50583893, z: 0.4940921, w: 0.49410805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 1.0000004}
   m_Children:
@@ -2253,7 +2253,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 197439838a4e4d7409dae3aa344863af, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2269,7 +2269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d9a6b12270e3743899ca947e2afbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementOfMage: air
   speed: 50
 --- !u!124 &12418306
 Behaviour:
@@ -2447,6 +2446,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: elementOfMage
       value: air
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
