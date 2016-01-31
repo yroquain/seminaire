@@ -2633,7 +2633,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448518, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.503
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: 448518, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2657,7 +2657,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448518, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11438518, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_AssetId.i0
@@ -2726,6 +2726,10 @@ Prefab:
     - target: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_Name
       value: Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
+      propertyPath: m_TagString
+      value: Mage_Feu
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11459008, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
@@ -5660,6 +5664,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c81a9a4bd118bca11002b7b44295342, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &493901453 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100896, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
+  m_PrefabInternal: {fileID: 194876055}
 --- !u!1001 &495157274
 Prefab:
   m_ObjectHideFlags: 0
@@ -6151,6 +6159,28 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1c81a9a4bd118bca11002b7b44295342, type: 3}
   m_PrefabInternal: {fileID: 923422357}
+--- !u!1 &541393153 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
+  m_PrefabInternal: {fileID: 194876055}
+--- !u!114 &541393159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541393153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f84ce8cdfa3944898cfdc4a88fee77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  manaCost: 0
+  CD: 0
+  element: 
+  range: 0
+  camera: {fileID: 493901453}
+  trait: {fileID: 450178, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
 --- !u!4 &542873979 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 25fa881dbd110e38a00062d88f962b59, type: 3}

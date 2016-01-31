@@ -11,6 +11,7 @@ public class Sorts_Feu : MonoBehaviour
     public float CD;
     public string element;
     public float range; //définit la portée de l'attaque
+    public GameObject camera;
 
     public Transform trait;
 
@@ -37,10 +38,13 @@ public class Sorts_Feu : MonoBehaviour
     {
         if (numberSpell == 1) //trait de feu
         {
-            Vector3 position = new Vector3(0, 0, 0);
             GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
-            Transform newTrait = (Transform)Instantiate(trait, player.transform.position, Quaternion.identity);
-            newTrait.transform.Translate(Camera.main.transform.forward * Time.deltaTime);
+            Vector3 position = new Vector3(player.transform.position.x+ camera.transform.forward.x * 2, 
+                player.transform.position.y + 2,
+                player.transform.position.z+ camera.transform.forward.z * 2);
+            Instantiate(trait, position, Quaternion.identity);
+            //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
+            
 
             Debug.Log("trait de feu tiré");
         }
