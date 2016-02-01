@@ -47,10 +47,9 @@ public class Sorts_Feu : MonoBehaviour
             Instantiate(trait, position, Quaternion.identity);
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;*/
             BeginEffect(numberSpell - 1);
-
-            Debug.Log("trait de feu tiré");
         }
-        else if (numberSpell == 2) //immolation
+        //Immolation
+        else if (numberSpell == 2)
         {
             throw new System.Exception("not implemented yet");
         }
