@@ -118,11 +118,11 @@ public class FireBaseScript : MonoBehaviour
         {
             // increase the stop time
             stopTimeIncrement += Time.deltaTime;
+            Destroy(gameObject);
             if (stopTimeIncrement < StopTime)
             {
                 StopPercent = stopTimeIncrement * stopTimeMultiplier;
             }
-            Destroy(gameObject);
         }
         else if (Starting)
         {

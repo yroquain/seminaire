@@ -51,7 +51,7 @@ public class Sorts_Feu : MonoBehaviour
         //Immolation
         else if (numberSpell == 2)
         {
-            throw new System.Exception("not implemented yet");
+            GetComponent<PlayerController>().IsImmolating = !GetComponent<PlayerController>().IsImmolating;
         }
 
 
@@ -59,7 +59,6 @@ public class Sorts_Feu : MonoBehaviour
 
     private void BeginEffect(int i)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
         currentPrefabIndex = i;
         Vector3 pos;
         float yRot = transform.rotation.eulerAngles.y;
@@ -80,9 +79,9 @@ public class Sorts_Feu : MonoBehaviour
                 // set the start point near the player
                 rotation = camera.transform.rotation;
                 //rotation = transform.rotation;
-                pos = new Vector3(player.transform.position.x + camera.transform.forward.x * 2,
-                        player.transform.position.y + 2,
-                        player.transform.position.z + camera.transform.forward.z * 2); ;
+                pos = new Vector3(transform.position.x + camera.transform.forward.x * 2,
+                        transform.position.y + 2,
+                        transform.position.z + camera.transform.forward.z * 2); ;
                 //pos = transform.position + forward + right + up;
             }
             else
