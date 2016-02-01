@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
+     <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
      <Compile Include="Assets\Game 2 - Jump game\Scripts\EnnemyAction.cs" />
      <Compile Include="Assets\Scripts\BulletMove.cs" />
      <Compile Include="Assets\Scripts\LavaMovement.cs" />
