@@ -47,7 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Game 2 - Jump game\Scripts\EnnemyAction.cs" />
      <Compile Include="Assets\NetworkedPlayerScript.cs" />
-     <Compile Include="Assets\Scripts\BulletMove.cs" />
+     <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\LavaMovement.cs" />
      <Compile Include="Assets\Scripts\Plateforme1.cs" />
      <Compile Include="Assets\Scripts\PlateformePlacement.cs" />
