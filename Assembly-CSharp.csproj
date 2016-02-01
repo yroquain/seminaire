@@ -48,7 +48,12 @@
      <Compile Include="Assets\Elementals\Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Elementals\Scripts\TestParticles.cs" />
      <Compile Include="Assets\Game 2 - Jump game\Scripts\EnnemyAction.cs" />
+<<<<<<< HEAD
+     <Compile Include="Assets\NetworkedPlayerScript.cs" />
+     <Compile Include="Assets\Scripts\HealthBar.cs" />
+=======
      <Compile Include="Assets\Scripts\BulletMove.cs" />
+>>>>>>> 1112ee55f2fdaa8965ce3fbd4dcb5a8725e51c7a
      <Compile Include="Assets\Scripts\LavaMovement.cs" />
      <Compile Include="Assets\Scripts\NetworkedPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Plateforme1.cs" />
