@@ -10,7 +10,7 @@ public class Sorts_Feu : MonoBehaviour
     public float manaCost;
     public float CD;
     public float range; //définit la portée de l'attaque
-    public GameObject camera;
+    public GameObject cameraa;
     public GameObject[] Prefabs;
     private GameObject currentPrefabObject;
     private int currentPrefabIndex;
@@ -77,11 +77,11 @@ public class Sorts_Feu : MonoBehaviour
             if (currentPrefabScript.IsProjectile)
             {
                 // set the start point near the player
-                rotation = camera.transform.rotation;
+                rotation = cameraa.transform.rotation;
                 //rotation = transform.rotation;
-                pos = new Vector3(transform.position.x + camera.transform.forward.x * 2,
+                pos = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
                         transform.position.y + 2,
-                        transform.position.z + camera.transform.forward.z * 2); ;
+                        transform.position.z + cameraa.transform.forward.z * 2); ;
                 //pos = transform.position + forward + right + up;
             }
             else

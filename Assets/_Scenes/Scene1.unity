@@ -3882,6 +3882,10 @@ Prefab:
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
+    - target: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
+      propertyPath: m_TagString
+      value: Mage_Air
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
   m_IsPrefabParent: 0

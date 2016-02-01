@@ -9,9 +9,9 @@ public class Sorts_Air : MonoBehaviour {
     public float manaCost;
     public float CD;
     public float range; //définit la portée de l'attaque
-    public GameObject camera;
+    public GameObject cameraa;
 
-    public Transform trait;
+    public GameObject wind;
 
     #region Initialisation
     void Start()
@@ -34,18 +34,18 @@ public class Sorts_Air : MonoBehaviour {
     public void CastSpell(int numberSpell)
     {
         //Bourrasque infernale
-        if (numberSpell == 1)
+        if (numberSpell == 2)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Mage_Air");
-            Vector3 position = new Vector3(player.transform.position.x + camera.transform.forward.x * 2,
-                player.transform.position.y + 2,
-                player.transform.position.z + camera.transform.forward.z * 2);
-            Instantiate(trait, position, Quaternion.identity);
+            Vector3 position = new Vector3(player.transform.position.x + cameraa.transform.forward.x * 2,
+                player.transform.position.y ,
+                player.transform.position.z + cameraa.transform.forward.z * 2);
+            Instantiate(wind, position, Quaternion.identity);
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
             
         }
         //Mur d'Éole
-        else if (numberSpell == 2)
+        else if (numberSpell == 1)
         {
             throw new System.Exception("not implemented yet");
         }

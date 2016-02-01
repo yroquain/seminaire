@@ -9,7 +9,7 @@ public class Sorts_Eau : MonoBehaviour {
     public float manaCost;
     public float CD;
     public float range; //définit la portée de l'attaque
-    public GameObject camera;
+    public GameObject cameraa;
 
     public Transform trait;
 
@@ -37,9 +37,9 @@ public class Sorts_Eau : MonoBehaviour {
         if (numberSpell == 1)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Mage_Eau");
-            Vector3 position = new Vector3(player.transform.position.x + camera.transform.forward.x * 2,
+            Vector3 position = new Vector3(player.transform.position.x + cameraa.transform.forward.x * 2,
                 player.transform.position.y + 2,
-                player.transform.position.z + camera.transform.forward.z * 2);
+                player.transform.position.z + cameraa.transform.forward.z * 2);
             Instantiate(trait, position, Quaternion.identity);
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
 
