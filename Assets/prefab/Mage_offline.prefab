@@ -396,6 +396,11 @@ GameObject:
   - 114: {fileID: 11459900}
   - 114: {fileID: 11463692}
   - 114: {fileID: 11400454}
+  - 136: {fileID: 13648566}
+  - 114: {fileID: 11439772}
+  - 114: {fileID: 11457810}
+  - 114: {fileID: 11455862}
+  - 114: {fileID: 11488954}
   m_Layer: 0
   m_Name: Mage_offline
   m_TagString: Mage_Feu
@@ -449,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &138976
 GameObject:
   m_ObjectHideFlags: 1
@@ -2345,6 +2350,57 @@ MonoBehaviour:
   range: 0
   camera: {fileID: 0}
   trait: {fileID: 0}
+--- !u!114 &11439772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6ba49de56f93b468f6907f1b708e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  manaCost: 0
+  CD: 0
+  range: 0
+  camera: {fileID: 0}
+  trait: {fileID: 0}
+--- !u!114 &11455862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9cdddad3d174b449ef455438d55efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myskin: {fileID: 11400000, guid: 143e84590a977a344bb1072809c2711c, type: 2}
+  HpBarTexture: {fileID: 2800000, guid: ad34d764e60a6df4d8d8366f36378ac8, type: 3}
+  HpBarLenght: 0
+  HpBarX: 160
+  HpBarY: 10
+  HpBarHeight: 15
+--- !u!114 &11457810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbed306132e977a46aa22aa27aef5a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  manaCost: 0
+  CD: 0
+  range: 0
+  camera: {fileID: 0}
+  trait: {fileID: 0}
 --- !u!114 &11459900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2379,6 +2435,26 @@ MonoBehaviour:
   HpBarX: 160
   HpBarY: 10
   HpBarHeight: 15
+--- !u!114 &11488954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f84ce8cdfa3944898cfdc4a88fee77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  manaCost: 0
+  CD: 0
+  range: 0
+  camera: {fileID: 100896}
+  Prefabs:
+  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+  - {fileID: 0}
+  trait: {fileID: 429324, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
 --- !u!124 &12418306
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2386,6 +2462,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100896}
   m_Enabled: 1
+--- !u!136 &13648566
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.0798578
+  m_Height: 3.704631
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!136 &13690920
 CapsuleCollider:
   m_ObjectHideFlags: 1
