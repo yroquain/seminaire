@@ -11,7 +11,8 @@ public class Sorts_Eau : MonoBehaviour {
     public float range; //définit la portée de l'attaque
     public GameObject cameraa;
 
-    public Transform trait;
+    public GameObject trait;
+    public Transform pos;
 
     #region Initialisation
     void Start()
@@ -33,22 +34,21 @@ public class Sorts_Eau : MonoBehaviour {
 
     public void CastSpell(int numberSpell)
     {
-        //Choc aquatique
+        //Pluie divine
         if (numberSpell == 1)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Mage_Eau");
-            Vector3 position = new Vector3(player.transform.position.x + cameraa.transform.forward.x * 2,
-                player.transform.position.y + 2,
-                player.transform.position.z + cameraa.transform.forward.z * 2);
-            Instantiate(trait, position, Quaternion.identity);
+            throw new System.Exception("not implemented yet");
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
 
-            
+
         }
-        //Pluie divine
+        //Choc aquatique
         else if (numberSpell == 2)
         {
-            throw new System.Exception("not implemented yet");
+            Vector3 position = new Vector3(pos.position.x ,
+                pos.position.y,
+                pos.position.z);
+            Instantiate(trait, position, Quaternion.identity);
         }
 
 
