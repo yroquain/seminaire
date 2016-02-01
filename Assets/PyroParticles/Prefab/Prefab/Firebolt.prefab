@@ -357,7 +357,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 141530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ddac42c74d9804780ab8f38fd24bfa, type: 3}
+  m_Script: {fileID: 11500000, guid: b85cb039b6d149f46b051488d2465561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Seed: 0
@@ -365,11 +365,6 @@ MonoBehaviour:
   IntensityMaxRange:
     Minimum: 0
     Maximum: 8
-  firePointLight: {fileID: 0}
-  lightIntensity: 0
-  seed: 0
-  fireBaseScript: {fileID: 0}
-  baseY: 0
 --- !u!114 &11466612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -389,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 141530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218ff9bbbb803d3468f696ca5f56d833, type: 3}
+  m_Script: {fileID: 11500000, guid: 245887334a601354cb1853676e37a7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioSource: {fileID: 8285056}
@@ -401,14 +396,6 @@ MonoBehaviour:
   IsProjectile: 1
   ManualParticleSystems:
   - {fileID: 19843370}
-  startTimeMultiplier: 0
-  startTimeIncrement: 0
-  stopTimeMultiplier: 0
-  stopTimeIncrement: 0
-  <Starting>k__BackingField: 0
-  <StartPercent>k__BackingField: 0
-  <Stopping>k__BackingField: 0
-  <StopPercent>k__BackingField: 0
   ProjectileColliderObject: {fileID: 151328}
   ProjectileCollisionSound: {fileID: 8299452}
   ProjectileExplosionParticleSystem: {fileID: 19843370}
@@ -417,10 +404,11 @@ MonoBehaviour:
   ProjectileColliderDelay: 0
   ProjectileColliderSpeed: 25
   ProjectileDirection: {x: 1, y: 0, z: 0}
-  ProjectileCollisionLayers: {}
+  ProjectileCollisionLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   ProjectileDestroyParticleSystemsOnCollision:
   - {fileID: 19813804}
-  collided: 0
 --- !u!135 &13563630
 SphereCollider:
   m_ObjectHideFlags: 1
