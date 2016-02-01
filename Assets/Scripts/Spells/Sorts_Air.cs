@@ -12,6 +12,9 @@ public class Sorts_Air : MonoBehaviour {
     public GameObject cameraa;
 
     public GameObject wind;
+    public GameObject mur;
+    private GameObject muractif;
+    private bool Isactivated;
 
     #region Initialisation
     void Start()
@@ -20,6 +23,7 @@ public class Sorts_Air : MonoBehaviour {
         this.manaCost = 10.0f;
         this.CD = 10.0f;
         this.range = 100.0f;
+        Isactivated = false;
     }
 
     #endregion
@@ -27,7 +31,6 @@ public class Sorts_Air : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
     }
 
 
@@ -36,10 +39,9 @@ public class Sorts_Air : MonoBehaviour {
         //Bourrasque infernale
         if (numberSpell == 2)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Mage_Air");
-            Vector3 position = new Vector3(player.transform.position.x + cameraa.transform.forward.x * 2,
-                player.transform.position.y ,
-                player.transform.position.z + cameraa.transform.forward.z * 2);
+            Vector3 position = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
+                transform.position.y ,
+                transform.position.z + cameraa.transform.forward.z * 2);
             Instantiate(wind, position, Quaternion.identity);
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
             
@@ -47,7 +49,20 @@ public class Sorts_Air : MonoBehaviour {
         //Mur d'Éole
         else if (numberSpell == 1)
         {
-            throw new System.Exception("not implemented yet");
+            if (!Isactivated)
+            {
+                muractif = GameObject.Instantiate(mur);
+                muractif.transform.position = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
+                    transform.position.y,
+                    transform.position.z + cameraa.transform.forward.z * 2);
+                muractif.transform.rotation = transform.rotation;
+
+            }
+            else
+            {
+                Destroy(muractif.gameObject);
+            }
+            Isactivated = !Isactivated;
         }
 
 
