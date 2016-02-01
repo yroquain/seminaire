@@ -16,7 +16,7 @@ public class PlateformePlacement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        IsActivated = true;
+        IsActivated = false;
         marker = true;
         Firstiteration = true;
     }
