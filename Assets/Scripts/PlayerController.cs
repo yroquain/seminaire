@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
+
     // Update is called once per frame
     void Update()
     {
@@ -100,6 +101,12 @@ public class PlayerController : MonoBehaviour
             {
                 IsJumping = false;
             }
+
+            if (Input.GetKeyDown("y"))
+            {
+                HealthBar.SP.setCurHP(HealthBar.SP.getCurHP() - 15);
+            }
+            
 
             //When Moving
 

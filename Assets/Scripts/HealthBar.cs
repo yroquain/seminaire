@@ -31,7 +31,6 @@ public class HealthBar : MonoBehaviour
 
     void StartGame()
     {
-        Time.timeScale = 1.0f; //met vitesse du jeu à 1
         gameState = GameState.playing;
     }
 
