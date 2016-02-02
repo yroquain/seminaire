@@ -15,7 +15,7 @@ public class PreRain : MonoBehaviour {
 	// Update is called once per frame
 	void OnCollisionEnter(Collision col)
     {
-        Instantiate(cube, new Vector3(transform.position.x, transform.position.y + 5, transform.position.z), Quaternion.identity);
+        Instantiate(cube, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), Quaternion.identity);
         Destroy(gameObject);
     }
 }
