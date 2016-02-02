@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
+
     #region Variables
     //Movement
     private float movementSpeed = 10.0f;
@@ -39,7 +40,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 CamPos;
     private Quaternion CamRot;
     public GameObject MainCamera;
-
 
 
     //Rotation
@@ -102,11 +102,6 @@ public class PlayerController : MonoBehaviour
                 IsJumping = false;
             }
 
-            if (Input.GetKeyDown("y"))
-            {
-                HealthBar.SP.setCurHP(HealthBar.SP.getCurHP() - 15);
-            }
-            
 
             //When Moving
 
@@ -204,9 +199,9 @@ public class PlayerController : MonoBehaviour
             }
 
             //Immolation
-            if(IsImmolating)
+            if (IsImmolating)
             {
-                GetComponent<CapsuleCollider>().enabled=true;
+                GetComponent<CapsuleCollider>().enabled = true;
                 Immo.SetActive(true);
             }
             else
@@ -234,16 +229,29 @@ public class PlayerController : MonoBehaviour
             MainCamera.transform.rotation = Quaternion.Euler(27.0f, -90f, 0.0f);
         }
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+
+        //the mage fall in the deeps
+        if (col.gameObject.tag == "Fond_Ravin")
+        {
+            //the player die
+            HealthBar.HPBar.setCurHP(-10.0f);
+        }
+    }
+
     void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Lave")
         {
             //if not fire type -> kill
-            if (IsOnGrass)
+            if (IsOnGrass && !this.IsImmolating)
             {
                 heigh = transform.position.y;
                 IsOnGrass = false;
                 IsOnLava = true;
+                HealthBar.HPBar.setCurHP(-10.0f);
             }
 
         }
@@ -270,5 +278,6 @@ public class PlayerController : MonoBehaviour
         }
         IsUnderAnimation = !IsUnderAnimation;
     }
+
 }
 

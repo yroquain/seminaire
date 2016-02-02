@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\Spells\Sorts_Air.cs" />
      <Compile Include="Assets\Scripts\Spells\Sorts_Eau.cs" />
      <Compile Include="Assets\Scripts\Spells\Sorts_Feu.cs" />
+     <Compile Include="Assets\Scripts\Spells\Tornade.cs" />
      <Compile Include="Assets\Scripts\Spells\Velocity_Trait_Feu.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\selection_personnage\changer_tenue.cs" />

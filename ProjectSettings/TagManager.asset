@@ -9,6 +9,7 @@ TagManager:
   - Mage_Feu
   - Mage_Eau
   - Mage_Air
+  - Fond_Ravin
   layers:
   - Default
   - TransparentFX

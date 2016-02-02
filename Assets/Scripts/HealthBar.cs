@@ -7,7 +7,7 @@ public enum GameState { playing, gameover, pause };
 public class HealthBar : MonoBehaviour
 {
 
-    public static HealthBar SP;
+    public static HealthBar HPBar;
     public static int score;
 
     private int bestScore = 0;
@@ -25,7 +25,7 @@ public class HealthBar : MonoBehaviour
 
     void Awake()
     {
-        SP = this;
+        HPBar = this;
         StartGame();
     }
 
@@ -105,7 +105,7 @@ public class HealthBar : MonoBehaviour
         HpBarLenght = PercentOfHP * 130;
 
         //if hp = 0
-        if (HealthBar.SP.getCurHP() <= 0)
+        if (HealthBar.HPBar.getCurHP() <= 0)
         {
             this.GameOver();
         }
