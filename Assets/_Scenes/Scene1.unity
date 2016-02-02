@@ -3884,7 +3884,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_TagString
-      value: Mage_Feu
+      value: Mage_Eau
       objectReference: {fileID: 0}
     - target: {fileID: 11457810, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: mur
@@ -3898,6 +3898,10 @@ Prefab:
       propertyPath: pos
       value: 
       objectReference: {fileID: 1341951669}
+    - target: {fileID: 11439772, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
+      propertyPath: prerain
+      value: 
+      objectReference: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
   m_IsPrefabParent: 0

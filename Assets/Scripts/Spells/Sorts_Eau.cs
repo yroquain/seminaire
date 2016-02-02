@@ -13,6 +13,7 @@ public class Sorts_Eau : MonoBehaviour
     public GameObject cameraa;
 
     public GameObject trait;
+    public GameObject prerain;
     public Transform pos;
 
     #region Initialisation
@@ -47,8 +48,10 @@ public class Sorts_Eau : MonoBehaviour
         //Pluie divine
         else if (numberSpell == 2)
         {
-            throw new System.Exception("not implemented yet");
-            //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
+            Vector3 position = new Vector3((transform.position.x+cameraa.transform.forward.x*2),
+                transform.position.y+2,
+                transform.position.z+ cameraa.transform.forward.z * 2);
+            Instantiate(prerain, position, Quaternion.identity);
 
 
         }
