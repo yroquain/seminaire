@@ -6,31 +6,32 @@ public class cameraController : MonoBehaviour {
     public Transform target;
     public Transform camera;
     public float angularSpeed;
-    private bool bQuickSwitch = false;
-    private Vector3 initialOffset;
-
-    private Vector3 currentOffset;
 
 	// Use this for initialization
 	void Start () {
-        currentOffset = transform.position - target.position; ;
+       
 	}
 	
 
     private void LateUpdate()
     {
-        transform.position = target.position + currentOffset;
-        Debug.Log(Input.GetButton("CameraVertical"));
-         float movement=0;
-         if (Input.GetKeyDown("p"))
-        {
-            movement = angularSpeed * Time.deltaTime;
-        }
-        
+        float movement=  angularSpeed * Time.deltaTime * Input.GetAxis("CameraVertical");
         if (!Mathf.Approximately(movement, 0f))
         {
-            transform.RotateAround(target.position, Vector3.right, movement);
-            currentOffset = transform.position - target.position;
+            if (movement > 0)
+            {
+                if (Quaternion.Angle(transform.rotation, target.rotation) < 25 || transform.rotation.x < 0) //on limite vers la haut
+                {
+                    transform.RotateAround(target.position, Vector3.right, movement);                    
+                }
+            }
+            else
+            {
+                if (Quaternion.Angle(transform.rotation, target.rotation) < 25 || transform.rotation.x > 0) // on limite vers le bas
+                {
+                    transform.RotateAround(target.position, Vector3.right, movement);
+                }
+            }
         }
-    }
+     }
 }

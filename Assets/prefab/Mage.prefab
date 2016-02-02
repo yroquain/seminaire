@@ -122,9 +122,12 @@ GameObject:
   - 114: {fileID: 11444428}
   - 114: {fileID: 11404794}
   - 136: {fileID: 13605098}
+  - 114: {fileID: 11443164}
+  - 114: {fileID: 11413274}
+  - 114: {fileID: 11499716}
   m_Layer: 0
   m_Name: Mage
-  m_TagString: Untagged
+  m_TagString: Mage_Feu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1121,6 +1124,7 @@ GameObject:
   - 92: {fileID: 9287418}
   - 124: {fileID: 12407544}
   - 81: {fileID: 8187764}
+  - 114: {fileID: 11465110}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2328,6 +2332,42 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &11413274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6ba49de56f93b468f6907f1b708e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  manaCost: 0
+  CD: 0
+  range: 0
+  cameraa: {fileID: 0}
+  trait: {fileID: 0}
+  pos: {fileID: 0}
+--- !u!114 &11443164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbed306132e977a46aa22aa27aef5a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  manaCost: 0
+  CD: 0
+  range: 0
+  cameraa: {fileID: 0}
+  wind: {fileID: 0}
+  mur: {fileID: 0}
 --- !u!114 &11444428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2342,6 +2382,7 @@ MonoBehaviour:
   fpsController: {fileID: 11403364}
   fpsCamera: {fileID: 2019912}
   audioListener: {fileID: 8187764}
+  myCameraController: {fileID: 11465110}
 --- !u!114 &11455116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2374,6 +2415,20 @@ MonoBehaviour:
     i15: 98
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &11465110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193730}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842a78f3505ba414ab99cada2fee27ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 488982}
+  camera: {fileID: 466612}
+  angularSpeed: 10
 --- !u!114 &11473042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2393,6 +2448,25 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!114 &11499716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f84ce8cdfa3944898cfdc4a88fee77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  manaCost: 0
+  CD: 0
+  range: 0
+  cameraa: {fileID: 193730}
+  Prefabs:
+  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+  trait: {fileID: 0}
 --- !u!124 &12407544
 Behaviour:
   m_ObjectHideFlags: 1
@@ -4065,6 +4139,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Prefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: fpsCamera
       value: 
       objectReference: {fileID: 2019912}
@@ -4112,6 +4190,34 @@ Prefab:
       propertyPath: IsImmolating
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 466612}
+    - target: {fileID: 0}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 488982}
+    - target: {fileID: 0}
+      propertyPath: angularSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: myCameraController
+      value: 
+      objectReference: {fileID: 11465110}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Mage_Feu
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraa
+      value: 
+      objectReference: {fileID: 193730}
+    - target: {fileID: 0}
+      propertyPath: Prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

@@ -6,6 +6,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
     public PlayerController fpsController;
     public Camera fpsCamera;
     public AudioListener audioListener;
+    public cameraController myCameraController;
 
 
     Renderer[] renderers;
@@ -20,6 +21,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
         fpsController.enabled = true;
         fpsCamera.enabled = true;
         audioListener.enabled = true;
+        myCameraController.enabled = true;
 
         gameObject.name = "LOCAL Player";
         base.OnStartLocalPlayer();

@@ -10,9 +10,7 @@ public class PlayerController : MonoBehaviour
     private float movementSpeed = 10.0f;
     private float walkingSpeed = 6.0f;
     private float runningSpeed = 10.0f;
-    private bool IsRunning;
     private bool IsWalking;
-    private string animationtoplay;
     private Animator anim;
 
     //sorts
@@ -58,12 +56,10 @@ public class PlayerController : MonoBehaviour
         IsMoving = false;
         IsJumping = false;
         IsWalking = false;
-        IsRunning = true;
         IsOnGrass = true;
         IsOnLava = false;
         IsSavingCamInfo = true;
         rotate = 0;
-        animationtoplay = "Run";
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
 
@@ -92,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if (!IsUnderAnimation)
         {
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
-            if (Time.time > Attackelapsed + 1)
+            if (Time.time > Attackelapsed + 0.9)
             {
                 IsMoving = false;
                 IsAttacking = false;
@@ -131,11 +127,10 @@ public class PlayerController : MonoBehaviour
             }
 
             //When Jumping
-            if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05 && Input.GetButtonDown("Jump"))
+            if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05 && Input.GetButtonDown("Jump") && !IsAttacking)
             {
                 GetComponent<Rigidbody>().AddForce(new Vector3(0, 250, 0), ForceMode.Force);
                 IsJumping = true;
-                //GetComponent<Animation>().Play("JumoRun");
             }
 
             //When not doing anything
@@ -156,18 +151,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("SwitchSpeed"))
             {
-
-                if (IsRunning)
-                {
-                    movementSpeed = walkingSpeed;
-                    animationtoplay = "Walk";
-                }
-                if (IsWalking)
-                {
-                    movementSpeed = runningSpeed;
-                    animationtoplay = "Run";
-                }
-                IsRunning = !IsRunning;
                 IsWalking = !IsWalking;
             }
 
@@ -267,6 +250,8 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool("isMoving", IsMoving);
         anim.SetBool("isWalking", IsWalking);
+        anim.SetBool("isJumping", IsJumping);
+        anim.SetBool("isAttacking", IsAttacking);
     }
     public void Animation()
     {
