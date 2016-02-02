@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sorts_Eau : MonoBehaviour {
+public class Sorts_Eau : MonoBehaviour
+{
 
 
 
@@ -34,22 +35,25 @@ public class Sorts_Eau : MonoBehaviour {
 
     public void CastSpell(int numberSpell)
     {
-        //Pluie divine
+        //Choc aquatique
+
         if (numberSpell == 1)
+        {
+            Vector3 position = new Vector3(pos.position.x,
+                pos.position.y,
+                pos.position.z);
+            Instantiate(trait, position, Quaternion.identity);
+        }
+        //Pluie divine
+        else if (numberSpell == 2)
         {
             throw new System.Exception("not implemented yet");
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
 
 
         }
-        //Choc aquatique
-        else if (numberSpell == 2)
-        {
-            Vector3 position = new Vector3(pos.position.x ,
-                pos.position.y,
-                pos.position.z);
-            Instantiate(trait, position, Quaternion.identity);
-        }
+
+
 
 
     }

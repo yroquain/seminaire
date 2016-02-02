@@ -37,7 +37,7 @@ public class Sorts_Air : MonoBehaviour {
     public void CastSpell(int numberSpell)
     {
         //Bourrasque infernale
-        if (numberSpell == 2)
+        if (numberSpell == 1)
         {
             Vector3 position = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
                 transform.position.y ,
@@ -47,7 +47,7 @@ public class Sorts_Air : MonoBehaviour {
             
         }
         //Mur d'Éole
-        else if (numberSpell == 1)
+        else if (numberSpell == 2)
         {
             if (!Isactivated)
             {
