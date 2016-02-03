@@ -79,9 +79,9 @@ public class Sorts_Feu : MonoBehaviour
                 // set the start point near the player
                 rotation = cameraa.transform.rotation;
                 //rotation = transform.rotation;
-                pos = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
+                pos = new Vector3(transform.position.x + cameraa.transform.forward.x*2,
                         transform.position.y + 2,
-                        transform.position.z + cameraa.transform.forward.z * 2); ;
+                        transform.position.z + cameraa.transform.forward.z* 2); ;
                 //pos = transform.position + forward + right + up;
             }
             else

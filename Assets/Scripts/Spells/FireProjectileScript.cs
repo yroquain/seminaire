@@ -72,7 +72,6 @@ public class FireProjectileScript : FireBaseScript, ICollisionHandler
             // already collided, don't do anything
             return;
         }
-
         // stop the projectile
         collided = true;
         Stop();
