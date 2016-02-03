@@ -239,16 +239,13 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Lave")
+        if (collision.gameObject.tag == "Lave" && !this.IsImmolating)
         {
             //if not fire type -> kill
-            if (IsOnGrass && !this.IsImmolating)
-            {
-                heigh = transform.position.y;
-                IsOnGrass = false;
-                IsOnLava = true;
-                HealthBar.HPBar.setCurHP(-10.0f);
-            }
+            heigh = transform.position.y;
+            IsOnGrass = false;
+            IsOnLava = true;
+            HealthBar.HPBar.setCurHP(-10.0f);
 
         }
         if (collision.gameObject.tag == "Grass")
@@ -285,6 +282,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (this.gameObject.tag == "Mage_Feu")
         {
+            if (this.IsImmolating)
+            {
+                this.GetComponent<Sorts_Feu>().CastSpell(2);
+            }
             this.gameObject.tag = "Mage_Air";
             fireMage = null;
             airMage = this.gameObject;
