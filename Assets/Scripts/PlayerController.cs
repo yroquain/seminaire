@@ -239,15 +239,31 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Lave" && !this.IsImmolating)
+
+        //Si le personnage rentre dans la lave
+        if (collision.gameObject.tag == "Lave")
         {
             //if not fire type -> kill
             heigh = transform.position.y;
             IsOnGrass = false;
             IsOnLava = true;
-            HealthBar.HPBar.setCurHP(-10.0f);
+            if (!this.IsImmolating)
+            {
+                HealthBar.HPBar.setCurHP(-10.0f);
+            }
 
         }
+
+        //Si le personnage marche sur les plateformes de l'enigme1 sans les avoir refroidies
+        if (collision.gameObject.tag == "PlateformeEnigme1" && !this.IsImmolating)
+        {
+            if (collision.gameObject.GetComponent<Plateforme1>().IsDeadly)
+            {
+                HealthBar.HPBar.setCurHP(-10.0f);
+            }
+        }
+
+        //Quand le personnage retourne sur la terre
         if (collision.gameObject.tag == "Grass")
         {
             IsOnGrass = true;

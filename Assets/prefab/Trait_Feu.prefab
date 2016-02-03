@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11434676}
   m_Layer: 0
   m_Name: Trait_Feu
-  m_TagString: Untagged
+  m_TagString: ChocAquatique
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,6 +218,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_ServerOnly
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: Choc
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: ChocAquatique
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
