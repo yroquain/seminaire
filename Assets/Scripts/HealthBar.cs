@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public enum GameState { playing, gameover, pause };
 
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : NetworkBehaviour
 {
 
     public static HealthBar HPBar;
@@ -80,7 +81,7 @@ public class HealthBar : MonoBehaviour
 
     void GameOver()
     {
-        Time.timeScale = 0.0f; //Pause the game
+        //Time.timeScale = 0.0f; //Pause the game
         gameState = GameState.gameover;
     }
 
@@ -107,6 +108,7 @@ public class HealthBar : MonoBehaviour
         //if hp = 0
         if (HealthBar.HPBar.getCurHP() <= 0)
         {
+            CmdDeadPlayer(this.gameObject);
             this.GameOver();
         }
 
@@ -118,9 +120,13 @@ public class HealthBar : MonoBehaviour
     }
     */    
 
-
-
-
-
     }
+
+
+    [Command]
+    void CmdDeadPlayer(GameObject myPlayer)
+    {
+        myPlayer.GetComponent<NetworkedPlayerScript>().RpcResolveDead();
+    }
+
 }

@@ -3876,32 +3876,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448518, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
-    - target: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-      propertyPath: m_TagString
-      value: Mage_Eau
-      objectReference: {fileID: 0}
-    - target: {fileID: 11457810, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-      propertyPath: mur
-      value: 
-      objectReference: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
-    - target: {fileID: 11439772, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-      propertyPath: trait
-      value: 
-      objectReference: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
-    - target: {fileID: 11439772, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-      propertyPath: pos
-      value: 
-      objectReference: {fileID: 1341951669}
-    - target: {fileID: 11439772, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-      propertyPath: prerain
-      value: 
-      objectReference: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
   m_IsPrefabParent: 0
@@ -9344,10 +9324,6 @@ Transform:
 --- !u!1 &541393153 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 134524, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-  m_PrefabInternal: {fileID: 194876055}
---- !u!4 &541393163 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 448518, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
   m_PrefabInternal: {fileID: 194876055}
 --- !u!4 &542873979 stripped
 Transform:
@@ -22295,33 +22271,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b9282fc41cfa4caf9b150bd407f856e, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1341951668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1341951669}
-  m_Layer: 0
-  m_Name: Pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1341951669
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1341951668}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.584, y: 1.039, z: 0.598}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 541393163}
-  m_RootOrder: 6
 --- !u!1001 &1348873431
 Prefab:
   m_ObjectHideFlags: 0
@@ -25684,28 +25633,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1534215965}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1537521775 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100896, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-  m_PrefabInternal: {fileID: 194876055}
---- !u!4 &1537521780 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 473948, guid: 37ac83db19ddf514984b7a9525c93a01, type: 2}
-  m_PrefabInternal: {fileID: 194876055}
---- !u!114 &1537521781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1537521775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 842a78f3505ba414ab99cada2fee27ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 541393163}
-  camera: {fileID: 1537521780}
-  angularSpeed: 10
 --- !u!1 &1538616724
 GameObject:
   m_ObjectHideFlags: 0
@@ -30376,7 +30303,7 @@ GameObject:
   - 65: {fileID: 1838578102}
   m_Layer: 0
   m_Name: Fond_Ravin
-  m_TagString: Untagged
+  m_TagString: Fond_Ravin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

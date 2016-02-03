@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private float movementSpeed = 10.0f;
     private float walkingSpeed = 6.0f;
     private float runningSpeed = 10.0f;
-    private bool IsWalking;
     private Animator anim;
 
     //sorts
@@ -29,6 +28,7 @@ public class PlayerController : MonoBehaviour
     //Animation triggers
     private bool IsAttacking;
     private bool IsMoving;
+    private bool IsWalking;
     private bool IsJumping;
     private float Attackelapsed;
 
@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
     private Quaternion CamRot;
     public GameObject MainCamera;
 
+    //Texture
+    public Material texture_air;
+    public Material texture_eau;
+    public Material texture_feu;
 
     //Rotation
     public float speed = 50.0f;
@@ -67,14 +71,17 @@ public class PlayerController : MonoBehaviour
         if (this.gameObject.tag == "Mage_Feu")
         {
             fireMage = this.gameObject;
+            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
         }
         else if (this.gameObject.tag == "Mage_Eau")
         {
             waterMage = this.gameObject;
+            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
         }
         else if (this.gameObject.tag == "Mage_Air")
         {
             airMage = this.gameObject;
+            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
         }
 
     }
@@ -106,10 +113,6 @@ public class PlayerController : MonoBehaviour
                 if (!IsAttacking)
                 {
                     transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
-                    /*if (!IsJumping)
-                    {
-                        // GetComponent<Animation>().Play("Run");
-                    }*/
                     IsMoving = true;
                 }
             }
@@ -122,7 +125,6 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Frapper") && !IsJumping)
             {
                 Attackelapsed = Time.time;
-                //GetComponent<Animation>().Play("StaffHit");
                 IsAttacking = true;
             }
 
@@ -135,8 +137,6 @@ public class PlayerController : MonoBehaviour
 
             //When not doing anything
             if (!IsAttacking && !IsMoving && !IsJumping)
-                //GetComponent<Animation>().Play("CombatModeA");
-
 
                 //Rotating
                 if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
@@ -148,9 +148,16 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
 
             //Switching between running and walking
-
             if (Input.GetButtonDown("SwitchSpeed"))
             {
+                if (IsWalking) //switch the speed
+                {
+                    movementSpeed = runningSpeed;
+                }
+                else
+                {
+                    movementSpeed = walkingSpeed;
+                }
                 IsWalking = !IsWalking;
             }
 
@@ -180,6 +187,10 @@ public class PlayerController : MonoBehaviour
                 if (airMage)
                     airMage.GetComponent<Sorts_Air>().CastSpell(2);
             }
+            if (Input.GetButtonDown("SwitchMage"))
+            {
+                changerMage();
+            }
 
             //Immolation
             if (IsImmolating)
@@ -198,6 +209,8 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, heigh - 0.2f, transform.position.z);
             }
+
+            // On envoie les variables à l'animator pour qu'il joue la bonne animation
             miseAJourVarAnimation();
         }
         else
@@ -253,6 +266,34 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isJumping", IsJumping);
         anim.SetBool("isAttacking", IsAttacking);
     }
+
+    private void changerMage()
+    {
+        if (this.gameObject.tag == "Mage_Air")
+        {
+            this.gameObject.tag = "Mage_Eau";
+            airMage = null;
+            waterMage = this.gameObject;
+            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
+        }
+        else if (this.gameObject.tag == "Mage_Eau")
+        {
+            this.gameObject.tag = "Mage_Feu";
+            waterMage = null;
+            fireMage = this.gameObject;
+            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
+        }
+        else if (this.gameObject.tag == "Mage_Feu")
+        {
+            this.gameObject.tag = "Mage_Air";
+            fireMage = null;
+            airMage = this.gameObject;
+            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
+            GetComponent<CapsuleCollider>().enabled = false;
+            Immo.SetActive(false);
+        }
+    }
+
     public void Animation()
     {
         if (IsUnderAnimation && !IsSavingCamInfo)

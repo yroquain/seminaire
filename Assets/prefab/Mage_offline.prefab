@@ -13,6 +13,7 @@ GameObject:
   - 124: {fileID: 12418306}
   - 81: {fileID: 8173456}
   - 114: {fileID: 11437146}
+  - 114: {fileID: 11499258}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -300,6 +301,21 @@ GameObject:
   - 4: {fileID: 499888}
   m_Layer: 0
   m_Name: Bip01_R_Finger01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &129488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 432836}
+  m_Layer: 0
+  m_Name: Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1542,6 +1558,18 @@ Transform:
   - {fileID: 416718}
   m_Father: {fileID: 413790}
   m_RootOrder: 0
+--- !u!4 &432836
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.584, y: 1.039, z: 0.598}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 448518}
+  m_RootOrder: 6
 --- !u!4 &433008
 Transform:
   m_ObjectHideFlags: 1
@@ -1708,6 +1736,7 @@ Transform:
   - {fileID: 469300}
   - {fileID: 473948}
   - {fileID: 448310}
+  - {fileID: 432836}
   - {fileID: 463626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1918,7 +1947,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 448518}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!4 &465174
 Transform:
   m_ObjectHideFlags: 1
@@ -2336,6 +2365,9 @@ MonoBehaviour:
   IsImmolating: 0
   Immo: {fileID: 137356}
   MainCamera: {fileID: 100896}
+  texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
+  texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
+  texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
   speed: 50
 --- !u!114 &11437146
 MonoBehaviour:
@@ -2368,7 +2400,8 @@ MonoBehaviour:
   range: 0
   cameraa: {fileID: 100896}
   trait: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
-  pos: {fileID: 463626}
+  prerain: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
+  pos: {fileID: 432836}
 --- !u!114 &11455862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2424,6 +2457,20 @@ MonoBehaviour:
   - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
   - {fileID: 0}
   trait: {fileID: 429324, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+--- !u!114 &11499258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842a78f3505ba414ab99cada2fee27ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 448518}
+  camera: {fileID: 473948}
+  angularSpeed: 10
 --- !u!124 &12418306
 Behaviour:
   m_ObjectHideFlags: 1

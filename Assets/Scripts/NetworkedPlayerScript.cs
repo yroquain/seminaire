@@ -27,40 +27,40 @@ public class NetworkedPlayerScript : NetworkBehaviour
         base.OnStartLocalPlayer();
     }
 
-    /*void ToggleRenderer(bool isAlive)
+    //Dés
+    void ToggleRenderer(bool isAlive)
     {
         for (int i = 0; i < renderers.Length; i++)
             renderers[i].enabled = isAlive;
     }
-
-    void ToggleControls(bool isAlive)
-    {
-        fpsController.enabled = isAlive;
-        fpsCamera.cullingMask = ~fpsCamera.cullingMask;
-    }
-
+    
     [ClientRpc]
-    public void RpcResolveHit()
+    public void RpcResolveDead()
     {
         ToggleRenderer(false);
 
         if (isLocalPlayer)
         {
+            fpsController.enabled = false;
             Transform spawn = NetworkManager.singleton.GetStartPosition();
             transform.position = spawn.position;
             transform.rotation = spawn.rotation;
-
-            ToggleControls(false);
+            fpsCamera.enabled = false;
         }
 
         Invoke("Respawn", 2f);
     }
-
+    
     void Respawn()
     {
         ToggleRenderer(true);
 
         if (isLocalPlayer)
-            ToggleControls(true);
-    }*/
+        {
+            fpsController.enabled = true;
+            fpsCamera.enabled = true;
+        }
+            
+            
+    }
 }

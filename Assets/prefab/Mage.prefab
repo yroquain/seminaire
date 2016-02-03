@@ -125,6 +125,7 @@ GameObject:
   - 114: {fileID: 11443164}
   - 114: {fileID: 11413274}
   - 114: {fileID: 11499716}
+  - 114: {fileID: 11496956}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Mage_Feu
@@ -2311,6 +2312,9 @@ MonoBehaviour:
   IsImmolating: 0
   Immo: {fileID: 143232}
   MainCamera: {fileID: 193730}
+  texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
+  texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
+  texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
   speed: 50
 --- !u!114 &11404794
 MonoBehaviour:
@@ -2349,6 +2353,7 @@ MonoBehaviour:
   range: 0
   cameraa: {fileID: 0}
   trait: {fileID: 0}
+  prerain: {fileID: 0}
   pos: {fileID: 0}
 --- !u!114 &11443164
 MonoBehaviour:
@@ -2448,6 +2453,23 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!114 &11496956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9cdddad3d174b449ef455438d55efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myskin: {fileID: 11400000, guid: 143e84590a977a344bb1072809c2711c, type: 2}
+  HpBarTexture: {fileID: 2800000, guid: ad34d764e60a6df4d8d8366f36378ac8, type: 3}
+  HpBarLenght: 0
+  HpBarX: 160
+  HpBarY: 10
+  HpBarHeight: 15
 --- !u!114 &11499716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4218,6 +4240,27 @@ Prefab:
       propertyPath: Prefabs.Array.data[0]
       value: 
       objectReference: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: texture_air
+      value: 
+      objectReference: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
+    - target: {fileID: 0}
+      propertyPath: texture_eau
+      value: 
+      objectReference: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: texture_feu
+      value: 
+      objectReference: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: HpBarTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: ad34d764e60a6df4d8d8366f36378ac8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: myskin
+      value: 
+      objectReference: {fileID: 11400000, guid: 143e84590a977a344bb1072809c2711c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}
