@@ -291,6 +291,7 @@ public class PlayerController : MonoBehaviour
             this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
             GetComponent<CapsuleCollider>().enabled = false;
             Immo.SetActive(false);
+            IsImmolating = false;
         }
     }
 
