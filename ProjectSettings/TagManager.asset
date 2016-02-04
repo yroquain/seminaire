@@ -10,6 +10,13 @@ TagManager:
   - Mage_Eau
   - Mage_Air
   - Fond_Ravin
+  - PluieDivine
+  - ChocAquatique
+  - MurEole
+  - BourrasqueInfernale
+  - TraitFeu
+  - Immolation
+  - PlateformeEnigme1
   layers:
   - Default
   - TransparentFX

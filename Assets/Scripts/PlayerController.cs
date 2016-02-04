@@ -239,18 +239,31 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
+
+        //Si le personnage rentre dans la lave
         if (collision.gameObject.tag == "Lave")
         {
             //if not fire type -> kill
-            if (IsOnGrass && !this.IsImmolating)
+            heigh = transform.position.y;
+            IsOnGrass = false;
+            IsOnLava = true;
+            if (!this.IsImmolating)
             {
-                heigh = transform.position.y;
-                IsOnGrass = false;
-                IsOnLava = true;
                 HealthBar.HPBar.setCurHP(-10.0f);
             }
 
         }
+
+        //Si le personnage marche sur les plateformes de l'enigme1 sans les avoir refroidies
+        if (collision.gameObject.tag == "PlateformeEnigme1" && !this.IsImmolating)
+        {
+            if (collision.gameObject.GetComponent<Plateforme1>().IsDeadly)
+            {
+                HealthBar.HPBar.setCurHP(-10.0f);
+            }
+        }
+
+        //Quand le personnage retourne sur la terre
         if (collision.gameObject.tag == "Grass")
         {
             IsOnGrass = true;
@@ -285,6 +298,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (this.gameObject.tag == "Mage_Feu")
         {
+            if (this.IsImmolating)
+            {
+                this.GetComponent<Sorts_Feu>().CastSpell(2);
+            }
             this.gameObject.tag = "Mage_Air";
             fireMage = null;
             airMage = this.gameObject;
