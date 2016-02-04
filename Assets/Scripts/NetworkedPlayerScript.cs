@@ -8,7 +8,8 @@ public class NetworkedPlayerScript : NetworkBehaviour
     public AudioListener audioListener;
     public cameraController myCameraController;
 
-
+    //constante pour le serveur
+    //private int nombreJoueur;
     Renderer[] renderers;
 
     void Start()
@@ -26,6 +27,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
         gameObject.name = "LOCAL Player";
         base.OnStartLocalPlayer();
     }
+
 
     //Dés
     void ToggleRenderer(bool isAlive)

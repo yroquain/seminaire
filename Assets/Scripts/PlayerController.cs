@@ -13,9 +13,6 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     //sorts
-    private GameObject fireMage;
-    private GameObject waterMage;
-    private GameObject airMage;
     public bool IsImmolating;
     public GameObject Immo;
 
@@ -70,17 +67,14 @@ public class PlayerController : MonoBehaviour
 
         if (this.gameObject.tag == "Mage_Feu")
         {
-            fireMage = this.gameObject;
             this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
         }
         else if (this.gameObject.tag == "Mage_Eau")
         {
-            waterMage = this.gameObject;
             this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
         }
         else if (this.gameObject.tag == "Mage_Air")
         {
-            airMage = this.gameObject;
             this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
         }
 
@@ -165,27 +159,27 @@ public class PlayerController : MonoBehaviour
             //when casting spell 1
             if (Input.GetButtonDown("Sort 1"))
             {
-                if (fireMage)
-                    fireMage.GetComponent<Sorts_Feu>().CastSpell(1);
+                if (this.gameObject.tag == "Mage_Feu")
+                    this.GetComponent<Sorts_Feu>().CastSpell(1);
 
-                if (waterMage)
-                    waterMage.GetComponent<Sorts_Eau>().CastSpell(1);
+                if (this.gameObject.tag == "Mage_Eau")
+                    this.GetComponent<Sorts_Eau>().CastSpell(1);
 
-                if (airMage)
-                    airMage.GetComponent<Sorts_Air>().CastSpell(1);
+                if (this.gameObject.tag == "Mage_Air")
+                    this.GetComponent<Sorts_Air>().CastSpell(1);
             }
 
             //when casting spell 2
             if (Input.GetButtonDown("Sort 2"))
             {
-                if (fireMage)
-                    fireMage.GetComponent<Sorts_Feu>().CastSpell(2);
+                if (this.gameObject.tag == "Mage_Feu")
+                    this.GetComponent<Sorts_Feu>().CastSpell(2);
 
-                if (waterMage)
-                    waterMage.GetComponent<Sorts_Eau>().CastSpell(2);
+                if (this.gameObject.tag == "Mage_Eau")
+                    this.GetComponent<Sorts_Eau>().CastSpell(2);
 
-                if (airMage)
-                    airMage.GetComponent<Sorts_Air>().CastSpell(2);
+                if (this.gameObject.tag == "Mage_Air")
+                    this.GetComponent<Sorts_Air>().CastSpell(2);
             }
             if (Input.GetButtonDown("SwitchMage"))
             {
@@ -285,15 +279,11 @@ public class PlayerController : MonoBehaviour
         if (this.gameObject.tag == "Mage_Air")
         {
             this.gameObject.tag = "Mage_Eau";
-            airMage = null;
-            waterMage = this.gameObject;
             this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
         }
         else if (this.gameObject.tag == "Mage_Eau")
         {
             this.gameObject.tag = "Mage_Feu";
-            waterMage = null;
-            fireMage = this.gameObject;
             this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
         }
         else if (this.gameObject.tag == "Mage_Feu")
@@ -303,12 +293,8 @@ public class PlayerController : MonoBehaviour
                 this.GetComponent<Sorts_Feu>().CastSpell(2);
             }
             this.gameObject.tag = "Mage_Air";
-            fireMage = null;
-            airMage = this.gameObject;
             this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
             GetComponent<CapsuleCollider>().enabled = false;
-            Immo.SetActive(false);
-            IsImmolating = false;
         }
     }
 
