@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
 
 
@@ -65,19 +66,8 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
 
 
-        if (this.gameObject.tag == "Mage_Feu")
-        {
-            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
-        }
-        else if (this.gameObject.tag == "Mage_Eau")
-        {
-            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
-        }
-        else if (this.gameObject.tag == "Mage_Air")
-        {
-            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
-        }
-
+        CmdChangerMage(this.gameObject);
+        
     }
     #endregion
 
@@ -86,6 +76,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
+        /*if (nombreJoueur ==1)
+        {
+            return;
+        }*/
         if (!IsUnderAnimation)
         {
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
@@ -183,7 +178,7 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetButtonDown("SwitchMage"))
             {
-                changerMage();
+                CmdChangerMage(this.gameObject);
             }
 
             //Immolation
@@ -274,28 +269,10 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isAttacking", IsAttacking);
     }
 
-    private void changerMage()
+    [Command]
+    private void CmdChangerMage(GameObject myMage)
     {
-        if (this.gameObject.tag == "Mage_Air")
-        {
-            this.gameObject.tag = "Mage_Eau";
-            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
-        }
-        else if (this.gameObject.tag == "Mage_Eau")
-        {
-            this.gameObject.tag = "Mage_Feu";
-            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
-        }
-        else if (this.gameObject.tag == "Mage_Feu")
-        {
-            if (this.IsImmolating)
-            {
-                this.GetComponent<Sorts_Feu>().CastSpell(2);
-            }
-            this.gameObject.tag = "Mage_Air";
-            this.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
-            GetComponent<CapsuleCollider>().enabled = false;
-        }
+        myMage.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(myMage);
     }
 
     public void Animation()

@@ -1104,6 +1104,9 @@ MonoBehaviour:
   startMarker: {fileID: 66749488}
   endMarker: {fileID: 1527200660}
   Trigger: {fileID: 112039747}
+  texture_depart: {fileID: 0}
+  texture_finale: {fileID: 0}
+  IsDeadly: 0
 --- !u!23 &66749490
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4255,6 +4258,9 @@ MonoBehaviour:
   startMarker: {fileID: 332977193}
   endMarker: {fileID: 656814686}
   Trigger: {fileID: 112039747}
+  texture_depart: {fileID: 0}
+  texture_finale: {fileID: 0}
+  IsDeadly: 0
 --- !u!1 &339811226
 GameObject:
   m_ObjectHideFlags: 0
@@ -7619,6 +7625,9 @@ MonoBehaviour:
   startMarker: {fileID: 697835906}
   endMarker: {fileID: 1519205131}
   Trigger: {fileID: 112039747}
+  texture_depart: {fileID: 0}
+  texture_finale: {fileID: 0}
+  IsDeadly: 0
 --- !u!23 &697835908
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11003,6 +11012,10 @@ Prefab:
     - target: {fileID: 11460582, guid: 0a33641fbecae4340a1a33eb4435f315, type: 2}
       propertyPath: m_PlayerSpawnMethod
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460582, guid: 0a33641fbecae4340a1a33eb4435f315, type: 2}
+      propertyPath: m_UseWebSockets
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a33641fbecae4340a1a33eb4435f315, type: 2}
@@ -15134,6 +15147,9 @@ MonoBehaviour:
   startMarker: {fileID: 1422901494}
   endMarker: {fileID: 224358795}
   Trigger: {fileID: 112039747}
+  texture_depart: {fileID: 0}
+  texture_finale: {fileID: 0}
+  IsDeadly: 0
 --- !u!23 &1422901496
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16554,6 +16570,9 @@ MonoBehaviour:
   startMarker: {fileID: 1538616725}
   endMarker: {fileID: 261320691}
   Trigger: {fileID: 112039747}
+  texture_depart: {fileID: 0}
+  texture_finale: {fileID: 0}
+  IsDeadly: 0
 --- !u!4 &1540091559 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 10337ad1bd11abca11002b7b44295342, type: 3}
@@ -16844,6 +16863,9 @@ MonoBehaviour:
   startMarker: {fileID: 1597888718}
   endMarker: {fileID: 1180277307}
   Trigger: {fileID: 112039747}
+  texture_depart: {fileID: 0}
+  texture_finale: {fileID: 0}
+  IsDeadly: 0
 --- !u!23 &1597888720
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21668,6 +21690,9 @@ MonoBehaviour:
   startMarker: {fileID: 2094597566}
   endMarker: {fileID: 823133066}
   Trigger: {fileID: 112039747}
+  texture_depart: {fileID: 0}
+  texture_finale: {fileID: 0}
+  IsDeadly: 0
 --- !u!23 &2094597568
 MeshRenderer:
   m_ObjectHideFlags: 0

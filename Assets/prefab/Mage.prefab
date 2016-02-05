@@ -570,6 +570,21 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1 &146046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402454}
+  m_Layer: 0
+  m_Name: Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &146760
 GameObject:
@@ -1220,6 +1235,18 @@ Transform:
   - {fileID: 443360}
   m_Father: {fileID: 421592}
   m_RootOrder: 0
+--- !u!4 &402454
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.584, y: 1.039, z: 0.598}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 488982}
+  m_RootOrder: 6
 --- !u!4 &402770
 Transform:
   m_ObjectHideFlags: 1
@@ -2035,6 +2062,7 @@ Transform:
   - {fileID: 491968}
   - {fileID: 466612}
   - {fileID: 491628}
+  - {fileID: 402454}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &489060
@@ -2351,10 +2379,10 @@ MonoBehaviour:
   manaCost: 0
   CD: 0
   range: 0
-  cameraa: {fileID: 0}
-  trait: {fileID: 0}
-  prerain: {fileID: 0}
-  pos: {fileID: 0}
+  cameraa: {fileID: 193730}
+  trait: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
+  prerain: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
+  pos: {fileID: 402454}
 --- !u!114 &11443164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2370,9 +2398,9 @@ MonoBehaviour:
   manaCost: 0
   CD: 0
   range: 0
-  cameraa: {fileID: 0}
-  wind: {fileID: 0}
-  mur: {fileID: 0}
+  cameraa: {fileID: 193730}
+  wind: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
+  mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
 --- !u!114 &11444428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2388,6 +2416,9 @@ MonoBehaviour:
   fpsCamera: {fileID: 2019912}
   audioListener: {fileID: 8187764}
   myCameraController: {fileID: 11465110}
+  texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
+  texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
+  texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
 --- !u!114 &11455116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2557,7 +2588,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0fdde40dce719c44e8aedb0a5f3c80a5, type: 2}
+  - {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -4261,6 +4292,30 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 143e84590a977a344bb1072809c2711c,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wind
+      value: 
+      objectReference: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
+    - target: {fileID: 0}
+      propertyPath: mur
+      value: 
+      objectReference: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: trait
+      value: 
+      objectReference: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
+    - target: {fileID: 0}
+      propertyPath: prerain
+      value: 
+      objectReference: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}
