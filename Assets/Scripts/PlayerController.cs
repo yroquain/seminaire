@@ -66,7 +66,7 @@ public class PlayerController : NetworkBehaviour
         anim = GetComponent<Animator>();
 
 
-        CmdChangerMage(this.gameObject);
+        //CmdChangerMage();
         
     }
     #endregion
@@ -124,15 +124,13 @@ public class PlayerController : NetworkBehaviour
                 IsJumping = true;
             }
 
-            //When not doing anything
-            if (!IsAttacking && !IsMoving && !IsJumping)
 
-                //Rotating
-                if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
-                {
-                    rotate += Input.GetAxis("Horizontal");
-                    qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
-                }
+            //Rotating
+            if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
+            {
+                rotate += Input.GetAxis("Horizontal");
+                qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
+            }
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
 
@@ -178,7 +176,7 @@ public class PlayerController : NetworkBehaviour
             }
             if (Input.GetButtonDown("SwitchMage"))
             {
-                CmdChangerMage(this.gameObject);
+                CmdChangerMage();
             }
 
             //Immolation
@@ -270,9 +268,28 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    private void CmdChangerMage(GameObject myMage)
+    private void CmdChangerMage()
     {
-        myMage.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(myMage);
+        string newTag = "";
+        if (this.gameObject.tag == "Mage_Feu" && this.gameObject.GetComponent<PlayerController>().IsImmolating)
+        {
+            this.gameObject.GetComponent<Sorts_Feu>().CastSpell(2);
+        }
+
+
+        if (GameObject.FindGameObjectsWithTag("Mage_Feu").Length == 0)
+        {
+            newTag = "Mage_Feu";
+        }
+        else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
+        {
+            newTag= "Mage_Eau";
+        }
+        else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
+        {
+            newTag = "Mage_Air";
+        }
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(newTag,this.gameObject);
     }
 
     public void Animation()

@@ -68,39 +68,29 @@ public class NetworkedPlayerScript : NetworkBehaviour
 
         if (isLocalPlayer)
         {
+            
+            this.GetComponent<HealthBar>().completeHealth();
             fpsController.enabled = true;
             fpsCamera.enabled = true;
         }            
     }
 
     [ClientRpc]
-    public void RpcChangerTenue(GameObject myPlayer)
+    public void RpcChangerTenue(string newTag, GameObject myPlayer)
     {
-        Debug.Log("entré");
-        if(myPlayer == this.gameObject){
-            Debug.Log("oui");
-            if (myPlayer.tag == "Mage_Feu" && myPlayer.GetComponent<PlayerController>().IsImmolating)
-            {
-                myPlayer.GetComponent<Sorts_Feu>().CastSpell(2);
-            }
-
-
-            if (GameObject.FindGameObjectsWithTag("Mage_Feu").Length == 0)
-            {
-                myPlayer.tag = "Mage_Feu";
-                myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
-            }
-            else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
-            {
-                myPlayer.tag = "Mage_Eau";
-                myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
-            }
-            else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
-            {
-                myPlayer.tag = "Mage_Air";
-                myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
-            }
+        myPlayer.tag = newTag;
+        if (newTag == "Mage_Feu")
+        {
+            myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;   
         }
-       
+        if (newTag == "Mage_Eau")
+        {
+            myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
+        }
+        if (newTag == "Mage_Air")
+        {
+            myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
+        }
+        
     }
 }

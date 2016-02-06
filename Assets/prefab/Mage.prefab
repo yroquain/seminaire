@@ -2464,7 +2464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 488982}
   camera: {fileID: 466612}
-  angularSpeed: 10
+  angularSpeed: 40
 --- !u!114 &11473042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4253,7 +4253,7 @@ Prefab:
       objectReference: {fileID: 488982}
     - target: {fileID: 0}
       propertyPath: angularSpeed
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: myCameraController

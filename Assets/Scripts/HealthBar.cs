@@ -79,12 +79,6 @@ public class HealthBar : NetworkBehaviour
     }
 
 
-    void GameOver()
-    {
-        //Time.timeScale = 0.0f; //Pause the game
-        gameState = GameState.gameover;
-    }
-
     void Pause()
     {
         Time.timeScale = 0.0f; //Pause the game
@@ -109,7 +103,6 @@ public class HealthBar : NetworkBehaviour
         if (HealthBar.HPBar.getCurHP() <= 0)
         {
             CmdDeadPlayer(this.gameObject);
-            this.GameOver();
         }
 
         /*
@@ -127,6 +120,11 @@ public class HealthBar : NetworkBehaviour
     void CmdDeadPlayer(GameObject myPlayer)
     {
         myPlayer.GetComponent<NetworkedPlayerScript>().RpcResolveDead();
+    }
+
+    public void completeHealth()
+    {
+        curHP = maxHP;
     }
 
 }
