@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class Sorts_Air : MonoBehaviour {
+public class Sorts_Air : NetworkBehaviour
+{
 
 
 
@@ -43,6 +45,8 @@ public class Sorts_Air : MonoBehaviour {
                 transform.position.y ,
                 transform.position.z + cameraa.transform.forward.z * 2);
             Instantiate(wind, position, Quaternion.identity);
+
+            //CmdBourrasqueInfernale();
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
             
         }
@@ -63,8 +67,39 @@ public class Sorts_Air : MonoBehaviour {
                 Destroy(muractif.gameObject);
             }
             Isactivated = !Isactivated;
+            //CmdMurEole();
         }
 
 
+    }
+
+    
+
+    [Command]
+    public void CmdMurEole()
+    {
+       this.gameObject.GetComponent<NetworkedPlayerScript>().RpcMurEole(this.gameObject);
+    }
+    [Command]
+    public void CmdBourrasqueInfernale()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcBourrasqueInfernale(this.gameObject);
+    }
+
+    public bool getIsActivated()
+    {
+        return Isactivated;
+    }
+    public void setIsActivated(bool isActive)
+    {
+        this.Isactivated = isActive;
+    }
+    public void setMurActif(GameObject newWall)
+    {
+        this.muractif = newWall;
+    }
+    public GameObject getMurActif()
+    {
+        return this.muractif;
     }
 }

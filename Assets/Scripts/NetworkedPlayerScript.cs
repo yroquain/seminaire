@@ -42,7 +42,6 @@ public class NetworkedPlayerScript : NetworkBehaviour
             renderers[i].enabled = isAlive;
     }
 
-
     [ClientRpc]
     public void RpcResolveDead()
     {
@@ -59,8 +58,6 @@ public class NetworkedPlayerScript : NetworkBehaviour
 
         Invoke("Respawn", 2f);
     }
-    
-
 
     void Respawn()
     {
@@ -92,5 +89,61 @@ public class NetworkedPlayerScript : NetworkBehaviour
             myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
         }
         
+    }
+
+
+    // Gestion des Sorts
+    [ClientRpc]
+    public void RpcImmolation(GameObject myPlayer)
+    {
+        myPlayer.GetComponent<PlayerController>().IsImmolating = !myPlayer.GetComponent<PlayerController>().IsImmolating;
+
+        if (myPlayer.GetComponent<PlayerController>().IsImmolating)
+        {
+            myPlayer.GetComponent<CapsuleCollider>().enabled = true;
+            myPlayer.GetComponent<PlayerController>().Immo.SetActive(true);
+        }
+        else
+        {
+            myPlayer.GetComponent<CapsuleCollider>().enabled = false;
+            myPlayer.GetComponent<PlayerController>().Immo.SetActive(false);
+        }
+    }
+
+    [ClientRpc]
+    public void RpcMurEole(GameObject myPlayer)
+    {
+        if (!myPlayer.GetComponent<Sorts_Air>().getIsActivated())
+        {
+            myPlayer.GetComponent<Sorts_Air>().setMurActif(GameObject.Instantiate(myPlayer.GetComponent<Sorts_Air>().mur));
+            myPlayer.GetComponent<Sorts_Air>().getMurActif().transform.position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.x * 2,
+                transform.position.y,
+                transform.position.z + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.z * 2);
+            myPlayer.GetComponent<Sorts_Air>().getMurActif().transform.rotation = transform.rotation;
+
+        }
+        else
+        {
+            Destroy(myPlayer.GetComponent<Sorts_Air>().getMurActif().gameObject);
+        }
+        myPlayer.GetComponent<Sorts_Air>().setIsActivated(!myPlayer.GetComponent<Sorts_Air>().getIsActivated());
+    }
+
+    [ClientRpc]
+    public void RpcBourrasqueInfernale(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.x * 2,
+               transform.position.y,
+               transform.position.z + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_Air>().wind, position, Quaternion.identity);
+    }
+   
+    [ClientRpc]
+    public void RpcPluieDivine(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_Eau>().cameraa.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + myPlayer.GetComponent<Sorts_Eau>().cameraa.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_Eau>().prerain, position, Quaternion.identity);
     }
 }

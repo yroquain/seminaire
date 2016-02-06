@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class Sorts_Eau : MonoBehaviour
+public class Sorts_Eau : NetworkBehaviour
 {
 
 
@@ -52,12 +53,13 @@ public class Sorts_Eau : MonoBehaviour
                 transform.position.y+2,
                 transform.position.z+ cameraa.transform.forward.z * 2);
             Instantiate(prerain, position, Quaternion.identity);
-
-
+            //CmdPluieDivine();
         }
+    }
 
-
-
-
+    [Command]
+    public void CmdPluieDivine()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcPluieDivine(this.gameObject);
     }
 }

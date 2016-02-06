@@ -8,7 +8,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431946}
-  - 114: {fileID: 11459200}
   m_Layer: 0
   m_Name: WindWall
   m_TagString: MurEole
@@ -88,38 +87,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 430294}
   m_RootOrder: 0
---- !u!114 &11459200
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 205
-    i1: 142
-    i2: 153
-    i3: 32
-    i4: 143
-    i5: 244
-    i6: 82
-    i7: 20
-    i8: 42
-    i9: 28
-    i10: 17
-    i11: 157
-    i12: 254
-    i13: 161
-    i14: 193
-    i15: 77
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
 --- !u!198 &19831902
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class Sorts_Feu : MonoBehaviour
+public class Sorts_Feu : NetworkBehaviour
 {
 
 
@@ -51,6 +52,7 @@ public class Sorts_Feu : MonoBehaviour
         //Immolation
         else if (numberSpell == 2)
         {
+            //CmdImmolation();
             GetComponent<PlayerController>().IsImmolating = !GetComponent<PlayerController>().IsImmolating;
         }
 
@@ -107,5 +109,11 @@ public class Sorts_Feu : MonoBehaviour
 
         currentPrefabObject.transform.position = pos;
         currentPrefabObject.transform.rotation = rotation;
+    }
+
+    [Command]
+    private void CmdImmolation()
+    {
+        this.GetComponent<NetworkedPlayerScript>().RpcImmolation(this.gameObject);
     }
 }

@@ -180,7 +180,7 @@ public class PlayerController : NetworkBehaviour
             }
 
             //Immolation
-            if (IsImmolating)
+            /*if (IsImmolating)
             {
                 GetComponent<CapsuleCollider>().enabled = true;
                 Immo.SetActive(true);
@@ -189,7 +189,7 @@ public class PlayerController : NetworkBehaviour
             {
                 GetComponent<CapsuleCollider>().enabled = false;
                 Immo.SetActive(false);
-            }
+            }*/
 
             //When on lava
             if (IsOnLava)
