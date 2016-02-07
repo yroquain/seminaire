@@ -52,8 +52,8 @@ public class Sorts_Feu : NetworkBehaviour
         //Immolation
         else if (numberSpell == 2)
         {
-            //CmdImmolation();
-            GetComponent<PlayerController>().IsImmolating = !GetComponent<PlayerController>().IsImmolating;
+            CmdImmolation();
+            //GetComponent<PlayerController>().IsImmolating = !GetComponent<PlayerController>().IsImmolating;
         }
 
 

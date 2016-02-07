@@ -9,7 +9,7 @@ public class PlateformePlacement : MonoBehaviour {
     public GameObject Mage;
     private bool marker;
     private float speed = 3.0f;
-    private bool IsActivated;
+    public bool IsActivated;
     private bool Firstiteration;
     private float timestart;
     private float timeend=15f;
