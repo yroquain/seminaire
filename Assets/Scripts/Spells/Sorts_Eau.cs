@@ -45,6 +45,8 @@ public class Sorts_Eau : NetworkBehaviour
                 pos.position.y,
                 pos.position.z);
             Instantiate(trait, position, Quaternion.identity);
+
+            //CmdChocAquatique();
         }
         //Pluie divine
         else if (numberSpell == 2)
@@ -55,6 +57,12 @@ public class Sorts_Eau : NetworkBehaviour
             Instantiate(prerain, position, Quaternion.identity);
             //CmdPluieDivine();
         }
+    }
+
+    [Command]
+    public void CmdChocAquatique()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChocAquatique(this.gameObject);
     }
 
     [Command]

@@ -146,4 +146,14 @@ public class NetworkedPlayerScript : NetworkBehaviour
                transform.position.z + myPlayer.GetComponent<Sorts_Eau>().cameraa.transform.forward.z * 2);
         Instantiate(myPlayer.GetComponent<Sorts_Eau>().prerain, position, Quaternion.identity);
     }
+
+    [ClientRpc]
+    public void RpcChocAquatique(GameObject myPlayer)
+    {
+
+        Vector3 position = new Vector3(myPlayer.GetComponent<Sorts_Eau>().pos.position.x,
+                myPlayer.GetComponent<Sorts_Eau>().pos.position.y,
+                myPlayer.GetComponent<Sorts_Eau>().pos.position.z);
+        Instantiate(myPlayer.GetComponent<Sorts_Eau>().trait, position, Quaternion.identity);
+    }
 }
