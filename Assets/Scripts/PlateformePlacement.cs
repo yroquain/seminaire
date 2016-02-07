@@ -6,7 +6,6 @@ public class PlateformePlacement : MonoBehaviour {
     public Transform startMarker;
     public Transform endMarker1;
     public Transform endMarker2;
-    public GameObject Mage;
     private bool marker;
     private float speed = 3.0f;
     public bool IsActivated;
@@ -28,7 +27,21 @@ public class PlateformePlacement : MonoBehaviour {
         {
             if(Firstiteration)
             {
-                Mage.GetComponent<PlayerController>().Animation();
+                GameObject MageF = GameObject.FindWithTag("Mage_Feu");
+                if (MageF != null)
+                {
+                    MageF.GetComponent<PlayerController>().Animation();
+                }
+                GameObject MageE = GameObject.FindWithTag("Mage_Eau");
+                if (MageE != null)
+                {
+                    MageE.GetComponent<PlayerController>().Animation();
+                }
+                GameObject MageA = GameObject.FindWithTag("Mage_Air");
+                if (MageA != null)
+                {
+                    MageA.GetComponent<PlayerController>().Animation();
+                }
                 timestart = Time.time;
                 Firstiteration = false;
             }
@@ -41,7 +54,21 @@ public class PlateformePlacement : MonoBehaviour {
                 marker = false;
             if(Time.time>timestart+timeend)
             {
-                Mage.GetComponent<PlayerController>().Animation();
+                GameObject MageF = GameObject.FindWithTag("Mage_Feu");
+                if (MageF != null)
+                {
+                    MageF.GetComponent<PlayerController>().Animation();
+                }
+                GameObject MageE = GameObject.FindWithTag("Mage_Eau");
+                if (MageE != null)
+                {
+                    MageE.GetComponent<PlayerController>().Animation();
+                }
+                GameObject MageA = GameObject.FindWithTag("Mage_Air");
+                if (MageA != null)
+                {
+                    MageA.GetComponent<PlayerController>().Animation();
+                }
                 IsActivated = false;
             }
         }
