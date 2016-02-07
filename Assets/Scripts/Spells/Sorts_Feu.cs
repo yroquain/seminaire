@@ -41,11 +41,11 @@ public class Sorts_Feu : NetworkBehaviour
     {
         if (numberSpell == 1) //trait de feu
         {
-            /*GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
-            Vector3 position = new Vector3(player.transform.position.x + camera.transform.forward.x * 2,
+            GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
+            Vector3 position = new Vector3(player.transform.position.x+player.transform.forward.x*2,
                 player.transform.position.y + 2,
-                player.transform.position.z + camera.transform.forward.z * 2);
-            Instantiate(trait, position, Quaternion.identity);
+                player.transform.position.z+player.transform.forward.z * 2);
+            Instantiate(Prefabs[1], position, Quaternion.identity);
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;*/
             BeginEffect(numberSpell - 1);
         }

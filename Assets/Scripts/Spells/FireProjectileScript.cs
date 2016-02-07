@@ -52,10 +52,8 @@ public class FireProjectileScript : FireBaseScript, ICollisionHandler
     private IEnumerator SendCollisionAfterDelay()
     {
         yield return new WaitForSeconds(ProjectileColliderDelay);
-
-        Vector3 dir = ProjectileDirection * ProjectileColliderSpeed;
-        dir = ProjectileColliderObject.transform.rotation * dir;
-        ProjectileColliderObject.GetComponent<Rigidbody>().velocity = dir;
+        
+        ProjectileColliderObject.GetComponent<Rigidbody>().velocity = GameObject.FindWithTag("Mage_Feu").transform.Find("Main Camera").gameObject.transform.forward*10;
     }
 
     protected override void Start()
