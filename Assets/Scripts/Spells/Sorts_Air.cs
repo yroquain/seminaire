@@ -13,6 +13,11 @@ public class Sorts_Air : NetworkBehaviour
     public float range; //définit la portée de l'attaque
     public GameObject cameraa;
 
+    private bool castMurEole;
+    private bool castBourrasqueInfernale;
+    private float timeCast;
+    private float timeCastMax = 2f;
+
     public GameObject wind;
     public GameObject mur;
     private GameObject muractif;
@@ -33,6 +38,31 @@ public class Sorts_Air : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (castMurEole || castBourrasqueInfernale)
+        {
+            if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == true)
+            {
+                timeCast += Time.deltaTime;
+            }
+            if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
+            {
+                if (castMurEole)
+                {
+                    CmdMurEole();
+                    castMurEole = false;
+                }
+                if (castBourrasqueInfernale)
+                {
+                    CmdBourrasqueInfernale();
+                    castBourrasqueInfernale = false;
+                }
+
+
+                timeCast = 0f;
+                this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
+            }
+
+        }
     }
 
 
@@ -46,7 +76,7 @@ public class Sorts_Air : NetworkBehaviour
                 transform.position.z + cameraa.transform.forward.z * 2);
             Instantiate(wind, position, Quaternion.identity);*/
 
-            CmdBourrasqueInfernale();
+            castMurEole = true;
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
             
         }
@@ -67,7 +97,7 @@ public class Sorts_Air : NetworkBehaviour
                 Destroy(muractif.gameObject);
             }
             Isactivated = !Isactivated;*/
-            CmdMurEole();
+            castBourrasqueInfernale = true;
         }
 
 

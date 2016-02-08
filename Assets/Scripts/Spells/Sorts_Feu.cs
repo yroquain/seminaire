@@ -17,6 +17,10 @@ public class Sorts_Feu : NetworkBehaviour
     private int currentPrefabIndex;
     private FireBaseScript currentPrefabScript;
 
+    private bool castTraitDeFeu;
+    private float timeCast;
+    private float timeCastMax = 2f;
+
     public GameObject trait;
 
     #region Initialisation
@@ -34,6 +38,32 @@ public class Sorts_Feu : NetworkBehaviour
     void Update()
     {
 
+        if (castTraitDeFeu)
+        {
+            if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == true)
+            {
+                timeCast += Time.deltaTime;
+            }
+            if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
+            {
+                if (castTraitDeFeu)
+                {
+                    GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
+                    Vector3 position = new Vector3(player.transform.position.x + player.transform.forward.x * 2,
+                        player.transform.position.y + 2,
+                        player.transform.position.z + player.transform.forward.z * 2);
+                    Instantiate(Prefabs[1], position, Quaternion.identity);
+                    //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;*/
+                    BeginEffect(0);
+                    castTraitDeFeu = false;
+                }
+
+
+                timeCast = 0f;
+                this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
+            }
+
+        }
     }
 
 
@@ -41,13 +71,14 @@ public class Sorts_Feu : NetworkBehaviour
     {
         if (numberSpell == 1) //trait de feu
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
+            /*GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
             Vector3 position = new Vector3(player.transform.position.x+player.transform.forward.x*2,
                 player.transform.position.y + 2,
                 player.transform.position.z+player.transform.forward.z * 2);
             Instantiate(Prefabs[1], position, Quaternion.identity);
-            //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;*/
-            BeginEffect(numberSpell - 1);
+            //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
+            BeginEffect(numberSpell - 1);*/
+            castTraitDeFeu = true;
         }
         //Immolation
         else if (numberSpell == 2)

@@ -35,7 +35,6 @@ public class NetworkedPlayerScript : NetworkBehaviour
     }
 
 
-    //Dés
     void ToggleRenderer(bool isAlive)
     {
         for (int i = 0; i < renderers.Length; i++)
@@ -150,7 +149,6 @@ public class NetworkedPlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcChocAquatique(GameObject myPlayer)
     {
-
         Vector3 position = new Vector3(myPlayer.GetComponent<Sorts_Eau>().pos.position.x,
                 myPlayer.GetComponent<Sorts_Eau>().pos.position.y,
                 myPlayer.GetComponent<Sorts_Eau>().pos.position.z);

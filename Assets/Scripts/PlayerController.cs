@@ -28,6 +28,7 @@ public class PlayerController : NetworkBehaviour
     private bool IsMoving;
     private bool IsWalking;
     private bool IsJumping;
+    private bool IsCasting;
     private float Attackelapsed;
 
     //Enigme2
@@ -60,6 +61,7 @@ public class PlayerController : NetworkBehaviour
         IsWalking = false;
         IsOnGrass = true;
         IsOnLava = false;
+        IsCasting = false;
         IsSavingCamInfo = true;
         rotate = 0;
         Attackelapsed = 0.0f;
@@ -99,7 +101,7 @@ public class PlayerController : NetworkBehaviour
 
             if (Input.GetAxis("Vertical") != 0)
             {
-                if (!IsAttacking)
+                if (!IsAttacking&&!IsCasting)
                 {
                     transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
                     IsMoving = true;
@@ -147,11 +149,18 @@ public class PlayerController : NetworkBehaviour
                 }
                 IsWalking = !IsWalking;
             }
-
+            if (Input.GetAxis("KeepSpell") < 0.1)
+            {
+                IsCasting = false;
+            }
 
             //when casting spell 1
-            if (Input.GetButtonDown("Sort 1"))
+            if (Input.GetButtonDown("Sort 1") && !IsCasting)
             {
+                if (Input.GetAxis("KeepSpell")>0.9)
+                {
+                    IsCasting = true;
+                }
                 if (this.gameObject.tag == "Mage_Feu")
                     this.GetComponent<Sorts_Feu>().CastSpell(1);
 
@@ -163,8 +172,13 @@ public class PlayerController : NetworkBehaviour
             }
 
             //when casting spell 2
-            if (Input.GetButtonDown("Sort 2"))
+            if (Input.GetButtonDown("Sort 2")&&!IsCasting)
             {
+
+                if (Input.GetAxis("KeepSpell") > 0.9)
+                {
+                    IsCasting = true;
+                }
                 if (this.gameObject.tag == "Mage_Feu")
                     this.GetComponent<Sorts_Feu>().CastSpell(2);
 
@@ -265,6 +279,7 @@ public class PlayerController : NetworkBehaviour
         anim.SetBool("isWalking", IsWalking);
         anim.SetBool("isJumping", IsJumping);
         anim.SetBool("isAttacking", IsAttacking);
+        anim.SetBool("isCasting", IsCasting);
     }
 
     [Command]
@@ -301,6 +316,15 @@ public class PlayerController : NetworkBehaviour
             IsSavingCamInfo = true;
         }
         IsUnderAnimation = !IsUnderAnimation;
+    }
+
+    public bool getIsCasting()
+    {
+        return IsCasting;
+    }
+    public void setIsCasting(bool _isCasting)
+    {
+        this.IsCasting = _isCasting;
     }
 
 }
