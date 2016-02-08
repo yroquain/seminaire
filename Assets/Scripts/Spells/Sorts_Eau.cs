@@ -41,21 +41,21 @@ public class Sorts_Eau : NetworkBehaviour
 
         if (numberSpell == 1)
         {
-            Vector3 position = new Vector3(pos.position.x,
+           /* Vector3 position = new Vector3(pos.position.x,
                 pos.position.y,
                 pos.position.z);
-            Instantiate(trait, position, Quaternion.identity);
+            Instantiate(trait, position, Quaternion.identity);*/
 
-            //CmdChocAquatique();
+            CmdChocAquatique();
         }
         //Pluie divine
         else if (numberSpell == 2)
         {
-            Vector3 position = new Vector3((transform.position.x+cameraa.transform.forward.x*2),
+           /* Vector3 position = new Vector3((transform.position.x+cameraa.transform.forward.x*2),
                 transform.position.y+2,
                 transform.position.z+ cameraa.transform.forward.z * 2);
-            Instantiate(prerain, position, Quaternion.identity);
-            //CmdPluieDivine();
+            Instantiate(prerain, position, Quaternion.identity);*/
+            CmdPluieDivine();
         }
     }
 

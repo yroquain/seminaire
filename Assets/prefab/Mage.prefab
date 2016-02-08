@@ -2519,6 +2519,7 @@ MonoBehaviour:
   cameraa: {fileID: 193730}
   Prefabs:
   - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+  - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
   trait: {fileID: 0}
 --- !u!124 &12407544
 Behaviour:
@@ -4193,7 +4194,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: Prefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fpsCamera
@@ -4336,6 +4337,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.9945219
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Prefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

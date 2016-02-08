@@ -66,7 +66,7 @@ public class PlayerController : NetworkBehaviour
         anim = GetComponent<Animator>();
 
 
-        //CmdChangerMage();
+        CmdChangerMage();
         
     }
     #endregion

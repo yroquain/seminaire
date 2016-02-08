@@ -41,19 +41,19 @@ public class Sorts_Air : NetworkBehaviour
         //Bourrasque infernale
         if (numberSpell == 1)
         {
-            Vector3 position = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
+            /*Vector3 position = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
                 transform.position.y ,
                 transform.position.z + cameraa.transform.forward.z * 2);
-            Instantiate(wind, position, Quaternion.identity);
+            Instantiate(wind, position, Quaternion.identity);*/
 
-            //CmdBourrasqueInfernale();
+            CmdBourrasqueInfernale();
             //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
             
         }
         //Mur d'Éole
         else if (numberSpell == 2)
         {
-            if (!Isactivated)
+            /*if (!Isactivated)
             {
                 muractif = GameObject.Instantiate(mur);
                 muractif.transform.position = new Vector3(transform.position.x + cameraa.transform.forward.x * 2,
@@ -66,8 +66,8 @@ public class Sorts_Air : NetworkBehaviour
             {
                 Destroy(muractif.gameObject);
             }
-            Isactivated = !Isactivated;
-            //CmdMurEole();
+            Isactivated = !Isactivated;*/
+            CmdMurEole();
         }
 
 

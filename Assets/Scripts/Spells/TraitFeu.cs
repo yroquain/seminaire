@@ -25,8 +25,6 @@ public class TraitFeu : MonoBehaviour {
     {
         if (Coll.gameObject.tag != "Mage_Feu" && Coll.gameObject.tag != "Mage_Eau" && Coll.gameObject.tag != "Mage_Air" && Coll.gameObject.name!="FireboltCollider")
         {
-            Debug.Log(Coll.gameObject.name);
-
             Destroy(GameObject.Find("Firebolt(Clone)"));
             Destroy(gameObject);
         }
