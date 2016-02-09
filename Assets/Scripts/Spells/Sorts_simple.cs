@@ -27,14 +27,26 @@ public class Sorts_simple : NetworkBehaviour
     private bool castChocAquatique;
     private bool castMurEole;
     private bool castBourrasqueInfernale;
+    private bool IsImmolating;
+    private float timeimmo;
+    private bool IsEole;
+    private float timeeole;
 
     public GameObject wind;
     public GameObject mur;
     private GameObject muractif;
     private bool Isactivated;
 
-	// Use this for initialization
-	void Start () {
+    //CD
+    private float feu1;
+    private float feu2;
+    private float air1;
+    private float air2;
+    private float eau1;
+    private float eau2;
+
+    // Use this for initialization
+    void Start () {
         this.range = 100.0f;
         Isactivated = false;
         numberSpellCast = 0;
@@ -54,20 +66,24 @@ public class Sorts_simple : NetworkBehaviour
                 {
                     CmdMurEole();
                 }
-                if (numberSpellCast == 2)
+                if (numberSpellCast == 2 && GetComponent<PlayerController>().qtmana >= 30)
                 {
+                    GetComponent<PlayerController>().qtmana -= 30;
                     CmdBourrasqueInfernale();
                 }
-                if (numberSpellCast == 3)
+                if (numberSpellCast == 3 && GetComponent<PlayerController>().qtmana >= 30)
                 {
+                    GetComponent<PlayerController>().qtmana -= 30;
                     CmdChocAquatique();
                 }
-                if (numberSpellCast == 4)
+                if (numberSpellCast == 4 && GetComponent<PlayerController>().qtmana >= 50)
                 {
+                    GetComponent<PlayerController>().qtmana -= 50;
                     CmdPluieDivine();
                 }
-                if (numberSpellCast == 5)
+                if (numberSpellCast == 5 && GetComponent<PlayerController>().qtmana>=50)
                 {
+                    GetComponent<PlayerController>().qtmana -= 50;
                     GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
                     Vector3 position = new Vector3(player.transform.position.x + player.transform.forward.x * 2,
                         player.transform.position.y + 2,
@@ -82,8 +98,41 @@ public class Sorts_simple : NetworkBehaviour
                 this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
             }
         }
-        
-	}
+        if (IsImmolating)
+        {
+            if (Time.time >= timeimmo + 1)
+            {
+                if (GetComponent<PlayerController>().qtmana >= 15)
+                {
+                    GetComponent<PlayerController>().qtmana -= 15;
+                    timeimmo = Time.time;
+                }
+                else
+                {
+                    CmdImmolation();
+                    IsImmolating = false;
+                    feu2 = Time.time;
+                }
+            }
+        }
+        if (IsEole)
+        {
+            if (Time.time >= timeeole + 1)
+            {
+                if (GetComponent<PlayerController>().qtmana >= 15)
+                {
+                    GetComponent<PlayerController>().qtmana -= 15;
+                    timeeole = Time.time;
+                }
+                else
+                {
+                    CmdMurEole();
+                    IsEole = false;
+                    air1 = Time.time;
+                }
+            }
+        }
+    }
 
 
     public void CastSpell(int numberSpell)
@@ -91,25 +140,52 @@ public class Sorts_simple : NetworkBehaviour
         //Bourrasque infernale
         if (numberSpell == 1)
         {
-            if (this.gameObject.tag == "Mage_Feu"){
+            if (this.gameObject.tag == "Mage_Feu" && Time.time>=feu1+5){
                 //Trait de feu
+                feu1 = Time.time;
                 numberSpellCast = 5;
             } else if (this.gameObject.tag == "Mage_Air"){
                 //Mur d'Eole
-                numberSpellCast = 1;
-            } else if (this.gameObject.tag == "Mage_Eau"){
-               //Choc aquatique
+                if(IsEole)
+                {
+                    numberSpellCast = 1;
+                    air1 = Time.time;
+                    IsEole = false;
+                }
+                if (!IsEole && Time.time >= air1 + 5)
+                {
+                    numberSpellCast = 1;
+                    IsEole = true;
+                    timeeole = Time.time;
+                }
+            } else if (this.gameObject.tag == "Mage_Eau" && Time.time>=eau1+3){
+                //Choc aquatique
+                eau1 = Time.time;
                 numberSpellCast = 3;
             }
         } else if (numberSpell == 2)
-        {
+        {   
             if (this.gameObject.tag == "Mage_Feu"){
-                CmdImmolation();
-            } else if (this.gameObject.tag == "Mage_Air"){
+                //Immolation
+                if(IsImmolating)
+                {
+                    feu2 = Time.time;
+                    CmdImmolation();
+                    IsImmolating = false;
+                }
+                if (!IsImmolating && Time.time >= feu2 + 2)
+                {
+                    CmdImmolation();
+                    IsImmolating = true;
+                    timeimmo = Time.time;
+                }
+            } else if (this.gameObject.tag == "Mage_Air" && Time.time>=air2+5){
+                air2 = Time.time;
                 //Bourrasque Infernale
                 numberSpellCast = 2;
-            } else if (this.gameObject.tag == "Mage_Eau"){
+            } else if (this.gameObject.tag == "Mage_Eau" && Time.time>=eau2+10){
                 //Pluie Divine
+                eau2 = Time.time;
                 numberSpellCast = 4;
             }
         }

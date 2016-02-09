@@ -56,6 +56,13 @@ public class PlayerController : NetworkBehaviour
     public float speed = 50.0f;
     private float rotate;
     private Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
+    //Canvas
+    private GameObject CanvasJoueur;
+    private Component[] Barre;
+    private GameObject ManaBarre;
+    public float qtmana;
+    private float recupmana;
     #endregion
 
     #region Initialisation
@@ -75,8 +82,17 @@ public class PlayerController : NetworkBehaviour
         rotate = 0;
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
-
-
+        CanvasJoueur = GameObject.Find("Canvas");
+        Barre = CanvasJoueur.GetComponentsInChildren<Image>();
+        foreach(Image a in Barre)
+        {
+            if (a.name=="Mana2")
+            {
+                ManaBarre = a.gameObject;
+            }
+        }
+        qtmana = 100;
+        recupmana = Time.time;
         CmdChangerMage();
         
     }
@@ -87,6 +103,23 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.time>= recupmana+1)
+        {
+            recupmana = Time.time;
+            if(qtmana<100)
+            {
+                if(qtmana+5<100)
+                {
+                    qtmana += 5;
+                }
+                else
+                {
+                    qtmana = 100;
+                }
+            }
+        }
+        ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(2*qtmana, 10);
+        ManaBarre.GetComponent<RectTransform>().position = new Vector3(377.5f-(100- qtmana), 20, 0);
         //int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
         /*if (nombreJoueur ==1)
         {
