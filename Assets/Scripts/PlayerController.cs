@@ -87,7 +87,7 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
+        //int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
         /*if (nombreJoueur ==1)
         {
             return;
@@ -170,14 +170,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     IsCasting = true;
                 }
-                if (this.gameObject.tag == "Mage_Feu")
-                    this.GetComponent<Sorts_Feu>().CastSpell(1);
-
-                if (this.gameObject.tag == "Mage_Eau")
-                    this.GetComponent<Sorts_Eau>().CastSpell(1);
-
-                if (this.gameObject.tag == "Mage_Air")
-                    this.GetComponent<Sorts_Air>().CastSpell(1);
+                this.GetComponent<Sorts_simple>().CastSpell(1);
             }
 
             //when casting spell 2
@@ -188,31 +181,12 @@ public class PlayerController : NetworkBehaviour
                 {
                     IsCasting = true;
                 }
-                if (this.gameObject.tag == "Mage_Feu")
-                    this.GetComponent<Sorts_Feu>().CastSpell(2);
-
-                if (this.gameObject.tag == "Mage_Eau")
-                    this.GetComponent<Sorts_Eau>().CastSpell(2);
-
-                if (this.gameObject.tag == "Mage_Air")
-                    this.GetComponent<Sorts_Air>().CastSpell(2);
+                this.GetComponent<Sorts_simple>().CastSpell(2);
             }
             if (Input.GetButtonDown("SwitchMage"))
             {
                 CmdChangerMage();
             }
-
-            //Immolation
-            /*if (IsImmolating)
-            {
-                GetComponent<CapsuleCollider>().enabled = true;
-                Immo.SetActive(true);
-            }
-            else
-            {
-                GetComponent<CapsuleCollider>().enabled = false;
-                Immo.SetActive(false);
-            }*/
 
             //When on lava
             if (IsOnLava)
@@ -299,7 +273,7 @@ public class PlayerController : NetworkBehaviour
         string newTag = "";
         if (this.gameObject.tag == "Mage_Feu" && this.gameObject.GetComponent<PlayerController>().IsImmolating)
         {
-            this.gameObject.GetComponent<Sorts_Feu>().CastSpell(2);
+            this.gameObject.GetComponent<Sorts_simple>().CastSpell(2);
         }
 
 

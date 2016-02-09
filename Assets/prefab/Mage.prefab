@@ -122,13 +122,11 @@ GameObject:
   - 114: {fileID: 11444428}
   - 114: {fileID: 11404794}
   - 136: {fileID: 13605098}
-  - 114: {fileID: 11443164}
-  - 114: {fileID: 11413274}
-  - 114: {fileID: 11499716}
   - 114: {fileID: 11496956}
+  - 114: {fileID: 11413364}
   m_Layer: 0
   m_Name: Mage
-  m_TagString: Mage_Feu
+  m_TagString: Mage_Air
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2370,7 +2368,7 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &11413274
+--- !u!114 &11413364
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2378,33 +2376,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 110360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a6ba49de56f93b468f6907f1b708e9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3563ecba1f78b9f449962fa8c8124a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  manaCost: 0
-  CD: 0
   range: 0
-  cameraa: {fileID: 193730}
+  camera: {fileID: 193730}
   trait: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
   prerain: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
   pos: {fileID: 402454}
---- !u!114 &11443164
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbed306132e977a46aa22aa27aef5a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  manaCost: 0
-  CD: 0
-  range: 0
-  cameraa: {fileID: 193730}
+  Prefabs:
+  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+  - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
   wind: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
   mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
 --- !u!114 &11444428
@@ -2507,26 +2489,6 @@ MonoBehaviour:
   HpBarX: 160
   HpBarY: 10
   HpBarHeight: 15
---- !u!114 &11499716
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f84ce8cdfa3944898cfdc4a88fee77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  manaCost: 0
-  CD: 0
-  range: 0
-  cameraa: {fileID: 193730}
-  Prefabs:
-  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
-  - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
-  trait: {fileID: 0}
 --- !u!124 &12407544
 Behaviour:
   m_ObjectHideFlags: 1
@@ -4253,7 +4215,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: camera
       value: 
-      objectReference: {fileID: 466612}
+      objectReference: {fileID: 193730}
     - target: {fileID: 0}
       propertyPath: target
       value: 
@@ -4268,7 +4230,7 @@ Prefab:
       objectReference: {fileID: 11465110}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Mage_Feu
+      value: Mage_Air
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cameraa
@@ -4377,6 +4339,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: d180f2ef7463d234f825a499e9996a30,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: pos
+      value: 
+      objectReference: {fileID: 402454}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

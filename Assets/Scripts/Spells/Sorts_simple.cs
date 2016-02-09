@@ -2,43 +2,47 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class Sorts_Feu : NetworkBehaviour
+public class Sorts_simple : NetworkBehaviour
 {
 
-
-
-    public float damage;
-    public float manaCost;
-    public float CD;
     public float range; //définit la portée de l'attaque
-    public GameObject cameraa;
+    public GameObject camera;
+
+    public GameObject trait;
+    public GameObject prerain;
+    public Transform pos;
     public GameObject[] Prefabs;
     private GameObject currentPrefabObject;
     private int currentPrefabIndex;
     private FireBaseScript currentPrefabScript;
 
-    private bool castTraitDeFeu;
+    
+
     private float timeCast;
     private float timeCastMax = 2f;
 
-    public GameObject trait;
+    private int numberSpellCast;
+    private bool castTraitDeFeu;
+    private bool castPluieDivine;
+    private bool castChocAquatique;
+    private bool castMurEole;
+    private bool castBourrasqueInfernale;
 
-    #region Initialisation
-    void Start()
-    {
-        this.damage = 10.0f;
-        this.manaCost = 10.0f;
-        this.CD = 10.0f;
+    public GameObject wind;
+    public GameObject mur;
+    private GameObject muractif;
+    private bool Isactivated;
+
+	// Use this for initialization
+	void Start () {
         this.range = 100.0f;
-    }
-
-    #endregion
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (castTraitDeFeu)
+        Isactivated = false;
+        numberSpellCast = 0;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if (numberSpellCast != 0)
         {
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == true)
             {
@@ -46,7 +50,23 @@ public class Sorts_Feu : NetworkBehaviour
             }
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
             {
-                if (castTraitDeFeu)
+                if (numberSpellCast == 1)
+                {
+                    CmdMurEole();
+                }
+                if (numberSpellCast == 2)
+                {
+                    CmdBourrasqueInfernale();
+                }
+                if (numberSpellCast == 3)
+                {
+                    CmdChocAquatique();
+                }
+                if (numberSpellCast == 4)
+                {
+                    CmdPluieDivine();
+                }
+                if (numberSpellCast == 5)
                 {
                     GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
                     Vector3 position = new Vector3(player.transform.position.x + player.transform.forward.x * 2,
@@ -55,39 +75,44 @@ public class Sorts_Feu : NetworkBehaviour
                     Instantiate(Prefabs[1], position, Quaternion.identity);
                     //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;*/
                     BeginEffect(0);
-                    castTraitDeFeu = false;
                 }
 
-
+                numberSpellCast = 0;
                 timeCast = 0f;
                 this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
             }
-
         }
-    }
+        
+	}
 
 
     public void CastSpell(int numberSpell)
     {
-        if (numberSpell == 1) //trait de feu
+        //Bourrasque infernale
+        if (numberSpell == 1)
         {
-            /*GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
-            Vector3 position = new Vector3(player.transform.position.x+player.transform.forward.x*2,
-                player.transform.position.y + 2,
-                player.transform.position.z+player.transform.forward.z * 2);
-            Instantiate(Prefabs[1], position, Quaternion.identity);
-            //obj.GetComponent<Rigidbody>().velocity= transform.GetComponent<Rigidbody>().velocity;
-            BeginEffect(numberSpell - 1);*/
-            castTraitDeFeu = true;
-        }
-        //Immolation
-        else if (numberSpell == 2)
+            if (this.gameObject.tag == "Mage_Feu"){
+                //Trait de feu
+                numberSpellCast = 5;
+            } else if (this.gameObject.tag == "Mage_Air"){
+                //Mur d'Eole
+                numberSpellCast = 1;
+            } else if (this.gameObject.tag == "Mage_Eau"){
+               //Choc aquatique
+                numberSpellCast = 3;
+            }
+        } else if (numberSpell == 2)
         {
-            CmdImmolation();
-            //GetComponent<PlayerController>().IsImmolating = !GetComponent<PlayerController>().IsImmolating;
+            if (this.gameObject.tag == "Mage_Feu"){
+                CmdImmolation();
+            } else if (this.gameObject.tag == "Mage_Air"){
+                //Bourrasque Infernale
+                numberSpellCast = 2;
+            } else if (this.gameObject.tag == "Mage_Eau"){
+                //Pluie Divine
+                numberSpellCast = 4;
+            }
         }
-
-
     }
 
     private void BeginEffect(int i)
@@ -110,11 +135,11 @@ public class Sorts_Feu : NetworkBehaviour
             if (currentPrefabScript.IsProjectile)
             {
                 // set the start point near the player
-                rotation = cameraa.transform.rotation;
+                rotation = camera.transform.rotation;
                 //rotation = transform.rotation;
-                pos = new Vector3(transform.position.x + cameraa.transform.forward.x*2,
+                pos = new Vector3(transform.position.x + camera.transform.forward.x * 2,
                         transform.position.y + 2,
-                        transform.position.z + cameraa.transform.forward.z* 2); ;
+                        transform.position.z + camera.transform.forward.z * 2); ;
                 //pos = transform.position + forward + right + up;
             }
             else
@@ -146,5 +171,43 @@ public class Sorts_Feu : NetworkBehaviour
     private void CmdImmolation()
     {
         this.GetComponent<NetworkedPlayerScript>().RpcImmolation(this.gameObject);
+    }
+    [Command]
+    public void CmdChocAquatique()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChocAquatique(this.gameObject);
+    }
+    [Command]
+    public void CmdPluieDivine()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcPluieDivine(this.gameObject);
+    }
+    [Command]
+    public void CmdBourrasqueInfernale()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcBourrasqueInfernale(this.gameObject);
+    }
+
+    //Fonction Mur Eole
+    [Command]
+    public void CmdMurEole()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcMurEole(this.gameObject);
+    }
+    public bool getIsActivated()
+    {
+        return Isactivated;
+    }
+    public void setIsActivated(bool isActive)
+    {
+        this.Isactivated = isActive;
+    }
+    public void setMurActif(GameObject newWall)
+    {
+        this.muractif = newWall;
+    }
+    public GameObject getMurActif()
+    {
+        return this.muractif;
     }
 }

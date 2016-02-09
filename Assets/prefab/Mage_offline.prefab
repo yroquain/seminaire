@@ -408,10 +408,7 @@ GameObject:
   - 64: {fileID: 6496600}
   - 114: {fileID: 11416162}
   - 136: {fileID: 13648566}
-  - 114: {fileID: 11439772}
-  - 114: {fileID: 11457810}
   - 114: {fileID: 11455862}
-  - 114: {fileID: 11488954}
   m_Layer: 0
   m_Name: Mage_offline
   m_TagString: Mage_Feu
@@ -2367,6 +2364,12 @@ MonoBehaviour:
   texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
   texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
   texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
+  sortfeu1: {fileID: 0}
+  sortfeu2: {fileID: 0}
+  sorteau1: {fileID: 0}
+  sorteau2: {fileID: 0}
+  sortair1: {fileID: 0}
+  sortair2: {fileID: 0}
   speed: 50
 --- !u!114 &11437146
 MonoBehaviour:
@@ -2382,25 +2385,6 @@ MonoBehaviour:
   target: {fileID: 448518}
   camera: {fileID: 473948}
   angularSpeed: 10
---- !u!114 &11439772
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a6ba49de56f93b468f6907f1b708e9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  manaCost: 0
-  CD: 0
-  range: 0
-  cameraa: {fileID: 100896}
-  trait: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
-  prerain: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
-  pos: {fileID: 432836}
 --- !u!114 &11455862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2418,44 +2402,6 @@ MonoBehaviour:
   HpBarX: 160
   HpBarY: 10
   HpBarHeight: 15
---- !u!114 &11457810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbed306132e977a46aa22aa27aef5a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  manaCost: 0
-  CD: 0
-  range: 0
-  cameraa: {fileID: 100896}
-  wind: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
-  mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
---- !u!114 &11488954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f84ce8cdfa3944898cfdc4a88fee77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  manaCost: 0
-  CD: 0
-  range: 0
-  cameraa: {fileID: 100896}
-  Prefabs:
-  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
-  - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
-  trait: {fileID: 429324, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
 --- !u!124 &12418306
 Behaviour:
   m_ObjectHideFlags: 1

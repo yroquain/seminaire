@@ -112,46 +112,46 @@ public class NetworkedPlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcMurEole(GameObject myPlayer)
     {
-        if (!myPlayer.GetComponent<Sorts_Air>().getIsActivated())
+        if (!myPlayer.GetComponent<Sorts_simple>().getIsActivated())
         {
-            myPlayer.GetComponent<Sorts_Air>().setMurActif(GameObject.Instantiate(myPlayer.GetComponent<Sorts_Air>().mur));
-            myPlayer.GetComponent<Sorts_Air>().getMurActif().transform.position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.x * 2,
+            myPlayer.GetComponent<Sorts_simple>().setMurActif(GameObject.Instantiate(myPlayer.GetComponent<Sorts_simple>().mur));
+            myPlayer.GetComponent<Sorts_simple>().getMurActif().transform.position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.x * 2,
                 transform.position.y,
-                transform.position.z + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.z * 2);
-            myPlayer.GetComponent<Sorts_Air>().getMurActif().transform.rotation = transform.rotation;
+                transform.position.z + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.z * 2);
+            myPlayer.GetComponent<Sorts_simple>().getMurActif().transform.rotation = transform.rotation;
 
         }
         else
         {
-            Destroy(myPlayer.GetComponent<Sorts_Air>().getMurActif().gameObject);
+            Destroy(myPlayer.GetComponent<Sorts_simple>().getMurActif().gameObject);
         }
-        myPlayer.GetComponent<Sorts_Air>().setIsActivated(!myPlayer.GetComponent<Sorts_Air>().getIsActivated());
+        myPlayer.GetComponent<Sorts_simple>().setIsActivated(!myPlayer.GetComponent<Sorts_simple>().getIsActivated());
     }
 
     [ClientRpc]
     public void RpcBourrasqueInfernale(GameObject myPlayer)
     {
-        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.x * 2,
+        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.x * 2,
                transform.position.y,
-               transform.position.z + myPlayer.GetComponent<Sorts_Air>().cameraa.transform.forward.z * 2);
-        Instantiate(myPlayer.GetComponent<Sorts_Air>().wind, position, Quaternion.identity);
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().wind, position, Quaternion.identity);
     }
    
     [ClientRpc]
     public void RpcPluieDivine(GameObject myPlayer)
     {
-        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_Eau>().cameraa.transform.forward.x * 2),
+        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.x * 2),
                transform.position.y + 2,
-               transform.position.z + myPlayer.GetComponent<Sorts_Eau>().cameraa.transform.forward.z * 2);
-        Instantiate(myPlayer.GetComponent<Sorts_Eau>().prerain, position, Quaternion.identity);
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().prerain, position, Quaternion.identity);
     }
 
     [ClientRpc]
     public void RpcChocAquatique(GameObject myPlayer)
     {
-        Vector3 position = new Vector3(myPlayer.GetComponent<Sorts_Eau>().pos.position.x,
-                myPlayer.GetComponent<Sorts_Eau>().pos.position.y,
-                myPlayer.GetComponent<Sorts_Eau>().pos.position.z);
-        Instantiate(myPlayer.GetComponent<Sorts_Eau>().trait, position, Quaternion.identity);
+        Vector3 position = new Vector3(myPlayer.GetComponent<Sorts_simple>().pos.position.x,
+                myPlayer.GetComponent<Sorts_simple>().pos.position.y,
+                myPlayer.GetComponent<Sorts_simple>().pos.position.z);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().trait, position, Quaternion.identity);
     }
 }
