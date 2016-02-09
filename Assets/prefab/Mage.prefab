@@ -2343,6 +2343,12 @@ MonoBehaviour:
   texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
   texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
   texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
+  sortfeu1: {fileID: 21300000, guid: cfd7e1ca8a25ab24490982b20eca95ea, type: 3}
+  sortfeu2: {fileID: 21300000, guid: 3fd997942f7a3c643b0ba341e4b5c2cd, type: 3}
+  sorteau1: {fileID: 21300000, guid: 8bf69eaebec83b64f86f278913359f99, type: 3}
+  sorteau2: {fileID: 21300000, guid: d180f2ef7463d234f825a499e9996a30, type: 3}
+  sortair1: {fileID: 21300000, guid: 81387dded8d769f4398327fe5fe057f8, type: 3}
+  sortair2: {fileID: 21300000, guid: cdeb785f907e6e840818a67de130e4c3, type: 3}
   speed: 50
 --- !u!114 &11404794
 MonoBehaviour:
@@ -4341,6 +4347,36 @@ Prefab:
       propertyPath: Prefabs.Array.data[1]
       value: 
       objectReference: {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: sortfeu1
+      value: 
+      objectReference: {fileID: 21300000, guid: cfd7e1ca8a25ab24490982b20eca95ea,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: sortfeu2
+      value: 
+      objectReference: {fileID: 21300000, guid: 3fd997942f7a3c643b0ba341e4b5c2cd,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: sortair1
+      value: 
+      objectReference: {fileID: 21300000, guid: 81387dded8d769f4398327fe5fe057f8,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: sortair2
+      value: 
+      objectReference: {fileID: 21300000, guid: cdeb785f907e6e840818a67de130e4c3,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: sorteau1
+      value: 
+      objectReference: {fileID: 21300000, guid: 8bf69eaebec83b64f86f278913359f99,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: sorteau2
+      value: 
+      objectReference: {fileID: 21300000, guid: d180f2ef7463d234f825a499e9996a30,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

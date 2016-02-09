@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -38,10 +39,18 @@ public class PlayerController : NetworkBehaviour
     private Quaternion CamRot;
     public GameObject MainCamera;
 
-    //Texture
+    //Texture Mage
     public Material texture_air;
     public Material texture_eau;
     public Material texture_feu;
+
+    //Sprite sorts
+    public Sprite sortfeu1;
+    public Sprite sortfeu2;
+    public Sprite sorteau1;
+    public Sprite sorteau2;
+    public Sprite sortair1;
+    public Sprite sortair2;
 
     //Rotation
     public float speed = 50.0f;
@@ -285,6 +294,8 @@ public class PlayerController : NetworkBehaviour
     [Command]
     private void CmdChangerMage()
     {
+        GameObject sort1 = GameObject.Find("Sort1");
+        GameObject sort2 = GameObject.Find("Sort2");
         string newTag = "";
         if (this.gameObject.tag == "Mage_Feu" && this.gameObject.GetComponent<PlayerController>().IsImmolating)
         {
@@ -295,14 +306,20 @@ public class PlayerController : NetworkBehaviour
         if (GameObject.FindGameObjectsWithTag("Mage_Feu").Length == 0)
         {
             newTag = "Mage_Feu";
+            sort1.GetComponent<Image>().sprite = sortfeu1;
+            sort2.GetComponent<Image>().sprite = sortfeu2;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
         {
             newTag= "Mage_Eau";
+            sort1.GetComponent<Image>().sprite = sorteau1;
+            sort2.GetComponent<Image>().sprite = sorteau2;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
         {
             newTag = "Mage_Air";
+            sort1.GetComponent<Image>().sprite = sortair1;
+            sort2.GetComponent<Image>().sprite = sortair2;
         }
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(newTag,this.gameObject);
     }
