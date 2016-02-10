@@ -17,6 +17,7 @@ public class PlayerController : NetworkBehaviour
     //sorts
     public bool IsImmolating;
     public GameObject Immo;
+    public bool IsEole;
 
 
     //Moving in lava
@@ -87,10 +88,20 @@ public class PlayerController : NetworkBehaviour
         IsOnLava = false;
         IsCasting = false;
         IsSavingCamInfo = true;
+        IsEole = false;
         rotate = 0;
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
-        CanvasJoueur = GameObject.Find("Canvas");
+        if (gameObject.name == "LOCAL Player")
+        {
+            CanvasJoueur = GameObject.Find("CanvasJ1");
+            GameObject.Find("CanvasJ2").gameObject.SetActive(false);
+        }
+        else
+        {
+            CanvasJoueur = GameObject.Find("CanvasJ2");
+            GameObject.Find("CanvasJ1").gameObject.SetActive(false);
+        }
         Barre = CanvasJoueur.GetComponentsInChildren<Image>();
         foreach(Image a in Barre)
         {
@@ -272,7 +283,7 @@ public class PlayerController : NetworkBehaviour
             }
             if (Input.GetButtonDown("SwitchMage"))
             {
-                if (CDsort1 == 0 && CDsort2 == 0 && !IsImmolating)
+                if (CDsort1 == 0 && CDsort2 == 0 && !IsImmolating && !IsEole)
                 {
                     CmdChangerMage();
                 }

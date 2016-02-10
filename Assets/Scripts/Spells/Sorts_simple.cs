@@ -83,6 +83,9 @@ public class Sorts_simple : NetworkBehaviour
                 }
                 if (numberSpellCast == 5 && GetComponent<PlayerController>().qtmana>=50)
                 {
+                    feu1 = Time.time;
+                    gameObject.GetComponent<PlayerController>().CDsort1 = 5;
+                    gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                     GetComponent<PlayerController>().qtmana -= 50;
                     GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
                     Vector3 position = new Vector3(player.transform.position.x + player.transform.forward.x * 2,
@@ -130,6 +133,7 @@ public class Sorts_simple : NetworkBehaviour
                 {
                     CmdMurEole();
                     IsEole = false;
+                    gameObject.GetComponent<PlayerController>().IsEole = false;
                     air1 = Time.time;
                     gameObject.GetComponent<PlayerController>().CDsort1 = 5;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
@@ -146,10 +150,7 @@ public class Sorts_simple : NetworkBehaviour
         {
             if (this.gameObject.tag == "Mage_Feu" && Time.time>=feu1+5){
                 //Trait de feu
-                feu1 = Time.time;
                 numberSpellCast = 5;
-                gameObject.GetComponent<PlayerController>().CDsort1 = 5;
-                gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
             } else if (this.gameObject.tag == "Mage_Air"){
                 //Mur d'Eole
                 if(IsEole)
@@ -157,6 +158,7 @@ public class Sorts_simple : NetworkBehaviour
                     numberSpellCast = 1;
                     air1 = Time.time;
                     IsEole = false;
+                    gameObject.GetComponent<PlayerController>().IsEole = false;
                     gameObject.GetComponent<PlayerController>().CDsort1 = 5;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                 }
@@ -164,14 +166,12 @@ public class Sorts_simple : NetworkBehaviour
                 {
                     numberSpellCast = 1;
                     IsEole = true;
+                    gameObject.GetComponent<PlayerController>().IsEole = true;
                     timeeole = Time.time;
                 }
             } else if (this.gameObject.tag == "Mage_Eau" && Time.time>=eau1+3){
                 //Choc aquatique
-                eau1 = Time.time;
                 numberSpellCast = 3;
-                gameObject.GetComponent<PlayerController>().CDsort1 = 3;
-                gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
             }
         } else if (numberSpell == 2)
         {   
@@ -192,17 +192,11 @@ public class Sorts_simple : NetworkBehaviour
                     timeimmo = Time.time;
                 }
             } else if (this.gameObject.tag == "Mage_Air" && Time.time>=air2+5){
-                air2 = Time.time;
                 //Bourrasque Infernale
                 numberSpellCast = 2;
-                gameObject.GetComponent<PlayerController>().CDsort2 = 5;
-                gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
             } else if (this.gameObject.tag == "Mage_Eau" && Time.time>=eau2+10){
                 //Pluie Divine
-                eau2 = Time.time;
                 numberSpellCast = 4;
-                gameObject.GetComponent<PlayerController>().CDsort2 = 10;
-                gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
             }
         }
     }
@@ -268,16 +262,25 @@ public class Sorts_simple : NetworkBehaviour
     public void CmdChocAquatique()
     {
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChocAquatique(this.gameObject);
+        eau1 = Time.time;
+        gameObject.GetComponent<PlayerController>().CDsort1 = 3;
+        gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
     }
     [Command]
     public void CmdPluieDivine()
     {
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcPluieDivine(this.gameObject);
+        eau2 = Time.time;
+        gameObject.GetComponent<PlayerController>().CDsort2 = 10;
+        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
     }
     [Command]
     public void CmdBourrasqueInfernale()
     {
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcBourrasqueInfernale(this.gameObject);
+        air2 = Time.time;
+        gameObject.GetComponent<PlayerController>().CDsort2 = 5;
+        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
     }
 
     //Fonction Mur Eole
