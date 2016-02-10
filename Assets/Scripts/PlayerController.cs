@@ -63,6 +63,14 @@ public class PlayerController : NetworkBehaviour
     private GameObject ManaBarre;
     public float qtmana;
     private float recupmana;
+    private float manabarrex;
+    private float manabarrey;
+    private GameObject sort1mask;
+    private GameObject sort2mask;
+    public float CDsort1;
+    public float finCDsort1;
+    public float CDsort2;
+    public float finCDsort2;
     #endregion
 
     #region Initialisation
@@ -86,15 +94,33 @@ public class PlayerController : NetworkBehaviour
         Barre = CanvasJoueur.GetComponentsInChildren<Image>();
         foreach(Image a in Barre)
         {
-            if (a.name=="Mana2")
+            if (a.name == "Mana2")
             {
                 ManaBarre = a.gameObject;
+            }
+            
+        }
+        Barre = CanvasJoueur.GetComponentsInChildren<Button>();
+        foreach (Button a in Barre)
+        {
+            if (a.name == "Sort2mask")
+            {
+                sort1mask = a.gameObject;
+            }
+            if (a.name == "Sort1mask")
+            {
+                sort2mask = a.gameObject;
             }
         }
         qtmana = 100;
         recupmana = Time.time;
+        manabarrex = ManaBarre.GetComponent<RectTransform>().position.x;
+        manabarrey = ManaBarre.GetComponent<RectTransform>().position.y;
         CmdChangerMage();
-        
+        sort1mask.SetActive(false);
+        sort2mask.SetActive(false);
+        CDsort1 = 0;
+        CDsort2 = 0;
     }
     #endregion
 
@@ -103,7 +129,35 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time>= recupmana+1)
+        if (CDsort1 > 0)
+        {
+            sort1mask.SetActive(true);
+            sort1mask.GetComponentInChildren<Text>().text=CDsort1.ToString();
+            if(Time.time>=finCDsort1+1)
+            {
+                finCDsort1 = Time.time;
+                CDsort1 -= 1;
+            }
+        }
+        else
+        {
+            sort1mask.SetActive(false);
+        }
+        if (CDsort2 > 0)
+        {
+            sort2mask.SetActive(true);
+            sort2mask.GetComponentInChildren<Text>().text = CDsort2.ToString();
+            if (Time.time >= finCDsort2 + 1)
+            {
+                finCDsort2 = Time.time;
+                CDsort2 -= 1;
+            }
+        }
+        else
+        {
+            sort2mask.SetActive(false);
+        }
+        if (Time.time>= recupmana+1)
         {
             recupmana = Time.time;
             if(qtmana<100)
@@ -119,7 +173,7 @@ public class PlayerController : NetworkBehaviour
             }
         }
         ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(2*qtmana, 10);
-        ManaBarre.GetComponent<RectTransform>().position = new Vector3(377.5f-(100- qtmana), 20, 0);
+        ManaBarre.GetComponent<RectTransform>().position = new Vector3(manabarrex - (100- qtmana), manabarrey, 0);
         //int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
         /*if (nombreJoueur ==1)
         {
@@ -218,7 +272,10 @@ public class PlayerController : NetworkBehaviour
             }
             if (Input.GetButtonDown("SwitchMage"))
             {
-                CmdChangerMage();
+                if (CDsort1 == 0 && CDsort2 == 0 && !IsImmolating)
+                {
+                    CmdChangerMage();
+                }
             }
 
             //When on lava

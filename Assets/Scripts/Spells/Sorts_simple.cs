@@ -112,6 +112,8 @@ public class Sorts_simple : NetworkBehaviour
                     CmdImmolation();
                     IsImmolating = false;
                     feu2 = Time.time;
+                    gameObject.GetComponent<PlayerController>().CDsort2 = 2;
+                    gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
                 }
             }
         }
@@ -129,6 +131,8 @@ public class Sorts_simple : NetworkBehaviour
                     CmdMurEole();
                     IsEole = false;
                     air1 = Time.time;
+                    gameObject.GetComponent<PlayerController>().CDsort1 = 5;
+                    gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                 }
             }
         }
@@ -144,6 +148,8 @@ public class Sorts_simple : NetworkBehaviour
                 //Trait de feu
                 feu1 = Time.time;
                 numberSpellCast = 5;
+                gameObject.GetComponent<PlayerController>().CDsort1 = 5;
+                gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
             } else if (this.gameObject.tag == "Mage_Air"){
                 //Mur d'Eole
                 if(IsEole)
@@ -151,6 +157,8 @@ public class Sorts_simple : NetworkBehaviour
                     numberSpellCast = 1;
                     air1 = Time.time;
                     IsEole = false;
+                    gameObject.GetComponent<PlayerController>().CDsort1 = 5;
+                    gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                 }
                 if (!IsEole && Time.time >= air1 + 5)
                 {
@@ -162,6 +170,8 @@ public class Sorts_simple : NetworkBehaviour
                 //Choc aquatique
                 eau1 = Time.time;
                 numberSpellCast = 3;
+                gameObject.GetComponent<PlayerController>().CDsort1 = 3;
+                gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
             }
         } else if (numberSpell == 2)
         {   
@@ -172,6 +182,8 @@ public class Sorts_simple : NetworkBehaviour
                     feu2 = Time.time;
                     CmdImmolation();
                     IsImmolating = false;
+                    gameObject.GetComponent<PlayerController>().CDsort2 = 2;
+                    gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
                 }
                 if (!IsImmolating && Time.time >= feu2 + 2)
                 {
@@ -183,10 +195,14 @@ public class Sorts_simple : NetworkBehaviour
                 air2 = Time.time;
                 //Bourrasque Infernale
                 numberSpellCast = 2;
+                gameObject.GetComponent<PlayerController>().CDsort2 = 5;
+                gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
             } else if (this.gameObject.tag == "Mage_Eau" && Time.time>=eau2+10){
                 //Pluie Divine
                 eau2 = Time.time;
                 numberSpellCast = 4;
+                gameObject.GetComponent<PlayerController>().CDsort2 = 10;
+                gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
             }
         }
     }
