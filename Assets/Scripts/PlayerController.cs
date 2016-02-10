@@ -72,6 +72,8 @@ public class PlayerController : NetworkBehaviour
     public float finCDsort1;
     public float CDsort2;
     public float finCDsort2;
+    private GameObject sort1;
+    private GameObject sort2;
     #endregion
 
     #region Initialisation
@@ -109,7 +111,15 @@ public class PlayerController : NetworkBehaviour
             {
                 ManaBarre = a.gameObject;
             }
-            
+            if (a.name == "Sort1")
+            {
+                sort1 = a.gameObject;
+            }
+            if (a.name == "Sort2")
+            {
+                sort2 = a.gameObject;
+            }
+
         }
         Barre = CanvasJoueur.GetComponentsInChildren<Button>();
         foreach (Button a in Barre)
@@ -143,7 +153,7 @@ public class PlayerController : NetworkBehaviour
         if (CDsort1 > 0)
         {
             sort1mask.SetActive(true);
-            sort1mask.GetComponentInChildren<Text>().text=CDsort1.ToString();
+            sort1mask.GetComponentInChildren<Text>().text = CDsort1.ToString();
             if(Time.time>=finCDsort1+1)
             {
                 finCDsort1 = Time.time;
@@ -369,8 +379,6 @@ public class PlayerController : NetworkBehaviour
     [Command]
     private void CmdChangerMage()
     {
-        GameObject sort1 = GameObject.Find("Sort1");
-        GameObject sort2 = GameObject.Find("Sort2");
         string newTag = "";
         if (this.gameObject.tag == "Mage_Feu" && this.gameObject.GetComponent<PlayerController>().IsImmolating)
         {
