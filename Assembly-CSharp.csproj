@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\Spells\Velocity_Trait_Feu.cs" />
      <Compile Include="Assets\Scripts\TriggerInstensifes.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
+     <Compile Include="Assets\Scripts\triggerEnigme1.cs" />
      <None Include="Assets\Assets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
      <None Include="Assets\Assets\PyroParticles\Readme.txt" />
  <Reference Include="UnityEngine.UI">

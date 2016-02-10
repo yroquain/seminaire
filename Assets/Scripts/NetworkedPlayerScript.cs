@@ -54,17 +54,15 @@ public class NetworkedPlayerScript : NetworkBehaviour
             transform.rotation = spawn.rotation;
             fpsCamera.enabled = false;
         }
-
-        Invoke("Respawn", 2f);
+        Invoke("RpcRespawn", 2f);
     }
 
-    void Respawn()
+    [ClientRpc]
+    void RpcRespawn()
     {
         ToggleRenderer(true);
-
         if (isLocalPlayer)
         {
-            
             this.GetComponent<HealthBar>().completeHealth();
             fpsController.enabled = true;
             fpsCamera.enabled = true;
@@ -90,6 +88,16 @@ public class NetworkedPlayerScript : NetworkBehaviour
         
     }
 
+    [ClientRpc]
+    public void RpcSwitchRespawn(GameObject triggerRespawn)
+    {
+        triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent1.SetActive(false);
+        triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent2.SetActive(false);
+        triggerRespawn.GetComponent<triggerEnigme1>().newRespawn.SetActive(true);
+        Destroy(triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent1);
+        Destroy(triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent2);
+        Destroy(triggerRespawn);
+    }
 
     // Gestion des Sorts
     [ClientRpc]
