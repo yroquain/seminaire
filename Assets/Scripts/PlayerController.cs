@@ -59,7 +59,7 @@ public class PlayerController : NetworkBehaviour
     private Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
     //Canvas
-    private GameObject CanvasJoueur;
+    public GameObject Canvas;
     private Component[] Barre;
     private GameObject ManaBarre;
     public float qtmana;
@@ -94,30 +94,21 @@ public class PlayerController : NetworkBehaviour
         rotate = 0;
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
-        if (gameObject.name == "LOCAL Player")
-        {
-            CanvasJoueur = GameObject.Find("CanvasJ1");
-            GameObject.Find("CanvasJ2").gameObject.SetActive(false);
-        }
-        else
-        {
-            CanvasJoueur = GameObject.Find("CanvasJ2");
-            GameObject.Find("CanvasJ1").gameObject.SetActive(false);
-        }
+        GameObject CanvasJoueur = Instantiate(Canvas);
         Barre = CanvasJoueur.GetComponentsInChildren<Image>();
         foreach(Image a in Barre)
         {
             if (a.name == "Mana2")
             {
-                ManaBarre = a.gameObject;
+                this.ManaBarre = a.gameObject;
             }
             if (a.name == "Sort1")
             {
-                sort1 = a.gameObject;
+                this.sort1 = a.gameObject;
             }
             if (a.name == "Sort2")
             {
-                sort2 = a.gameObject;
+                this.sort2 = a.gameObject;                
             }
 
         }
@@ -126,18 +117,18 @@ public class PlayerController : NetworkBehaviour
         {
             if (a.name == "Sort2mask")
             {
-                sort1mask = a.gameObject;
+                this.sort1mask = a.gameObject;
             }
             if (a.name == "Sort1mask")
             {
-                sort2mask = a.gameObject;
+                this.sort2mask = a.gameObject;
             }
         }
         qtmana = 100;
         recupmana = Time.time;
         manabarrex = ManaBarre.GetComponent<RectTransform>().position.x;
         manabarrey = ManaBarre.GetComponent<RectTransform>().position.y;
-        CmdChangerMage();
+        this.CmdChangerMage();
         sort1mask.SetActive(false);
         sort2mask.SetActive(false);
         CDsort1 = 0;
@@ -295,7 +286,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if (CDsort1 == 0 && CDsort2 == 0 && !IsImmolating && !IsEole)
                 {
-                    CmdChangerMage();
+                    this.CmdChangerMage();
                 }
             }
 
@@ -385,24 +376,23 @@ public class PlayerController : NetworkBehaviour
             this.gameObject.GetComponent<Sorts_simple>().CastSpell(2);
         }
 
-
         if (GameObject.FindGameObjectsWithTag("Mage_Feu").Length == 0)
         {
             newTag = "Mage_Feu";
-            sort1.GetComponent<Image>().sprite = sortfeu1;
-            sort2.GetComponent<Image>().sprite = sortfeu2;
+            this.sort1.GetComponent<Image>().sprite = sortfeu1;
+            this.sort2.GetComponent<Image>().sprite = sortfeu2;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
         {
             newTag= "Mage_Eau";
-            sort1.GetComponent<Image>().sprite = sorteau1;
-            sort2.GetComponent<Image>().sprite = sorteau2;
+            this.sort1.GetComponent<Image>().sprite = sorteau1;
+            this.sort2.GetComponent<Image>().sprite = sorteau2;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
         {
             newTag = "Mage_Air";
-            sort1.GetComponent<Image>().sprite = sortair1;
-            sort2.GetComponent<Image>().sprite = sortair2;
+            this.sort1.GetComponent<Image>().sprite = sortair1;
+            this.sort2.GetComponent<Image>().sprite = sortair2;
         }
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(newTag,this.gameObject);
     }
