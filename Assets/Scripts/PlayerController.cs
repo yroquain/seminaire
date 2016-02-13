@@ -240,11 +240,11 @@ public class PlayerController : NetworkBehaviour
             //Rotating
             if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
             {
-                rotate += Input.GetAxis("Horizontal");
+                rotate += Input.GetAxis("Horizontal")*2;
                 qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
             }
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed * 2);
 
             //Switching between running and walking
             if (Input.GetButtonDown("SwitchSpeed"))
