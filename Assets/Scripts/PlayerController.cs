@@ -26,7 +26,7 @@ public class PlayerController : NetworkBehaviour
     private float heigh;
 
     //Animation triggers
-    private bool IsAttacking;
+    public bool IsAttacking;
     private bool IsMoving;
     private bool IsWalking;
     private bool IsJumping;
@@ -62,10 +62,9 @@ public class PlayerController : NetworkBehaviour
     public GameObject Canvas;
     private Component[] Barre;
     private GameObject ManaBarre;
+    private GameObject ManaBarreRef;
     public float qtmana;
     private float recupmana;
-    private float manabarrex;
-    private float manabarrey;
     private GameObject sort1mask;
     private GameObject sort2mask;
     public float CDsort1;
@@ -102,6 +101,10 @@ public class PlayerController : NetworkBehaviour
             {
                 this.ManaBarre = a.gameObject;
             }
+            if(a.name=="Mana1")
+            {
+                ManaBarreRef = a.gameObject;
+            }
             if (a.name == "Sort1")
             {
                 this.sort1 = a.gameObject;
@@ -126,8 +129,6 @@ public class PlayerController : NetworkBehaviour
         }
         qtmana = 100;
         recupmana = Time.time;
-        manabarrex = ManaBarre.GetComponent<RectTransform>().position.x;
-        manabarrey = ManaBarre.GetComponent<RectTransform>().position.y;
         this.CmdChangerMage();
         sort1mask.SetActive(false);
         sort2mask.SetActive(false);
@@ -184,8 +185,9 @@ public class PlayerController : NetworkBehaviour
                 }
             }
         }
+        //Debug.Log(manabarrex);
         ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(2*qtmana, 10);
-        ManaBarre.GetComponent<RectTransform>().position = new Vector3(manabarrex - (100- qtmana), manabarrey, 0);
+        ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - (100- qtmana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
         //int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
         /*if (nombreJoueur ==1)
         {
@@ -307,8 +309,8 @@ public class PlayerController : NetworkBehaviour
                 CamRot = MainCamera.transform.rotation;
                 IsSavingCamInfo = false;
             }
-            MainCamera.transform.position = new Vector3(28.95f, 21f, -170.0f);
-            MainCamera.transform.rotation = Quaternion.Euler(27.0f, -90f, 0.0f);
+            MainCamera.transform.position = new Vector3(-40f, 21f, -170.0f);
+            MainCamera.transform.rotation = Quaternion.Euler(27.0f, 90.0f, 0.0f);
         }
     }
 
