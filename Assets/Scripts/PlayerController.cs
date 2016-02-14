@@ -129,7 +129,7 @@ public class PlayerController : NetworkBehaviour
         }
         qtmana = 100;
         recupmana = Time.time;
-        this.CmdChangerMage();
+        this.changerMage();
         sort1mask.SetActive(false);
         sort2mask.SetActive(false);
         CDsort1 = 0;
@@ -288,7 +288,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if (CDsort1 == 0 && CDsort2 == 0 && !IsImmolating && !IsEole)
                 {
-                    this.CmdChangerMage();
+                    this.changerMage();
                 }
             }
 
@@ -369,8 +369,7 @@ public class PlayerController : NetworkBehaviour
         anim.SetBool("isCasting", IsCasting);
     }
 
-    [Command]
-    private void CmdChangerMage()
+    private void changerMage()
     {
         string newTag = "";
         if (this.gameObject.tag == "Mage_Feu" && this.gameObject.GetComponent<PlayerController>().IsImmolating)
@@ -386,7 +385,7 @@ public class PlayerController : NetworkBehaviour
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
         {
-            newTag= "Mage_Eau";
+            newTag = "Mage_Eau";
             this.sort1.GetComponent<Image>().sprite = sorteau1;
             this.sort2.GetComponent<Image>().sprite = sorteau2;
         }
@@ -396,7 +395,14 @@ public class PlayerController : NetworkBehaviour
             this.sort1.GetComponent<Image>().sprite = sortair1;
             this.sort2.GetComponent<Image>().sprite = sortair2;
         }
-        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(newTag,this.gameObject);
+        CmdChangerMage(newTag, this.gameObject);
+    }
+
+    [Command]
+    private void CmdChangerMage(string newTag, GameObject thisPlayer)
+    {
+
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(newTag, thisPlayer);
     }
 
     public void Animation()
