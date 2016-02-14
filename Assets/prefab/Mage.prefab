@@ -122,7 +122,6 @@ GameObject:
   - 114: {fileID: 11444428}
   - 114: {fileID: 11404794}
   - 136: {fileID: 13605098}
-  - 114: {fileID: 11496956}
   - 114: {fileID: 11413364}
   m_Layer: 0
   m_Name: Mage
@@ -2338,6 +2337,7 @@ MonoBehaviour:
   IsImmolating: 0
   Immo: {fileID: 143232}
   IsEole: 0
+  IsAttacking: 0
   MainCamera: {fileID: 193730}
   texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
   texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
@@ -2479,23 +2479,6 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
---- !u!114 &11496956
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9cdddad3d174b449ef455438d55efd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myskin: {fileID: 11400000, guid: 143e84590a977a344bb1072809c2711c, type: 2}
-  HpBarTexture: {fileID: 2800000, guid: ad34d764e60a6df4d8d8366f36378ac8, type: 3}
-  HpBarLenght: 0
-  HpBarX: 160
-  HpBarY: 10
-  HpBarHeight: 15
 --- !u!124 &12407544
 Behaviour:
   m_ObjectHideFlags: 1
