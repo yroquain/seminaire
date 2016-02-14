@@ -123,6 +123,7 @@ GameObject:
   - 114: {fileID: 11404794}
   - 136: {fileID: 13605098}
   - 114: {fileID: 11413364}
+  - 114: {fileID: 11431528}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Mage_Air
@@ -2396,6 +2397,17 @@ MonoBehaviour:
   - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
   wind: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
   mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
+--- !u!114 &11431528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9cdddad3d174b449ef455438d55efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11444428
 MonoBehaviour:
   m_ObjectHideFlags: 1

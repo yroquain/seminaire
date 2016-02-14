@@ -16,12 +16,12 @@ public class HealthBar : NetworkBehaviour
 
     float curHP = 100.0f;
     float maxHP = 100.0f;
-    public GUISkin myskin;
+    /*public GUISkin myskin;
     public Texture2D HpBarTexture;
     public float HpBarLenght;
     public int HpBarX = 160;
     public int HpBarY = 10;
-    public int HpBarHeight = 15;
+    public int HpBarHeight = 15;*/
     float PercentOfHP;
 
     void Awake()
@@ -37,7 +37,7 @@ public class HealthBar : NetworkBehaviour
 
 
 
-    void OnGUI()
+   /* void OnGUI()
     {
         GUI.skin = myskin;
         GUILayout.Space(3);
@@ -66,7 +66,7 @@ public class HealthBar : NetworkBehaviour
             GUILayout.EndArea();
 
         }
-    }
+    }*/
 
     public float getCurHP()
     {
@@ -97,7 +97,7 @@ public class HealthBar : NetworkBehaviour
         }
 
         PercentOfHP = curHP / maxHP;
-        HpBarLenght = PercentOfHP * 130;
+        //HpBarLenght = PercentOfHP * 130;
 
         //if hp = 0
         if (HealthBar.HPBar.getCurHP() <= 0)
