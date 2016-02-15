@@ -79,9 +79,12 @@ public class PlayerController : NetworkBehaviour
     private GameObject sort1;
     private GameObject sort2;
     private GameObject Element;
+    private GameObject ElementAllie;
     public Sprite mageFeu;
     public Sprite mageEau;
     public Sprite mageAir;
+    public Sprite currentMage;
+    private GameObject MageClone;
     #endregion
 
     #region Initialisation
@@ -134,6 +137,10 @@ public class PlayerController : NetworkBehaviour
             {
                 this.Element = a.gameObject;
             }
+            if (a.name == "ElementAllie")
+            {
+                this.ElementAllie = a.gameObject;
+            }
 
         }
         Barre = CanvasJoueur.GetComponentsInChildren<Button>();
@@ -163,7 +170,27 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        MageClone=GameObject.Find("Mage(Clone)");
+        if(MageClone!= null)
+        {
+            ElementAllie.SetActive(true);
+            if (MageClone.tag == "Mage_Feu")
+            {
+                ElementAllie.GetComponent<Image>().sprite = mageFeu;
+            }
+            if (MageClone.tag == "Mage_Eau")
+            {
+                ElementAllie.GetComponent<Image>().sprite = mageEau;
+            }
+            if (MageClone.tag == "Mage_Air")
+            {
+                ElementAllie.GetComponent<Image>().sprite = mageAir;
+            }
+        }
+        else
+        {
+            ElementAllie.SetActive(false);
+        }
         //Gestion hp et mort
         curHP += Time.deltaTime * 5;
         if (curHP > maxHP)
@@ -434,6 +461,7 @@ public class PlayerController : NetworkBehaviour
             this.sort1.GetComponent<Image>().sprite = sortfeu1;
             this.sort2.GetComponent<Image>().sprite = sortfeu2;
             this.Element.GetComponent<Image>().sprite = mageFeu;
+            currentMage = mageFeu;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
         {
@@ -441,6 +469,7 @@ public class PlayerController : NetworkBehaviour
             this.sort1.GetComponent<Image>().sprite = sorteau1;
             this.sort2.GetComponent<Image>().sprite = sorteau2;
             this.Element.GetComponent<Image>().sprite = mageEau;
+            currentMage = mageEau;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
         {
@@ -448,6 +477,7 @@ public class PlayerController : NetworkBehaviour
             this.sort1.GetComponent<Image>().sprite = sortair1;
             this.sort2.GetComponent<Image>().sprite = sortair2;
             this.Element.GetComponent<Image>().sprite = mageAir;
+            currentMage = mageAir;
         }
         CmdChangerMage(newTag, this.gameObject);
     }
