@@ -83,7 +83,6 @@ public class PlayerController : NetworkBehaviour
     public Sprite mageFeu;
     public Sprite mageEau;
     public Sprite mageAir;
-    public Sprite currentMage;
     private GameObject MageClone;
     #endregion
 
@@ -461,7 +460,6 @@ public class PlayerController : NetworkBehaviour
             this.sort1.GetComponent<Image>().sprite = sortfeu1;
             this.sort2.GetComponent<Image>().sprite = sortfeu2;
             this.Element.GetComponent<Image>().sprite = mageFeu;
-            currentMage = mageFeu;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
         {
@@ -469,15 +467,13 @@ public class PlayerController : NetworkBehaviour
             this.sort1.GetComponent<Image>().sprite = sorteau1;
             this.sort2.GetComponent<Image>().sprite = sorteau2;
             this.Element.GetComponent<Image>().sprite = mageEau;
-            currentMage = mageEau;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
         {
             newTag = "Mage_Air";
-            this.sort1.GetComponent<Image>().sprite = sortair1;
-            this.sort2.GetComponent<Image>().sprite = sortair2;
+            this.sort1.GetComponent<Image>().sprite = sortair2;
+            this.sort2.GetComponent<Image>().sprite = sortair1;
             this.Element.GetComponent<Image>().sprite = mageAir;
-            currentMage = mageAir;
         }
         CmdChangerMage(newTag, this.gameObject);
     }
