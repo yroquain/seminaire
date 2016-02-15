@@ -62,10 +62,6 @@ public class Sorts_simple : NetworkBehaviour
             }
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
             {
-                if (numberSpellCast == 1)
-                {
-                    CmdMurEole();
-                }
                 if (numberSpellCast == 2 && GetComponent<PlayerController>().qtmana >= 30)
                 {
                     GetComponent<PlayerController>().qtmana -= 30;
@@ -155,7 +151,7 @@ public class Sorts_simple : NetworkBehaviour
                 //Mur d'Eole
                 if(IsEole)
                 {
-                    numberSpellCast = 1;
+                    CmdMurEole();
                     air1 = Time.time;
                     IsEole = false;
                     gameObject.GetComponent<PlayerController>().IsEole = false;
@@ -164,7 +160,7 @@ public class Sorts_simple : NetworkBehaviour
                 }
                 if (!IsEole && Time.time >= air1 + 5)
                 {
-                    numberSpellCast = 1;
+                    CmdMurEole();
                     IsEole = true;
                     gameObject.GetComponent<PlayerController>().IsEole = true;
                     timeeole = Time.time;

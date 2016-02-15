@@ -398,7 +398,7 @@ public class PlayerController : NetworkBehaviour
         if (col.gameObject.tag == "Fond_Ravin")
         {
             //the player die
-            HealthBar.HPBar.setCurHP(-10.0f);
+            curHP = -10.0f;
         }
     }
 
