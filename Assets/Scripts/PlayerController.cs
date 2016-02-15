@@ -61,7 +61,7 @@ public class PlayerController : NetworkBehaviour
     private float rotate;
     private Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
-    //Canvas
+    //HUD
     public GameObject Canvas;
     private Component[] Barre;
     private GameObject ManaBarre;
@@ -78,6 +78,10 @@ public class PlayerController : NetworkBehaviour
     public float finCDsort2;
     private GameObject sort1;
     private GameObject sort2;
+    private GameObject Element;
+    public Sprite mageFeu;
+    public Sprite mageEau;
+    public Sprite mageAir;
     #endregion
 
     #region Initialisation
@@ -124,7 +128,11 @@ public class PlayerController : NetworkBehaviour
             }
             if (a.name == "Sort2")
             {
-                this.sort2 = a.gameObject;                
+                this.sort2 = a.gameObject;
+            }
+            if (a.name == "Element")
+            {
+                this.Element = a.gameObject;
             }
 
         }
@@ -425,18 +433,21 @@ public class PlayerController : NetworkBehaviour
             newTag = "Mage_Feu";
             this.sort1.GetComponent<Image>().sprite = sortfeu1;
             this.sort2.GetComponent<Image>().sprite = sortfeu2;
+            this.Element.GetComponent<Image>().sprite = mageFeu;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
         {
             newTag = "Mage_Eau";
             this.sort1.GetComponent<Image>().sprite = sorteau1;
             this.sort2.GetComponent<Image>().sprite = sorteau2;
+            this.Element.GetComponent<Image>().sprite = mageEau;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
         {
             newTag = "Mage_Air";
             this.sort1.GetComponent<Image>().sprite = sortair1;
             this.sort2.GetComponent<Image>().sprite = sortair2;
+            this.Element.GetComponent<Image>().sprite = mageAir;
         }
         CmdChangerMage(newTag, this.gameObject);
     }

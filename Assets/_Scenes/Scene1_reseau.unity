@@ -35268,7 +35268,6 @@ MonoBehaviour:
   - {fileID: 1931197671}
   TE2: {fileID: 1893872178}
   IsReady: 0
-  IsTriggered: 0
 --- !u!23 &1522867823
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43375,7 +43374,6 @@ MonoBehaviour:
   - {fileID: 1931197671}
   TE2: {fileID: 1522867820}
   IsReady: 0
-  IsTriggered: 0
 --- !u!23 &1893872181
 MeshRenderer:
   m_ObjectHideFlags: 0
