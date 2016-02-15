@@ -19,6 +19,9 @@ public class PlayerController : NetworkBehaviour
     public GameObject Immo;
     public bool IsEole;
 
+    //HP
+    float curHP = 100.0f;
+    float maxHP = 100.0f;
 
     //Moving in lava
     private bool IsOnLava;
@@ -63,6 +66,8 @@ public class PlayerController : NetworkBehaviour
     private Component[] Barre;
     private GameObject ManaBarre;
     private GameObject ManaBarreRef;
+    private GameObject HealthBarre;
+    private GameObject HealthBarreRef;
     public float qtmana;
     private float recupmana;
     private GameObject sort1mask;
@@ -105,6 +110,14 @@ public class PlayerController : NetworkBehaviour
             {
                 ManaBarreRef = a.gameObject;
             }
+            if (a.name == "Health2")
+            {
+                this.HealthBarre = a.gameObject;
+            }
+            if (a.name == "Health1")
+            {
+                HealthBarreRef = a.gameObject;
+            }
             if (a.name == "Sort1")
             {
                 this.sort1 = a.gameObject;
@@ -142,6 +155,18 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Gestion hp et mort
+        curHP += Time.deltaTime * 5;
+        if (curHP > maxHP)
+        {
+            curHP = maxHP;
+        }
+        if (curHP <= 0)
+        {
+            CmdDeadPlayer(this.gameObject);
+        }
+
         if (CDsort1 > 0)
         {
             sort1mask.SetActive(true);
@@ -186,8 +211,14 @@ public class PlayerController : NetworkBehaviour
             }
         }
         //Debug.Log(manabarrex);
+        HealthBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * curHP, 10);
+        HealthBarre.GetComponent<RectTransform>().position = new Vector3(HealthBarreRef.GetComponent<RectTransform>().position.x - (maxHP - curHP), HealthBarreRef.GetComponent<RectTransform>().position.y, 0);
+
         ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(2*qtmana, 10);
         ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - (100- qtmana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
+
+        
+
         //int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
         /*if (nombreJoueur ==1)
         {
@@ -208,7 +239,6 @@ public class PlayerController : NetworkBehaviour
 
 
             //When Moving
-
             if (Input.GetAxis("Vertical") != 0)
             {
                 if (!IsAttacking&&!IsCasting)
@@ -314,6 +344,19 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
+
+    //Fonction
+    [Command]
+    void CmdDeadPlayer(GameObject myPlayer)
+    {
+        myPlayer.GetComponent<NetworkedPlayerScript>().RpcResolveDead();
+    }
+
+    public void completeHealth()
+    {
+        curHP = maxHP;
+    }
+
     void OnCollisionEnter(Collision col)
     {
 
@@ -337,7 +380,7 @@ public class PlayerController : NetworkBehaviour
             IsOnLava = true;
             if (!this.IsImmolating)
             {
-                HealthBar.HPBar.setCurHP(-10.0f);
+               curHP=-10.0f;
             }
 
         }
@@ -347,7 +390,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (collision.gameObject.GetComponent<Plateforme1>().IsDeadly)
             {
-                HealthBar.HPBar.setCurHP(-10.0f);
+                curHP = -10.0f; ;
             }
         }
 
@@ -416,6 +459,7 @@ public class PlayerController : NetworkBehaviour
         IsUnderAnimation = !IsUnderAnimation;
     }
 
+    #region Getter and Setter
     public bool getIsCasting()
     {
         return IsCasting;
@@ -424,6 +468,14 @@ public class PlayerController : NetworkBehaviour
     {
         this.IsCasting = _isCasting;
     }
-
+    public float getCurHP()
+    {
+        return this.curHP;
+    }
+    public void setCurHP(float curHP)
+    {
+        this.curHP = curHP;
+    }
+    #endregion
 }
 

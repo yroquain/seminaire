@@ -63,7 +63,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
         ToggleRenderer(true);
         if (isLocalPlayer)
         {
-            this.GetComponent<HealthBar>().completeHealth();
+            this.GetComponent<PlayerController>().completeHealth();
             fpsController.enabled = true;
             fpsCamera.enabled = true;
         }            
