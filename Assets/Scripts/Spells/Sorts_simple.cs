@@ -56,31 +56,26 @@ public class Sorts_simple : NetworkBehaviour
             }
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
             {
-                if (numberSpellCast == 2 && GetComponent<PlayerController>().qtmana >= 30)
+                if (numberSpellCast == 2 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
-                    GetComponent<PlayerController>().qtmana -= 30;
                     CmdBourrasqueInfernale();
                 }
-                if (numberSpellCast == 3 && GetComponent<PlayerController>().qtmana >= 30)
+                if (numberSpellCast == 3 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
-                    GetComponent<PlayerController>().qtmana -= 30;
                     CmdChocAquatique();
                 }
-                if (numberSpellCast == 4 && GetComponent<PlayerController>().qtmana >= 50)
+                if (numberSpellCast == 4 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
-                    GetComponent<PlayerController>().qtmana -= 50;
                     CmdPluieDivine();
                 }
-                if (numberSpellCast == 5 && GetComponent<PlayerController>().qtmana>=50)
+                if (numberSpellCast == 5 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
                     feu1 = Time.time;
                     gameObject.GetComponent<PlayerController>().CDsort1 = 5;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
-                    GetComponent<PlayerController>().qtmana -= 50;
-
                     CmdTraitDeFeu();
                 }
-
+                GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
                 numberSpellCast = 0;
                 timeCast = 0f;
                 this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
@@ -90,9 +85,9 @@ public class Sorts_simple : NetworkBehaviour
         {
             if (Time.time >= timeimmo + 1)
             {
-                if (GetComponent<PlayerController>().qtmana >= 15)
+                if (GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(6))
                 {
-                    GetComponent<PlayerController>().qtmana -= 15;
+                    GetComponent<ManagementHpMana>().removeManaFromSpell(6);
                     timeimmo = Time.time;
                 }
                 else
@@ -109,9 +104,9 @@ public class Sorts_simple : NetworkBehaviour
         {
             if (Time.time >= timeeole + 1)
             {
-                if (GetComponent<PlayerController>().qtmana >= 15)
+                if (GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(1))
                 {
-                    GetComponent<PlayerController>().qtmana -= 15;
+                    GetComponent<ManagementHpMana>().removeManaFromSpell(1);
                     timeeole = Time.time;
                 }
                 else

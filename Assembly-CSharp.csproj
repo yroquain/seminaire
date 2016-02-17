@@ -49,6 +49,7 @@
      <Compile Include="Assets\Assets\Elementals\Scripts\TestParticles.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\LavaMovement.cs" />
+     <Compile Include="Assets\Scripts\ManagementHpMana.cs" />
      <Compile Include="Assets\Scripts\NetworkedPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Plateforme1.cs" />
      <Compile Include="Assets\Scripts\PlateformePlacement.cs" />

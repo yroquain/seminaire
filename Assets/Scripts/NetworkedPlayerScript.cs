@@ -63,7 +63,8 @@ public class NetworkedPlayerScript : NetworkBehaviour
         ToggleRenderer(true);
         if (isLocalPlayer)
         {
-            this.GetComponent<PlayerController>().completeHealth();
+            this.GetComponent<ManagementHpMana>().setFullMana();
+            this.GetComponent<ManagementHpMana>().setFullHp();
             fpsController.enabled = true;
             fpsCamera.enabled = true;
         }            

@@ -123,6 +123,7 @@ GameObject:
   - 114: {fileID: 11404794}
   - 136: {fileID: 13605098}
   - 114: {fileID: 11413364}
+  - 114: {fileID: 11465582}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Mage_Air
@@ -2349,8 +2350,8 @@ MonoBehaviour:
   sortair1: {fileID: 21300000, guid: ed9c15381b3cfe5438c5e101ab00e63e, type: 3}
   sortair2: {fileID: 21300000, guid: 81387dded8d769f4398327fe5fe057f8, type: 3}
   speed: 50
+  CanvasJoueur: {fileID: 0}
   Canvas: {fileID: 143612, guid: 20253a8496d22914c83a470de8c49dd9, type: 2}
-  qtmana: 0
   CDsort1: 0
   finCDsort1: 0
   CDsort2: 0
@@ -2389,7 +2390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3563ecba1f78b9f449962fa8c8124a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0
   camera: {fileID: 193730}
   trait: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
   prerain: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
@@ -2463,6 +2463,17 @@ MonoBehaviour:
   target: {fileID: 488982}
   camera: {fileID: 466612}
   angularSpeed: 40
+--- !u!114 &11465582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba7ba5b497d96547b2ffaaea7ceeb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11473042
 MonoBehaviour:
   m_ObjectHideFlags: 1

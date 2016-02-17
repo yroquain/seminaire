@@ -19,10 +19,6 @@ public class PlayerController : NetworkBehaviour
     public GameObject Immo;
     public bool IsEole;
 
-    //HP
-    float curHP = 100.0f;
-    float maxHP = 100.0f;
-
     //Moving in lava
     private bool IsOnLava;
     private bool IsOnGrass;
@@ -63,14 +59,9 @@ public class PlayerController : NetworkBehaviour
 
     //HUD
     float widthScreen;
+    public GameObject CanvasJoueur;
     public GameObject Canvas;
     private Component[] Barre;
-    private GameObject ManaBarre;
-    private GameObject ManaBarreRef;
-    private GameObject HealthBarre;
-    private GameObject HealthBarreRef;
-    public float qtmana;
-    private float recupmana;
     private GameObject sort1mask;
     private GameObject sort2mask;
     public float CDsort1;
@@ -105,25 +96,25 @@ public class PlayerController : NetworkBehaviour
         rotate = 0;
         Attackelapsed = 0.0f;
         anim = GetComponent<Animator>();
-        GameObject CanvasJoueur = Instantiate(Canvas);
+        CanvasJoueur = Instantiate(Canvas);
         Barre = CanvasJoueur.GetComponentsInChildren<Image>();
         foreach(Image a in Barre)
         {
             if (a.name == "Mana2")
             {
-                this.ManaBarre = a.gameObject;
+                GetComponent<ManagementHpMana>().setManaBarre(a.gameObject);
             }
-            if(a.name=="Mana1")
+            if (a.name == "Mana1")
             {
-                ManaBarreRef = a.gameObject;
+                GetComponent<ManagementHpMana>().setManaBarreRef(a.gameObject);
             }
             if (a.name == "Health2")
             {
-                this.HealthBarre = a.gameObject;
+                GetComponent<ManagementHpMana>().setHealthBarre(a.gameObject);
             }
             if (a.name == "Health1")
             {
-                HealthBarreRef = a.gameObject;
+                GetComponent<ManagementHpMana>().setHealthBarreRef(a.gameObject);
             }
             if (a.name == "Sort1")
             {
@@ -155,8 +146,6 @@ public class PlayerController : NetworkBehaviour
                 this.sort2mask = a.gameObject;
             }
         }
-        qtmana = 100;
-        recupmana = Time.time;
         this.changerMage();
 
 
@@ -199,15 +188,7 @@ public class PlayerController : NetworkBehaviour
             ElementAllie.SetActive(false);
         }
         //Gestion hp et mort
-        curHP += Time.deltaTime * 5;
-        if (curHP > maxHP)
-        {
-            curHP = maxHP;
-        }
-        if (curHP <= 0)
-        {
-            CmdDeadPlayer(this.gameObject);
-        }
+        
 
         if (CDsort1 > 0)
         {
@@ -241,31 +222,7 @@ public class PlayerController : NetworkBehaviour
         {
             sort2mask.SetActive(false);
         }
-        if (Time.time>= recupmana+1)
-        {
-            recupmana = Time.time;
-            if(qtmana<100)
-            {
-                if(qtmana+5<100)
-                {
-                    curHP -= 20;
-                    qtmana += 5;
-                }
-                else
-                {
-                    qtmana = 100;
-                }
-            }
-        }
-        //Debug.Log(manabarrex);
-        
-        HealthBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curHP/maxHP, widthScreen * 0.012f);
-        HealthBarre.GetComponent<RectTransform>().position = new Vector3(HealthBarreRef.GetComponent<RectTransform>().position.x - (maxHP - curHP), HealthBarreRef.GetComponent<RectTransform>().position.y, 0);
-
-        ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * qtmana / 100, widthScreen * 0.012f);
-        ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - (100- qtmana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
-
-        
+     
 
         //int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
         /*if (nombreJoueur ==1)
@@ -395,14 +352,9 @@ public class PlayerController : NetworkBehaviour
 
     //Fonction
     [Command]
-    void CmdDeadPlayer(GameObject myPlayer)
+    public void CmdDeadPlayer(GameObject myPlayer)
     {
         myPlayer.GetComponent<NetworkedPlayerScript>().RpcResolveDead();
-    }
-
-    public void completeHealth()
-    {
-        curHP = maxHP;
     }
 
     void OnCollisionEnter(Collision col)
@@ -412,7 +364,7 @@ public class PlayerController : NetworkBehaviour
         if (col.gameObject.tag == "Fond_Ravin")
         {
             //the player die
-            curHP = -10.0f;
+            GetComponent<ManagementHpMana>().removeHp(GetComponent<ManagementHpMana>().getMaxHp());
         }
     }
 
@@ -428,7 +380,7 @@ public class PlayerController : NetworkBehaviour
             IsOnLava = true;
             if (!this.IsImmolating)
             {
-               curHP=-10.0f;
+                GetComponent<ManagementHpMana>().removeHp(GetComponent<ManagementHpMana>().getMaxHp());
             }
 
         }
@@ -438,7 +390,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (collision.gameObject.GetComponent<Plateforme1>().IsDeadly)
             {
-                curHP = -10.0f; ;
+                GetComponent<ManagementHpMana>().removeHp(GetComponent<ManagementHpMana>().getMaxHp());
             }
         }
 
@@ -519,14 +471,7 @@ public class PlayerController : NetworkBehaviour
     {
         this.IsCasting = _isCasting;
     }
-    public float getCurHP()
-    {
-        return this.curHP;
-    }
-    public void setCurHP(float curHP)
-    {
-        this.curHP = curHP;
-    }
+
     #endregion
 }
 
