@@ -62,6 +62,7 @@ public class PlayerController : NetworkBehaviour
     private Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
     //HUD
+    float widthScreen;
     public GameObject Canvas;
     private Component[] Barre;
     private GameObject ManaBarre;
@@ -145,11 +146,11 @@ public class PlayerController : NetworkBehaviour
         Barre = CanvasJoueur.GetComponentsInChildren<Button>();
         foreach (Button a in Barre)
         {
-            if (a.name == "Sort2mask")
+            if (a.name == "Sort1mask")
             {
                 this.sort1mask = a.gameObject;
             }
-            if (a.name == "Sort1mask")
+            if (a.name == "Sort2mask")
             {
                 this.sort2mask = a.gameObject;
             }
@@ -157,8 +158,15 @@ public class PlayerController : NetworkBehaviour
         qtmana = 100;
         recupmana = Time.time;
         this.changerMage();
+
+
+        widthScreen = Screen.width;
+        
         sort1mask.SetActive(false);
+
+        
         sort2mask.SetActive(false);
+
         CDsort1 = 0;
         CDsort2 = 0;
     }
@@ -204,6 +212,8 @@ public class PlayerController : NetworkBehaviour
         if (CDsort1 > 0)
         {
             sort1mask.SetActive(true);
+            sort1mask.GetComponent<RectTransform>().position = new Vector3(.469f * widthScreen, 0.055f * widthScreen, 0);
+            sort1mask.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.047f, widthScreen * 0.047f);
             sort1mask.GetComponentInChildren<Text>().text = CDsort1.ToString();
             if(Time.time>=finCDsort1+1)
             {
@@ -218,6 +228,8 @@ public class PlayerController : NetworkBehaviour
         if (CDsort2 > 0)
         {
             sort2mask.SetActive(true);
+            sort2mask.GetComponent<RectTransform>().position = new Vector3(.531f * widthScreen, 0.055f * widthScreen, 0);
+            sort2mask.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.047f, widthScreen * 0.047f);
             sort2mask.GetComponentInChildren<Text>().text = CDsort2.ToString();
             if (Time.time >= finCDsort2 + 1)
             {
@@ -236,6 +248,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if(qtmana+5<100)
                 {
+                    curHP -= 20;
                     qtmana += 5;
                 }
                 else
@@ -245,10 +258,11 @@ public class PlayerController : NetworkBehaviour
             }
         }
         //Debug.Log(manabarrex);
-        HealthBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(2 * curHP, 10);
+        
+        HealthBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curHP/maxHP, widthScreen * 0.012f);
         HealthBarre.GetComponent<RectTransform>().position = new Vector3(HealthBarreRef.GetComponent<RectTransform>().position.x - (maxHP - curHP), HealthBarreRef.GetComponent<RectTransform>().position.y, 0);
 
-        ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(2*qtmana, 10);
+        ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * qtmana / 100, widthScreen * 0.012f);
         ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - (100- qtmana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
 
         

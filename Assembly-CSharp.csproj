@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\TriggerInstensifes.cs" />
      <Compile Include="Assets\Scripts\WallDestruction.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
+     <Compile Include="Assets\Scripts\scriptHUD.cs" />
      <Compile Include="Assets\Scripts\triggerEnigme1.cs" />
      <None Include="Assets\Assets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
      <None Include="Assets\Assets\PyroParticles\Readme.txt" />

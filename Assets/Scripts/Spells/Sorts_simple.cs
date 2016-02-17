@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 public class Sorts_simple : NetworkBehaviour
 {
 
-    public float range; //définit la portée de l'attaque
     public GameObject camera;
 
     public GameObject trait;
@@ -43,7 +42,6 @@ public class Sorts_simple : NetworkBehaviour
 
     // Use this for initialization
     void Start () {
-        this.range = 100.0f;
         Isactivated = false;
         numberSpellCast = 0;
 	}
