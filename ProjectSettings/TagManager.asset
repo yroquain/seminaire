@@ -18,6 +18,7 @@ TagManager:
   - Immolation
   - PlateformeEnigme1
   - MurIfrit
+  - BarriereGivree
   layers:
   - Default
   - TransparentFX
