@@ -166,27 +166,7 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        MageClone=GameObject.Find("Mage(Clone)");
-        if(MageClone!= null)
-        {
-            ElementAllie.SetActive(true);
-            if (MageClone.tag == "Mage_Feu")
-            {
-                ElementAllie.GetComponent<Image>().sprite = mageFeu;
-            }
-            if (MageClone.tag == "Mage_Eau")
-            {
-                ElementAllie.GetComponent<Image>().sprite = mageEau;
-            }
-            if (MageClone.tag == "Mage_Air")
-            {
-                ElementAllie.GetComponent<Image>().sprite = mageAir;
-            }
-        }
-        else
-        {
-            ElementAllie.SetActive(false);
-        }
+       
         //Gestion hp et mort
         
 

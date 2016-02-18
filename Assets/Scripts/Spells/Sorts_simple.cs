@@ -56,26 +56,36 @@ public class Sorts_simple : NetworkBehaviour
             }
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
             {
+                Debug.Log("Mana = "+GetComponent<ManagementHpMana>().getCurMana());
                 if (numberSpellCast == 2 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
                     CmdBourrasqueInfernale();
+                    GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
+                    CmdSynchronizeMana();
                 }
                 if (numberSpellCast == 3 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
                     CmdChocAquatique();
+                    GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
+                    CmdSynchronizeMana();
                 }
                 if (numberSpellCast == 4 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
                     CmdPluieDivine();
+                    GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
+                    CmdSynchronizeMana();
                 }
                 if (numberSpellCast == 5 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
                     feu1 = Time.time;
+                    GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
+                    CmdSynchronizeMana();
                     gameObject.GetComponent<PlayerController>().CDsort1 = 5;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                     CmdTraitDeFeu();
+
                 }
-                GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
+                
                 numberSpellCast = 0;
                 timeCast = 0f;
                 this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
@@ -88,6 +98,7 @@ public class Sorts_simple : NetworkBehaviour
                 if (GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(6))
                 {
                     GetComponent<ManagementHpMana>().removeManaFromSpell(6);
+                    CmdSynchronizeMana();
                     timeimmo = Time.time;
                 }
                 else
@@ -107,6 +118,7 @@ public class Sorts_simple : NetworkBehaviour
                 if (GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(1))
                 {
                     GetComponent<ManagementHpMana>().removeManaFromSpell(1);
+                    CmdSynchronizeMana();
                     timeeole = Time.time;
                 }
                 else
@@ -186,7 +198,11 @@ public class Sorts_simple : NetworkBehaviour
     {
         this.GetComponent<NetworkedPlayerScript>().RpcTraitDeFeu(this.gameObject);
     }
-
+    [Command]
+    private void CmdSynchronizeMana()
+    {
+        this.GetComponent<NetworkedPlayerScript>().RpcSynchronizeMana(this.gameObject,this.gameObject.GetComponent<ManagementHpMana>().getCurMana());
+    }
     [Command]
     private void CmdImmolation()
     {

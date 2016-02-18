@@ -72,14 +72,13 @@ public class ManagementHpMana : MonoBehaviour {
                 }
             }
         }
-
         if (HealthBarre && HealthBarreRef && ManaBarre && ManaBarreRef)
         {
             HealthBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curHP / maxHP, widthScreen * 0.012f);
-            HealthBarre.GetComponent<RectTransform>().position = new Vector3(HealthBarreRef.GetComponent<RectTransform>().position.x - (maxHP - curHP), HealthBarreRef.GetComponent<RectTransform>().position.y, 0);
+            HealthBarre.GetComponent<RectTransform>().position = new Vector3(HealthBarreRef.GetComponent<RectTransform>().position.x - widthScreen * 0.156f * (maxHP-curHP) / (2*maxHP), HealthBarreRef.GetComponent<RectTransform>().position.y, 0);
 
-            ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curMana / 100, widthScreen * 0.012f);
-            ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - (maxMana - curMana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
+            ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curMana / maxMana, widthScreen * 0.012f);
+            ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - widthScreen * 0.156f * (maxMana-curMana) / (2*maxMana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
 
         }
         
@@ -116,6 +115,10 @@ public class ManagementHpMana : MonoBehaviour {
     public float getCurMana()
     {
         return this.curMana;
+    }
+    public void setCurMana(float _curMana)
+    {
+        this.curMana=_curMana;
     }
     public void removeMana(float manaRemove)
     {

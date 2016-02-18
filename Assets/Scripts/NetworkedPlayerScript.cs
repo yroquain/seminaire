@@ -224,4 +224,13 @@ public class NetworkedPlayerScript : NetworkBehaviour
                 myPlayer.GetComponent<Sorts_simple>().pos.position.z);
         Instantiate(myPlayer.GetComponent<Sorts_simple>().trait, position, Quaternion.identity);
     }
+
+    [ClientRpc]
+    public void RpcSynchronizeMana(GameObject myPlayer, float CurrentMana)
+    {
+        if (myPlayer != isLocalPlayer)
+        {
+            myPlayer.GetComponent<ManagementHpMana>().setCurMana(CurrentMana);
+        }
+    }
 }
