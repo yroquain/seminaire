@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class ManagementHpMana : MonoBehaviour {
+public class ManagementHpMana : NetworkBehaviour
+{
 
     /* Numero des sorts
      * 0 : Erreur
@@ -16,7 +18,7 @@ public class ManagementHpMana : MonoBehaviour {
     private int[] costManaSpell= {0,15,30,30,50,50,15};
     
     //Mana
-    private float curMana;
+    public float curMana;
     private float maxMana=100f;
     private float recupmana;
 
@@ -79,11 +81,16 @@ public class ManagementHpMana : MonoBehaviour {
 
             ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curMana / maxMana, widthScreen * 0.012f);
             ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - widthScreen * 0.156f * (maxMana-curMana) / (2*maxMana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
-
         }
-        
+        this.CmdSynchronizeMana();
 	}
 
+
+    [Command]
+    private void CmdSynchronizeMana()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcSynchronizeMana(this.gameObject, this.curMana);
+    }
     public void setFullMana()
     {
         this.curMana = maxMana;

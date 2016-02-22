@@ -42,6 +42,15 @@ public class NetworkedPlayerScript : NetworkBehaviour
     }
 
     [ClientRpc]
+    public void RpcSynchronizeMana(GameObject myPlayer, float currentMana)
+    {
+        if (this.gameObject != myPlayer)
+        {
+            myPlayer.GetComponent<ManagementHpMana>().setCurMana(currentMana);
+        }
+    }
+
+    [ClientRpc]
     public void RpcResolveDead()
     {
         ToggleRenderer(false);
@@ -225,12 +234,4 @@ public class NetworkedPlayerScript : NetworkBehaviour
         Instantiate(myPlayer.GetComponent<Sorts_simple>().trait, position, Quaternion.identity);
     }
 
-    [ClientRpc]
-    public void RpcSynchronizeMana(GameObject myPlayer, float CurrentMana)
-    {
-        if (myPlayer != isLocalPlayer)
-        {
-            myPlayer.GetComponent<ManagementHpMana>().setCurMana(CurrentMana);
-        }
-    }
 }

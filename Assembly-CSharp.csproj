@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\WallDestruction.cs" />
      <Compile Include="Assets\Scripts\WindWall.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
+     <Compile Include="Assets\Scripts\playerChoixElement.cs" />
      <Compile Include="Assets\Scripts\scriptHUD.cs" />
      <Compile Include="Assets\Scripts\triggerEnigme1.cs" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
