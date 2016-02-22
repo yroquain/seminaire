@@ -23,7 +23,7 @@ public class TraitFeu : MonoBehaviour {
 
     public void OnTriggerEnter(Collider Coll)
     {
-        if (Coll.gameObject.tag != "Mage_Feu" && Coll.gameObject.tag != "Mage_Eau" && Coll.gameObject.tag != "Mage_Air" && Coll.gameObject.name!="FireboltCollider")
+        if (Coll.gameObject.tag != "Mage_Feu" && Coll.gameObject.tag != "Mage_Eau" && Coll.gameObject.tag != "Mage_Air" && Coll.gameObject.name!="FireboltCollider" && Coll.gameObject.name !="Trigger1C" && Coll.gameObject.name !="Trigger2C")
         {
             Destroy(GameObject.Find("Firebolt(Clone)"));
             Destroy(gameObject);
