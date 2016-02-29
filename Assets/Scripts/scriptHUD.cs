@@ -63,6 +63,7 @@ public class scriptHUD : MonoBehaviour {
         if (MageClone != null)
         {
             ElementAllie.SetActive(true);
+
             if (MageClone.tag == "Mage_Feu")
             {
                 ElementAllie.GetComponent<Image>().sprite = mageFeuAllie;

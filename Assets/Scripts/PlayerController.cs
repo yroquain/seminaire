@@ -204,11 +204,7 @@ public class PlayerController : NetworkBehaviour
         }
      
 
-        //int nombreJoueur=GameObject.FindGameObjectsWithTag("Mage_Eau").Length+GameObject.FindGameObjectsWithTag("Mage_Air").Length+GameObject.FindGameObjectsWithTag("Mage_Feu").Length;
-        /*if (nombreJoueur ==1)
-        {
-            return;
-        }*/
+     
         if (!IsUnderAnimation)
         {
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
