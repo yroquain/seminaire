@@ -15,6 +15,7 @@ public class selectMenu : MonoBehaviour
     private Text options;
     private Text quitGame;
 
+    private float timer = 0.0f;
     // Use this for initialization
     void Start()
     {
@@ -31,23 +32,23 @@ public class selectMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //on descend dans la liste
+        if ((Input.GetAxis("Vertical") < 0 || Input.GetAxis("SelectMenu") < 0) && ((Time.time - timer) > 0.2f))
+        {
 
-            //on descend dans la liste
-            if (Input.GetAxis("Vertical") < 0 || Input.GetAxis("SelectMenu") < 0)
-            {
+            selectingOption = (selectingOption + 1) % numberMenu; //le modulo sert à retourner à 0 si on est déjà en bas.
+            timer = Time.time;
+        }
 
-                selectingOption = (selectingOption + 1) % numberMenu; //le modulo sert à retourner à 0 si on est déjà en bas.
-
-            }
-
-            //on monte dans la liste
-            else if (Input.GetAxis("Vertical") > 0 || Input.GetAxis("SelectMenu") > 0)
-            {
-                selectingOption = ((selectingOption - 1) + numberMenu) % numberMenu; //le "+numberMenu" permet de gérer les nombres négatifs
-            }
+        //on monte dans la liste
+        else if ((Input.GetAxis("Vertical") > 0 || Input.GetAxis("SelectMenu") > 0) && ((Time.time - timer) > 0.2f))
+        {
+            selectingOption = ((selectingOption - 1) + numberMenu) % numberMenu; //le "+numberMenu" permet de gérer les nombres négatifs
+            timer = Time.time;
+        }
 
         //Jump is the "A" button on gamepad
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit"))
         {
             if (selectingOption < (numberMenu - 1))
             {
@@ -55,7 +56,6 @@ public class selectMenu : MonoBehaviour
             }
             else
             {
-                Debug.Log("toto");
                 Application.Quit();
             }
 
