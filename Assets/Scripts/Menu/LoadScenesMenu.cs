@@ -7,7 +7,6 @@ public class LoadScenesMenu : MonoBehaviour
     public void loadNewGame()
     {
         SceneManager.LoadScene(1);
-       // Application.LoadLevel(0);
     }
 
     public void loadTutorial()
@@ -21,7 +20,6 @@ public class LoadScenesMenu : MonoBehaviour
 
     public void quitGame()
     {
-        Debug.Log("tototo");
         Application.Quit();
     }
 }
