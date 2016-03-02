@@ -465,8 +465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a64ff095bc7df47bd582e923b47534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
 --- !u!1001 &660113561
 Prefab:
   m_ObjectHideFlags: 0
@@ -755,6 +753,7 @@ GameObject:
   - 224: {fileID: 1192532724}
   - 222: {fileID: 1192532726}
   - 114: {fileID: 1192532725}
+  - 114: {fileID: 1192532727}
   m_Layer: 5
   m_Name: Menu Panel
   m_TagString: Untagged
@@ -816,6 +815,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1192532723}
+--- !u!114 &1192532727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1192532723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dca11eb3374d248bea31aac64171c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1215469058
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +946,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 12.45}
-  m_SizeDelta: {x: 53.1, y: 30}
+  m_SizeDelta: {x: 87.9, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1273265544
 MonoBehaviour:
@@ -1057,7 +1067,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 80.9}
-  m_SizeDelta: {x: 135.6, y: 30}
+  m_SizeDelta: {x: 169.65, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1281642016
 MonoBehaviour:
@@ -1355,7 +1365,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -22.16}
-  m_SizeDelta: {x: 56.6, y: 30}
+  m_SizeDelta: {x: 89.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363786867
 MonoBehaviour:
@@ -1537,7 +1547,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 46.9}
-  m_SizeDelta: {x: 73.4, y: 30}
+  m_SizeDelta: {x: 110.7, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1413742923
 MonoBehaviour:
