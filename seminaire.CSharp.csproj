@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\LavaMovement.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadScenesMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\positionMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu\selectMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\sizeButton.cs" />
     <Compile Include="Assets\Scripts\NetworkedPlayerScript.cs" />
     <Compile Include="Assets\Scripts\Plateforme1.cs" />
