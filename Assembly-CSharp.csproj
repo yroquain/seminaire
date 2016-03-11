@@ -63,10 +63,15 @@
      <Compile Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\SepiaToneEffect.cs" />
      <Compile Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\TwirlEffect.cs" />
      <Compile Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\VortexEffect.cs" />
-     <Compile Include="Assets\Scripts\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\HUD\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\HUD\ManagementHpMana.cs" />
+     <Compile Include="Assets\Scripts\HUD\scriptHUD.cs" />
      <Compile Include="Assets\Scripts\LavaMovement.cs" />
-     <Compile Include="Assets\Scripts\LoadScenesMenu.cs" />
-     <Compile Include="Assets\Scripts\ManagementHpMana.cs" />
+     <Compile Include="Assets\Scripts\Menu\LoadScenesMenu.cs" />
+     <Compile Include="Assets\Scripts\Menu\positionMenu.cs" />
+     <Compile Include="Assets\Scripts\Menu\selectMenu.cs" />
+     <Compile Include="Assets\Scripts\Menu\sizeButton.cs" />
      <Compile Include="Assets\Scripts\NetworkedPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Plateforme1.cs" />
      <Compile Include="Assets\Scripts\PlateformePlacement.cs" />
@@ -93,8 +98,6 @@
      <Compile Include="Assets\Scripts\WindWall.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\playerChoixElement.cs" />
-     <Compile Include="Assets\Scripts\positionMenu.cs" />
-     <Compile Include="Assets\Scripts\scriptHUD.cs" />
      <Compile Include="Assets\Scripts\triggerEnigme1.cs" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />

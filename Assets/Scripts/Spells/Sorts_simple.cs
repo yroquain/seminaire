@@ -48,6 +48,7 @@ public class Sorts_simple : NetworkBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+       
         if (numberSpellCast != 0)
         {
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == true)
@@ -186,8 +187,14 @@ public class Sorts_simple : NetworkBehaviour
                 numberSpellCast = 4;
             }
         }
+        CmdIsCasting();
     }
 
+    [Command]
+    public void CmdIsCasting()
+    {
+        GameObject.Find("networkManager").GetComponent<GameController>().RpcSetIsCasting(this.gameObject.GetComponent<PlayerController>().getIsCasting(), this.gameObject.GetComponent<PlayerController>().numeroJoueur, numberSpellCast);
+    }
     [Command]
     private void CmdTraitDeFeu()
     {

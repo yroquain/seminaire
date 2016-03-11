@@ -13,6 +13,7 @@ public class PlayerController : NetworkBehaviour
     private float walkingSpeed = 6.0f;
     private float runningSpeed = 10.0f;
     private Animator anim;
+    public int numeroJoueur;
 
     //sorts
     public bool IsImmolating;
@@ -82,6 +83,12 @@ public class PlayerController : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        numeroJoueur = 0;
+        if (GameObject.Find("Mage(Clone)") != null)
+        {
+            numeroJoueur = 1;
+        }
+        Debug.Log(numeroJoueur);
         IsImmolating = false;
         IsUnderAnimation = false;
         IsAttacking = false;
@@ -327,6 +334,7 @@ public class PlayerController : NetworkBehaviour
 
 
     //Fonction
+
     [Command]
     public void CmdDeadPlayer(GameObject myPlayer)
     {
