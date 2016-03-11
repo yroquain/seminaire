@@ -22,6 +22,8 @@ public class ManagementHpMana : NetworkBehaviour
     private float maxMana=100f;
     private float recupmana;
 
+    private int numeroJoueur;
+
     //HP
     private float curHP;
     private float maxHP = 100.0f;
@@ -38,6 +40,12 @@ public class ManagementHpMana : NetworkBehaviour
 
 	// Use this for initialization
 	void Start () {
+        numeroJoueur = 0;
+        if (GameObject.Find("Mage(Clone)") != null)
+        {
+            numeroJoueur = 1;
+        }
+
         widthScreen = Screen.width;
         recupmana = Time.time;
         curMana = maxMana;
@@ -82,14 +90,14 @@ public class ManagementHpMana : NetworkBehaviour
             ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curMana / maxMana, widthScreen * 0.012f);
             ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - widthScreen * 0.156f * (maxMana-curMana) / (2*maxMana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
         }
-        this.CmdSynchronizeMana();
+        this.CmdSynchronizeManaHp(numeroJoueur,this.curHP, this.curMana);
 	}
 
 
     [Command]
-    private void CmdSynchronizeMana()
+    private void CmdSynchronizeManaHp(int _numberPlayer, float _curHp, float _curMana)
     {
-        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcSynchronizeMana(this.gameObject, this.curMana);
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcSynchronizeManaHp(_numberPlayer, _curHp, _curMana);
     }
     public void setFullMana()
     {

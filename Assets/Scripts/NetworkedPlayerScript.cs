@@ -42,14 +42,21 @@ public class NetworkedPlayerScript : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcSynchronizeMana(GameObject myPlayer, float currentMana)
+    public void RpcSynchronizeManaHp(int _numberPlayer, float _currentHp, float _currentMana)
     {
-        if (this.gameObject != myPlayer)
-        {
-            myPlayer.GetComponent<ManagementHpMana>().setCurMana(currentMana);
-        }
+        GameObject.Find("networkManager").GetComponent<GameController>().setHpManaActual(_numberPlayer,_currentHp,_currentMana);
     }
 
+    [ClientRpc]
+    public void RpcSetIsCasting(bool _isCasting, int _numberPlayer, int _numberSpell)
+    {
+        GameObject.Find("networkManager").GetComponent<GameController>().SetIsCasting(_isCasting, _numberPlayer, _numberSpell);
+    }
+    [ClientRpc]
+    public void RpcResetVarSpell(int _numberPlayer)
+    {
+        GameObject.Find("networkManager").GetComponent<GameController>().ResetVarSpell(_numberPlayer);
+    }
     [ClientRpc]
     public void RpcResolveDead()
     {
@@ -109,7 +116,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
         Destroy(triggerRespawn);
     }
 
-    // Gestion des Sorts
+    #region Gestion sorts
     [ClientRpc]
     public void RpcImmolation(GameObject myPlayer)
     {
@@ -233,5 +240,5 @@ public class NetworkedPlayerScript : NetworkBehaviour
                 myPlayer.GetComponent<Sorts_simple>().pos.position.z);
         Instantiate(myPlayer.GetComponent<Sorts_simple>().trait, position, Quaternion.identity);
     }
-
+    #endregion
 }

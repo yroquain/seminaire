@@ -9,15 +9,26 @@ public class scriptHUD : MonoBehaviour {
     public Sprite mageEauAllie;
     public Sprite mageFeuAllie;
 
+    private int numeroJoueur;
+    private int numeroAllie;
+
     private float widthScreen;
     private GameObject barreManaMaxAllie;
     private GameObject barreHpMaxAllie;
+
+    private GameController myGameController;
 	// Use this for initialization
 	void Start () {
 
             // Sort1Mask et Sort2mask géré dans le playerController.cs quand ils sont activés
-
-        
+            numeroJoueur = 0;
+            numeroAllie = 1;
+            if (GameObject.Find("Mage(Clone)") != null)
+            {
+                numeroJoueur = 1;
+                numeroAllie = 1;
+            }
+            myGameController = GameObject.Find("networkManager").GetComponent<GameController>();
             widthScreen = Screen.width;
             GameObject.Find("Background").GetComponent<RectTransform>().position = new Vector3(.485f * widthScreen, 0.012f * widthScreen, 0);
             GameObject.Find("Background").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.23f, widthScreen*0.1f);
@@ -77,12 +88,12 @@ public class scriptHUD : MonoBehaviour {
             {
                 ElementAllie.GetComponent<Image>().sprite = mageAirAllie;
             }
-            float curHpAllie = MageClone.GetComponent<ManagementHpMana>().getCurHp();
-            float maxHpAllie = MageClone.GetComponent<ManagementHpMana>().getMaxHp();
-            float curManaAllie = MageClone.GetComponent<ManagementHpMana>().getCurMana();
-            float maxManaAllie = MageClone.GetComponent<ManagementHpMana>().getMaxMana();
+            float curHpAllie = myGameController.getHpActual(numeroAllie);
+            float maxHpAllie = 100;//MageClone.GetComponent<ManagementHpMana>().getMaxHp();
+            float curManaAllie = myGameController.getManaActual(numeroAllie);
+            float maxManaAllie = 100;//MageClone.GetComponent<ManagementHpMana>().getMaxMana();
 
-            Debug.Log(curManaAllie);
+
             GameObject.Find("HealthAllie").GetComponent<RectTransform>().sizeDelta = new Vector2(60 * curHpAllie / maxHpAllie, 10);
             GameObject.Find("HealthAllie").GetComponent<RectTransform>().position = new Vector3(barreHpMaxAllie.GetComponent<RectTransform>().position.x - 60 * (maxHpAllie - curHpAllie) / (2 * maxHpAllie), barreHpMaxAllie.GetComponent<RectTransform>().position.y, 0);
 

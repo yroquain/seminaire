@@ -6,7 +6,7 @@ public class Sorts_simple : NetworkBehaviour
 {
 
     public GameObject camera;
-
+    public int numeroJoueur;
     public GameObject trait;
     public GameObject prerain;
     public Transform pos;
@@ -42,6 +42,11 @@ public class Sorts_simple : NetworkBehaviour
 
     // Use this for initialization
     void Start () {
+        numeroJoueur = 0;
+        if (GameObject.Find("Mage(Clone)") != null)
+        {
+            numeroJoueur = 1;
+        }
         Isactivated = false;
         numberSpellCast = 0;
 	}
@@ -85,6 +90,7 @@ public class Sorts_simple : NetworkBehaviour
                 numberSpellCast = 0;
                 timeCast = 0f;
                 this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
+                CmdResetVarSpell(numeroJoueur);
             }
         }
         if (IsImmolating)
@@ -187,13 +193,19 @@ public class Sorts_simple : NetworkBehaviour
                 numberSpellCast = 4;
             }
         }
-        CmdIsCasting();
+
+        CmdIsCasting(this.gameObject.GetComponent<PlayerController>().getIsCasting(), numeroJoueur, numberSpellCast);
     }
 
     [Command]
-    public void CmdIsCasting()
+    public void CmdIsCasting(bool _isCasting, int _numberPlayer, int _numberSpell)
     {
-        GameObject.Find("networkManager").GetComponent<GameController>().RpcSetIsCasting(this.gameObject.GetComponent<PlayerController>().getIsCasting(), this.gameObject.GetComponent<PlayerController>().numeroJoueur, numberSpellCast);
+        this.GetComponent<NetworkedPlayerScript>().RpcSetIsCasting(_isCasting,_numberPlayer,_numberSpell);
+    }
+    [Command]
+    public void CmdResetVarSpell(int _numberPlayer)
+    {
+        this.GetComponent<NetworkedPlayerScript>().RpcResetVarSpell(_numberPlayer);
     }
     [Command]
     private void CmdTraitDeFeu()
