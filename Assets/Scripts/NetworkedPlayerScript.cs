@@ -102,6 +102,8 @@ public class NetworkedPlayerScript : NetworkBehaviour
         {
             myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
         }
+        Debug.Log(myPlayer.GetComponent<Sorts_simple>().numeroJoueur);
+        GameObject.Find("networkManager").GetComponent<GameController>().SetElement(myPlayer.GetComponent<Sorts_simple>().numeroJoueur, newTag);
         
     }
 

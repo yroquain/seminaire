@@ -26,7 +26,7 @@ public class scriptHUD : MonoBehaviour {
             if (GameObject.Find("Mage(Clone)") != null)
             {
                 numeroJoueur = 1;
-                numeroAllie = 1;
+                numeroAllie = 0;
             }
             myGameController = GameObject.Find("networkManager").GetComponent<GameController>();
             widthScreen = Screen.width;

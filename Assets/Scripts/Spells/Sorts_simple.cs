@@ -43,7 +43,7 @@ public class Sorts_simple : NetworkBehaviour
     // Use this for initialization
     void Start () {
         numeroJoueur = 0;
-        if (GameObject.Find("Mage(Clone)") != null)
+        if (GameObject.Find("Mage(Clone)") != null && this.gameObject.name=="LOCAL Player")
         {
             numeroJoueur = 1;
         }

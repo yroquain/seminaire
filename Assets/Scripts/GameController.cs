@@ -11,6 +11,7 @@ public class GameController : NetworkBehaviour
     public bool[] isUsingSpell;
     public float[] manaActual;
     public float[] hpActual;
+    public string[] elements;
 
     
 
@@ -34,14 +35,16 @@ public class GameController : NetworkBehaviour
         hpActual = new float[2];
         hpActual[0] = 0f;
         hpActual[1] = 0f;
-
+        elements = new string[2];
+        elements[0] = "null";
+        elements[1] = "null";
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (isCasting[0] && isUsingSpell[1] || isCasting[1] && isUsingSpell[0])
         {
-            
+            Debug.Log("coucou");
         }
 	}
 
@@ -72,6 +75,10 @@ public class GameController : NetworkBehaviour
         this.isCasting[_numberPlayer] = false;
         this.isUsingSpell[_numberPlayer] = false;
         this.numberSpell[_numberPlayer] = 0;
+    }
+    public void SetElement(int _numberPlayer, string _element)
+    {
+        this.elements[_numberPlayer] = _element;
     }
 
 }

@@ -41,7 +41,7 @@ public class ManagementHpMana : NetworkBehaviour
 	// Use this for initialization
 	void Start () {
         numeroJoueur = 0;
-        if (GameObject.Find("Mage(Clone)") != null)
+        if (GameObject.Find("Mage(Clone)") != null && this.gameObject.name == "LOCAL Player")
         {
             numeroJoueur = 1;
         }
@@ -63,7 +63,7 @@ public class ManagementHpMana : NetworkBehaviour
         }
         if (curHP <= 0)
         {
-            GetComponent<PlayerController>().CmdDeadPlayer(this.gameObject);
+            this.GetComponent<PlayerController>().CmdDeadPlayer(this.gameObject);
         }
 
         //Management Mana

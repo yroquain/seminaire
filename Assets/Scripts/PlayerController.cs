@@ -84,11 +84,10 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         numeroJoueur = 0;
-        if (GameObject.Find("Mage(Clone)") != null)
+        if (GameObject.Find("Mage(Clone)") != null && this.gameObject.name == "LOCAL Player")
         {
             numeroJoueur = 1;
         }
-        Debug.Log(numeroJoueur);
         IsImmolating = false;
         IsUnderAnimation = false;
         IsAttacking = false;
