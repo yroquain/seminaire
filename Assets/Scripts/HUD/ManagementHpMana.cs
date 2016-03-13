@@ -35,6 +35,8 @@ public class ManagementHpMana : NetworkBehaviour
     private GameObject ManaBarreRef;
     private GameObject HealthBarre;
     private GameObject HealthBarreRef;
+    private Text textMana;
+    private Text textHealth;
 
 
 
@@ -84,6 +86,9 @@ public class ManagementHpMana : NetworkBehaviour
         }
         if (HealthBarre && HealthBarreRef && ManaBarre && ManaBarreRef)
         {
+            textHealth.text = curHP + "/" + maxHP;
+            textMana.text = curMana + "/" + maxMana;
+
             HealthBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curHP / maxHP, widthScreen * 0.012f);
             HealthBarre.GetComponent<RectTransform>().position = new Vector3(HealthBarreRef.GetComponent<RectTransform>().position.x - widthScreen * 0.156f * (maxHP-curHP) / (2*maxHP), HealthBarreRef.GetComponent<RectTransform>().position.y, 0);
 
@@ -122,6 +127,14 @@ public class ManagementHpMana : NetworkBehaviour
     public void setHealthBarreRef(GameObject healthBarreRef)
     {
         this.HealthBarreRef = healthBarreRef;
+    }
+    public void setHealthText(Text healthText)
+    {
+        this.textHealth = healthText;
+    }
+    public void setManaText(Text manaText)
+    {
+        this.textMana = manaText;
     }
     public float getMaxMana()
     {

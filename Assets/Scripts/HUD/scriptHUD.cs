@@ -48,11 +48,17 @@ public class scriptHUD : MonoBehaviour {
             GameObject.Find("Health2").GetComponent<RectTransform>().position = new Vector3(0.5f * widthScreen, 0.035f * widthScreen, 0);
             GameObject.Find("Health2").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f, widthScreen * 0.012f);
 
+            GameObject.Find("TextHealth").GetComponent<RectTransform>().position = new Vector3(0.5f * widthScreen, 0.04f * widthScreen, 0);
+            GameObject.Find("TextHealth").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f, widthScreen * 0.04f);
+
             GameObject.Find("Mana1").GetComponent<RectTransform>().position = new Vector3(0.5f * widthScreen, 0.02f * widthScreen, 0);
             GameObject.Find("Mana1").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f, widthScreen * 0.012f);
 
             GameObject.Find("Mana2").GetComponent<RectTransform>().position = new Vector3(0.5f * widthScreen, 0.02f * widthScreen, 0);
             GameObject.Find("Mana2").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f, widthScreen * 0.012f);
+
+            GameObject.Find("TextMana").GetComponent<RectTransform>().position = new Vector3(0.5f * widthScreen, 0.025f * widthScreen, 0);
+            GameObject.Find("TextMana").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f, widthScreen * 0.04f);
 
             barreManaMaxAllie = GameObject.Find("ManaMaxAllie");
             barreHpMaxAllie = GameObject.Find("HealthMaxAllie");
@@ -93,6 +99,7 @@ public class scriptHUD : MonoBehaviour {
             float curManaAllie = myGameController.getManaActual(numeroAllie);
             float maxManaAllie = 100;//MageClone.GetComponent<ManagementHpMana>().getMaxMana();
 
+            
 
             GameObject.Find("HealthAllie").GetComponent<RectTransform>().sizeDelta = new Vector2(60 * curHpAllie / maxHpAllie, 10);
             GameObject.Find("HealthAllie").GetComponent<RectTransform>().position = new Vector3(barreHpMaxAllie.GetComponent<RectTransform>().position.x - 60 * (maxHpAllie - curHpAllie) / (2 * maxHpAllie), barreHpMaxAllie.GetComponent<RectTransform>().position.y, 0);

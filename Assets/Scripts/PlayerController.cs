@@ -140,6 +140,9 @@ public class PlayerController : NetworkBehaviour
             }
 
         }
+        GetComponent<ManagementHpMana>().setHealthText(GameObject.Find("TextHealth").GetComponent<Text>());
+        GetComponent<ManagementHpMana>().setManaText(GameObject.Find("TextMana").GetComponent<Text>());
+
         Barre = CanvasJoueur.GetComponentsInChildren<Button>();
         foreach (Button a in Barre)
         {
