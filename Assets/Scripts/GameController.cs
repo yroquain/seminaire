@@ -80,5 +80,13 @@ public class GameController : NetworkBehaviour
     {
         this.elements[_numberPlayer] = _element;
     }
+    public bool IsotherCasting(int numeroautrejoueur)
+    {
+        return isCasting[numeroautrejoueur];
+    }
+    public bool IsotherSpelling(int numeroautrejoueur)
+    {
+        return isCasting[numeroautrejoueur];
+    }
 
 }

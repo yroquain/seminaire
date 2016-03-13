@@ -32804,6 +32804,9 @@ MonoBehaviour:
   numberSpell: 
   isAttacking: 
   isUsingSpell: 
+  manaActual: []
+  hpActual: []
+  elements: []
 --- !u!1 &1014829711
 GameObject:
   m_ObjectHideFlags: 0

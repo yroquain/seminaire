@@ -52,8 +52,12 @@ public class FireProjectileScript : FireBaseScript, ICollisionHandler
     private IEnumerator SendCollisionAfterDelay()
     {
         yield return new WaitForSeconds(ProjectileColliderDelay);
-        
-        ProjectileColliderObject.GetComponent<Rigidbody>().velocity = GameObject.FindWithTag("Mage_Feu").transform.Find("Main Camera").gameObject.transform.forward*10;
+        GameObject Player = GameObject.FindWithTag("Mage_Feu");
+        if (Player == null)
+        {
+            Player = GameObject.FindWithTag("Mage_Eau");
+        }
+        ProjectileColliderObject.GetComponent<Rigidbody>().velocity = Player.transform.Find("Main Camera").gameObject.transform.forward*10;
     }
 
     protected override void Start()

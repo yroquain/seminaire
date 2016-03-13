@@ -3,12 +3,22 @@ using System.Collections;
 
 public class PreRain : MonoBehaviour {
 
+    private GameObject Player;
     private GameObject cameraa;
     public GameObject cube;
     // Use this for initialization
     void Start () {
-
-        cameraa = GameObject.FindWithTag("Mage_Eau").transform.Find("Main Camera").gameObject;
+        Player = GameObject.FindWithTag("Mage_Eau");
+        if (Player.GetComponent<PlayerController>().CDsort2 > 0)
+        {
+            cameraa = Player.transform.Find("Main Camera").gameObject;
+        }
+        else
+        {
+            Player = GameObject.FindWithTag("Mage_Feu");
+            cameraa = Player.transform.Find("Main Camera").gameObject;
+        }
+            
         GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 10;
     }
 	

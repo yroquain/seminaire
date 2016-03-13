@@ -165,11 +165,11 @@ public class NetworkedPlayerScript : NetworkBehaviour
             if (currentPrefabScript.IsProjectile)
             {
                 // set the start point near the player
-                rotation = myPlayer.GetComponent<Sorts_simple>().camera.transform.rotation;
+                rotation = myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.rotation;
                 //rotation = transform.rotation;
-                pos = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.x * 2,
+                pos = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2,
                         transform.position.y + 2,
-                        transform.position.z + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.z * 2); ;
+                        transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2); ;
                 //pos = transform.position + forward + right + up;
             }
             else
@@ -203,9 +203,9 @@ public class NetworkedPlayerScript : NetworkBehaviour
         if (!myPlayer.GetComponent<Sorts_simple>().getIsActivated())
         {
             myPlayer.GetComponent<Sorts_simple>().setMurActif(GameObject.Instantiate(myPlayer.GetComponent<Sorts_simple>().mur));
-            myPlayer.GetComponent<Sorts_simple>().getMurActif().transform.position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.x * 2,
+            myPlayer.GetComponent<Sorts_simple>().getMurActif().transform.position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2,
                 transform.position.y,
-                transform.position.z + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.z * 2);
+                transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
             myPlayer.GetComponent<Sorts_simple>().getMurActif().transform.rotation = transform.rotation;
 
         }
@@ -219,19 +219,43 @@ public class NetworkedPlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcBourrasqueInfernale(GameObject myPlayer)
     {
-        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.x * 2,
+        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2,
                transform.position.y,
-               transform.position.z + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.z * 2);
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
         Instantiate(myPlayer.GetComponent<Sorts_simple>().wind, position, Quaternion.identity);
     }
-   
+    [ClientRpc]
+    public void RpcRaz(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2,
+               transform.position.y,
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().wind, position, Quaternion.identity);
+    }
+
     [ClientRpc]
     public void RpcPluieDivine(GameObject myPlayer)
     {
-        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.x * 2),
+        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2),
                transform.position.y + 2,
-               transform.position.z + myPlayer.GetComponent<Sorts_simple>().camera.transform.forward.z * 2);
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
         Instantiate(myPlayer.GetComponent<Sorts_simple>().prerain, position, Quaternion.identity);
+    }
+    [ClientRpc]
+    public void RpcGiboulee(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().pregib, position, Quaternion.identity);
+    }
+    [ClientRpc]
+    public void RpcTyphon(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().pretyphon, position, Quaternion.identity);
     }
 
     [ClientRpc]
@@ -241,6 +265,14 @@ public class NetworkedPlayerScript : NetworkBehaviour
                 myPlayer.GetComponent<Sorts_simple>().pos.position.y,
                 myPlayer.GetComponent<Sorts_simple>().pos.position.z);
         Instantiate(myPlayer.GetComponent<Sorts_simple>().trait, position, Quaternion.identity);
+    }
+    [ClientRpc]
+    public void RpcJetObsidienne(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3(myPlayer.GetComponent<Sorts_simple>().pos.position.x,
+                myPlayer.GetComponent<Sorts_simple>().pos.position.y,
+                myPlayer.GetComponent<Sorts_simple>().pos.position.z);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().obsidienne, position, Quaternion.identity);
     }
     #endregion
 }

@@ -3,11 +3,17 @@ using System.Collections;
 
 public class TraitFeu : MonoBehaviour {
     private GameObject cameraa;
+    private GameObject Player;
     public GameObject fleche;
     private float todie;
     // Use this for initialization
     void Start () {
-        cameraa = GameObject.FindWithTag("Mage_Feu").transform.Find("Main Camera").gameObject;
+        Player = GameObject.FindWithTag("Mage_Feu");
+        if(Player==null)
+        {
+            Player = GameObject.FindWithTag("Mage_Eau");
+        }
+        cameraa = Player.transform.Find("Main Camera").gameObject;
         GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 10;
         todie = Time.time;
     }

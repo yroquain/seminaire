@@ -2335,6 +2335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d9a6b12270e3743899ca947e2afbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numeroJoueur: 0
   IsImmolating: 0
   Immo: {fileID: 143232}
   IsEole: 0
@@ -2390,9 +2391,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3563ecba1f78b9f449962fa8c8124a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 193730}
+  Mycamera: {fileID: 193730}
+  numeroJoueur: 0
+  numeroautreJoueur: 0
   trait: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
+  obsidienne: {fileID: 152140, guid: e53f3a00881cf284cb44ec828330a43d, type: 2}
   prerain: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
+  pregib: {fileID: 197670, guid: 685289b1113c6c8499fef6db928c0e55, type: 2}
+  pretyphon: {fileID: 105284, guid: 3b39d9675806e084d93daf65d5ee17c0, type: 2}
   pos: {fileID: 402454}
   Prefabs:
   - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
@@ -2461,7 +2467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 488982}
-  camera: {fileID: 466612}
+  Mycamera: {fileID: 0}
   angularSpeed: 40
 --- !u!114 &11465582
 MonoBehaviour:
@@ -2474,6 +2480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba7ba5b497d96547b2ffaaea7ceeb66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curMana: 0
 --- !u!114 &11473042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4378,6 +4385,22 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: cecb7b77bdc8d9d488c441c36c8ab005,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: pretyphon
+      value: 
+      objectReference: {fileID: 105284, guid: 3b39d9675806e084d93daf65d5ee17c0, type: 2}
+    - target: {fileID: 0}
+      propertyPath: obsidienne
+      value: 
+      objectReference: {fileID: 152140, guid: e53f3a00881cf284cb44ec828330a43d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pregib
+      value: 
+      objectReference: {fileID: 197670, guid: 685289b1113c6c8499fef6db928c0e55, type: 2}
+    - target: {fileID: 0}
+      propertyPath: Mycamera
+      value: 
+      objectReference: {fileID: 193730}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

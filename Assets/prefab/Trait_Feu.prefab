@@ -221,7 +221,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Name
-      value: ChocAqua
+      value: Choc_Aquatique
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString

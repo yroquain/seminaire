@@ -4,7 +4,7 @@ using System.Collections;
 public class cameraController : MonoBehaviour {
 
     public Transform target;
-    public Transform camera;
+    public Transform Mycamera;
     public float angularSpeed;
 
 	// Use this for initialization
