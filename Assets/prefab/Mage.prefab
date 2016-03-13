@@ -2404,6 +2404,7 @@ MonoBehaviour:
   - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
   - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
   wind: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
+  wave: {fileID: 160204, guid: f6713467256cdbb468addbf47156bcbc, type: 2}
   mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
 --- !u!114 &11444428
 MonoBehaviour:
@@ -4401,6 +4402,10 @@ Prefab:
       propertyPath: Mycamera
       value: 
       objectReference: {fileID: 193730}
+    - target: {fileID: 0}
+      propertyPath: wave
+      value: 
+      objectReference: {fileID: 160204, guid: f6713467256cdbb468addbf47156bcbc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

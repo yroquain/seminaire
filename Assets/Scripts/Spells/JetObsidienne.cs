@@ -9,14 +9,14 @@ public class JetObsidienne : MonoBehaviour {
     void Start()
     {
         timetodie = Time.time;
-        cameraa = GameObject.FindWithTag("Mage_Eau");
+        cameraa = GameObject.Find("LOCAL Player");
         if (cameraa.GetComponent<PlayerController>().CDsort1 > 0)
         {
             GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
         }
         else
         {
-            cameraa = GameObject.FindWithTag("Mage_Feu");
+            cameraa = GameObject.FindWithTag("Mage(Clone)");
             GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
         }
         gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);

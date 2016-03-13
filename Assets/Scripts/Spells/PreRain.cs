@@ -8,14 +8,14 @@ public class PreRain : MonoBehaviour {
     public GameObject cube;
     // Use this for initialization
     void Start () {
-        Player = GameObject.FindWithTag("Mage_Eau");
+        Player = GameObject.Find("LOCAL Player");
         if (Player.GetComponent<PlayerController>().CDsort2 > 0)
         {
             cameraa = Player.transform.Find("Main Camera").gameObject;
         }
         else
         {
-            Player = GameObject.FindWithTag("Mage_Feu");
+            Player = GameObject.FindWithTag("Mage(Clone)");
             cameraa = Player.transform.Find("Main Camera").gameObject;
         }
             

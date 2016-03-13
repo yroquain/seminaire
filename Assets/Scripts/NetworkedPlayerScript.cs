@@ -227,10 +227,10 @@ public class NetworkedPlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcRaz(GameObject myPlayer)
     {
-        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2,
+        Vector3 position = new Vector3(transform.position.x,
                transform.position.y,
-               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
-        Instantiate(myPlayer.GetComponent<Sorts_simple>().wind, position, Quaternion.identity);
+               transform.position.z);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().wave, position, Quaternion.identity);
     }
 
     [ClientRpc]

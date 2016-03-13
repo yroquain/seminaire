@@ -32,6 +32,7 @@ public class Sorts_simple : NetworkBehaviour
     private float timeeole;
 
     public GameObject wind;
+    public GameObject wave;
     public GameObject mur;
     private GameObject muractif;
     private bool Isactivated;
