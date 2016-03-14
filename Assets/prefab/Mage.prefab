@@ -1191,6 +1191,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &197792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 481430}
+  - 33: {fileID: 3339326}
+  - 135: {fileID: 13508222}
+  - 23: {fileID: 2310470}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &197826
 GameObject:
   m_ObjectHideFlags: 1
@@ -1911,6 +1929,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 486484}
   m_RootOrder: 0
+--- !u!4 &481430
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.102, z: 0.751}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_Children: []
+  m_Father: {fileID: 488982}
+  m_RootOrder: 7
 --- !u!4 &482678
 Transform:
   m_ObjectHideFlags: 1
@@ -2051,7 +2081,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.240927, y: 0.5, z: -373.59195}
+  m_LocalPosition: {x: 46.48003, y: 0.5, z: -401.40836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 426558}
@@ -2061,6 +2091,7 @@ Transform:
   - {fileID: 466612}
   - {fileID: 491628}
   - {fileID: 402454}
+  - {fileID: 481430}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &489060
@@ -2266,6 +2297,39 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!23 &2310470
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197792}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3339326
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197792}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &5456962
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2397,13 +2461,18 @@ MonoBehaviour:
   trait: {fileID: 145576, guid: cbb9a3eef057d9d46b49b9351781c039, type: 2}
   obsidienne: {fileID: 152140, guid: e53f3a00881cf284cb44ec828330a43d, type: 2}
   prerain: {fileID: 195440, guid: 5b25e4a47f77a3d4bbdc74319af4300b, type: 2}
+  prefire: {fileID: 135868, guid: f9d6b304278990345982a0b3e117b385, type: 2}
   pregib: {fileID: 197670, guid: 685289b1113c6c8499fef6db928c0e55, type: 2}
   pretyphon: {fileID: 105284, guid: 3b39d9675806e084d93daf65d5ee17c0, type: 2}
   pos: {fileID: 402454}
   Prefabs:
   - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
   - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
+  sphere: {fileID: 197792}
+  ImmolatingSpell: 0
+  IsImmolating: 0
   wind: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
+  windfire: {fileID: 175870, guid: 7cf9cf52441b24140aff03d21fdb27a1, type: 2}
   wave: {fileID: 160204, guid: f6713467256cdbb468addbf47156bcbc, type: 2}
   mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
 --- !u!114 &11444428
@@ -2508,6 +2577,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193730}
   m_Enabled: 1
+--- !u!135 &13508222
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13605098
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -4406,6 +4487,18 @@ Prefab:
       propertyPath: wave
       value: 
       objectReference: {fileID: 160204, guid: f6713467256cdbb468addbf47156bcbc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: sphere
+      value: 
+      objectReference: {fileID: 197792}
+    - target: {fileID: 0}
+      propertyPath: windfire
+      value: 
+      objectReference: {fileID: 175870, guid: 7cf9cf52441b24140aff03d21fdb27a1, type: 2}
+    - target: {fileID: 0}
+      propertyPath: prefire
+      value: 
+      objectReference: {fileID: 135868, guid: f9d6b304278990345982a0b3e117b385, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

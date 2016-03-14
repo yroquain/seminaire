@@ -11,27 +11,30 @@ public class Sorts_simple : NetworkBehaviour
     public GameObject trait;
     public GameObject obsidienne;
     public GameObject prerain;
+    public GameObject prefire;
     public GameObject pregib;
     public GameObject pretyphon;
     public Transform pos;
     public GameObject[] Prefabs;
+    public GameObject sphere;
     
 
     private float timeCast;
     private float timeCastMax = 2f;
-
+    public bool ImmolatingSpell;
     private int numberSpellCast;
     private bool castTraitDeFeu;
     private bool castPluieDivine;
     private bool castChocAquatique;
     private bool castMurEole;
     private bool castBourrasqueInfernale;
-    private bool IsImmolating;
+    public bool IsImmolating;
     private float timeimmo;
     private bool IsEole;
     private float timeeole;
 
     public GameObject wind;
+    public GameObject windfire;
     public GameObject wave;
     public GameObject mur;
     private GameObject muractif;
@@ -47,6 +50,8 @@ public class Sorts_simple : NetworkBehaviour
 
     // Use this for initialization
     void Start () {
+        ImmolatingSpell = false;
+        sphere.SetActive(false);
         numeroJoueur = 0;
         numeroautreJoueur = 1;
         if (GameObject.Find("Mage(Clone)") != null && this.gameObject.name=="LOCAL Player")
@@ -65,6 +70,7 @@ public class Sorts_simple : NetworkBehaviour
         {
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == true)
             {
+                sphere.SetActive(true);
                 timeCast += Time.deltaTime;
                 GameObject autrejoueur = GameObject.Find("Mage(Clone)");
                 if (autrejoueur != null)
@@ -78,9 +84,17 @@ public class Sorts_simple : NetworkBehaviour
             }
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
             {
+                sphere.SetActive(false);
                 if (numberSpellCast == 2 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
-                    CmdBourrasqueInfernale();
+                    if (ImmolatingSpell)
+                    {
+                        CmdTornadeEnflammee();
+                    }
+                    else
+                    {
+                        CmdBourrasqueInfernale();
+                    }
                     GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
                 }
                 if (numberSpellCast == 3 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
@@ -90,7 +104,14 @@ public class Sorts_simple : NetworkBehaviour
                 }
                 if (numberSpellCast == 4 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
-                    CmdPluieDivine();
+                    if (ImmolatingSpell)
+                    {
+                        CmdPluiedeFeu();
+                    }
+                    else
+                    {
+                        CmdPluieDivine();
+                    }
                     GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
                 }
                 if (numberSpellCast == 5 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
@@ -107,6 +128,7 @@ public class Sorts_simple : NetworkBehaviour
                 timeCast = 0f;
                 this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
                 CmdResetVarSpell(numeroJoueur);
+                ImmolatingSpell = false;
             }
         }
         if (IsImmolating)
@@ -209,14 +231,41 @@ public class Sorts_simple : NetworkBehaviour
                 numberSpellCast = 4;
             }
         }
-
-        CmdIsCasting(this.gameObject.GetComponent<PlayerController>().getIsCasting(), numeroJoueur, numberSpellCast);
-        GameObject autrejoueur = GameObject.Find("Mage(Clone)");
-        if (autrejoueur != null)
+        if (GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
         {
-            if (GameObject.Find("networkManager").GetComponent<GameController>().IsotherCasting(numeroautreJoueur) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z < 4) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z >-4))
+            CmdIsCasting(this.gameObject.GetComponent<PlayerController>().getIsCasting(), numeroJoueur, numberSpellCast);
+            GameObject autrejoueur = GameObject.Find("Mage(Clone)");
+            if (autrejoueur != null)
             {
-                numberSpellCast = 0;
+                if (GameObject.Find("networkManager").GetComponent<GameController>().IsotherCasting(numeroautreJoueur) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z < 4) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z > -4))
+                {
+                    GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
+                    if (numberSpellCast == 5)
+                    {
+                        feu1 = Time.time;
+                        gameObject.GetComponent<PlayerController>().CDsort1 = 5;
+                        gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
+                    }
+                    if (numberSpellCast == 3)
+                    {
+                        eau1 = Time.time;
+                        gameObject.GetComponent<PlayerController>().CDsort1 = 3;
+                        gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
+                    }
+                    if (numberSpellCast == 2)
+                    {
+                        air2 = Time.time;
+                        gameObject.GetComponent<PlayerController>().CDsort2 = 5;
+                        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+                    }
+                    if (numberSpellCast == 4)
+                    {
+                        eau2 = Time.time;
+                        gameObject.GetComponent<PlayerController>().CDsort2 = 10;
+                        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+                    }
+                    numberSpellCast = 0;
+                }
             }
         }
     }
@@ -295,6 +344,7 @@ public class Sorts_simple : NetworkBehaviour
             }
 
         }
+        sphere.SetActive(false);
         CmdResetVarSpell(numeroJoueur);
         CmdResetVarSpell(numeroautreJoueur);
     }
@@ -346,6 +396,14 @@ public class Sorts_simple : NetworkBehaviour
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcPluieDivine(this.gameObject);
     }
     [Command]
+    public void CmdPluiedeFeu()
+    {
+        eau2 = Time.time;
+        gameObject.GetComponent<PlayerController>().CDsort2 = 10;
+        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcPluiedeFeu(this.gameObject);
+    }
+    [Command]
     public void CmdGiboulee()
     {
         if (this.gameObject.tag == "Mage_Feu")
@@ -382,6 +440,14 @@ public class Sorts_simple : NetworkBehaviour
     public void CmdBourrasqueInfernale()
     {
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcBourrasqueInfernale(this.gameObject);
+        air2 = Time.time;
+        gameObject.GetComponent<PlayerController>().CDsort2 = 5;
+        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+    }
+    [Command]
+    public void CmdTornadeEnflammee()
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcTornadeEnflammee(this.gameObject);
         air2 = Time.time;
         gameObject.GetComponent<PlayerController>().CDsort2 = 5;
         gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;

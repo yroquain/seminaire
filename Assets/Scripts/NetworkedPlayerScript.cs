@@ -224,6 +224,14 @@ public class NetworkedPlayerScript : NetworkBehaviour
         Instantiate(myPlayer.GetComponent<Sorts_simple>().wind, position, Quaternion.identity);
     }
     [ClientRpc]
+    public void RpcTornadeEnflammee(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3(transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2,
+               transform.position.y,
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().windfire, position, Quaternion.identity);
+    }
+    [ClientRpc]
     public void RpcRaz(GameObject myPlayer)
     {
         Vector3 position = new Vector3(transform.position.x,
@@ -239,6 +247,14 @@ public class NetworkedPlayerScript : NetworkBehaviour
                transform.position.y + 2,
                transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
         Instantiate(myPlayer.GetComponent<Sorts_simple>().prerain, position, Quaternion.identity);
+    }
+    [ClientRpc]
+    public void RpcPluiedeFeu(GameObject myPlayer)
+    {
+        Vector3 position = new Vector3((transform.position.x + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + myPlayer.GetComponent<Sorts_simple>().Mycamera.transform.forward.z * 2);
+        Instantiate(myPlayer.GetComponent<Sorts_simple>().prefire, position, Quaternion.identity);
     }
     [ClientRpc]
     public void RpcGiboulee(GameObject myPlayer)
