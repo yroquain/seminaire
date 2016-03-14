@@ -28,8 +28,7 @@ public class Tornade : MonoBehaviour {
             if (coll.GetComponent<PlayerController>().IsImmolating)
             {
                 this.GetComponent<ParticleSystem>().startColor = new Color(1, 0.5f, 0, 0f);
-                this.GetComponent<ParticleSystem>().startColor = new Color(1, 0.25f, 0, .5f);
-                tornade.GetComponent<ParticleSystem>().startLifetime = 4;
+                tornade.GetComponent<ParticleSystem>().startColor = new Color(1, 0.25f, 0, .5f);
             }
         }
     }

@@ -86,7 +86,7 @@ public class GameController : NetworkBehaviour
     }
     public bool IsotherSpelling(int numeroautrejoueur)
     {
-        return isCasting[numeroautrejoueur];
+        return isUsingSpell[numeroautrejoueur];
     }
 
 }

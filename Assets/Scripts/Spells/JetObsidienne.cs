@@ -16,7 +16,7 @@ public class JetObsidienne : MonoBehaviour {
         }
         else
         {
-            cameraa = GameObject.FindWithTag("Mage(Clone)");
+            cameraa = GameObject.Find("Mage(Clone)");
             GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
         }
         gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);

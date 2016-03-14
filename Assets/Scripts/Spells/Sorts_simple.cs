@@ -214,7 +214,7 @@ public class Sorts_simple : NetworkBehaviour
         GameObject autrejoueur = GameObject.Find("Mage(Clone)");
         if (autrejoueur != null)
         {
-            if (GameObject.Find("networkManager").GetComponent<GameController>().IsotherCasting(numeroautreJoueur) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z < 5) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z >-5))
+            if (GameObject.Find("networkManager").GetComponent<GameController>().IsotherCasting(numeroautreJoueur) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z < 4) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z >-4))
             {
                 numberSpellCast = 0;
             }

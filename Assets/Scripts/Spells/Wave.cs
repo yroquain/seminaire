@@ -10,14 +10,14 @@ public class Wave : MonoBehaviour {
         {
             if (Player.GetComponent<PlayerController>().CDsort2 == 0)
             {
-                Player = GameObject.Find("Mage_Eau");
+                Player = GameObject.FindWithTag("Mage_Eau");
             }
         }
         else
         {
-            Player = GameObject.FindWithTag("Mage(Clone)");
+            Player = GameObject.Find("Mage(Clone)");
         }
-        transform.rotation = Player.transform.rotation;
+        this.transform.rotation = Player.transform.rotation;
 
     }
 	

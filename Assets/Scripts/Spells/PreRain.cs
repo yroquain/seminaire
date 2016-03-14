@@ -15,7 +15,7 @@ public class PreRain : MonoBehaviour {
         }
         else
         {
-            Player = GameObject.FindWithTag("Mage(Clone)");
+            Player = GameObject.Find("Mage(Clone)");
             cameraa = Player.transform.Find("Main Camera").gameObject;
         }
             
