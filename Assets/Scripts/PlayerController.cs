@@ -161,8 +161,6 @@ public class PlayerController : NetworkBehaviour
         widthScreen = Screen.width;
         
         sort1mask.SetActive(false);
-
-        
         sort2mask.SetActive(false);
 
         CDsort1 = 0;
@@ -411,6 +409,10 @@ public class PlayerController : NetworkBehaviour
             newTag = "Mage_Feu";
             this.sort1.GetComponent<Image>().sprite = sortfeu1;
             this.sort2.GetComponent<Image>().sprite = sortfeu2;
+
+            this.sort1.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(5) + "";
+            this.sort2.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(6) + "/s";
+
             this.Element.GetComponent<Image>().sprite = mageFeu;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Eau").Length == 0)
@@ -418,6 +420,10 @@ public class PlayerController : NetworkBehaviour
             newTag = "Mage_Eau";
             this.sort1.GetComponent<Image>().sprite = sorteau1;
             this.sort2.GetComponent<Image>().sprite = sorteau2;
+
+            this.sort1.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(3) + "";
+            this.sort2.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(4) + "";
+
             this.Element.GetComponent<Image>().sprite = mageEau;
         }
         else if (GameObject.FindGameObjectsWithTag("Mage_Air").Length == 0)
@@ -425,6 +431,10 @@ public class PlayerController : NetworkBehaviour
             newTag = "Mage_Air";
             this.sort1.GetComponent<Image>().sprite = sortair2;
             this.sort2.GetComponent<Image>().sprite = sortair1;
+
+            this.sort1.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(1) + "/s";
+            this.sort2.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(2) + "";
+
             this.Element.GetComponent<Image>().sprite = mageAir;
         }
         CmdChangerMage(newTag, this.gameObject);

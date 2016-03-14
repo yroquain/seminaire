@@ -81,10 +81,11 @@ public class scriptHUD : MonoBehaviour {
         {
             ElementAllie.SetActive(true);
 
+            ElementAllie.GetComponent<RectTransform>().position=new Vector2(0.05f*widthScreen, .7f*Screen.height);
+
             if (MageClone.tag == "Mage_Feu")
             {
                 ElementAllie.GetComponent<Image>().sprite = mageFeuAllie;
-                
             }
             if (MageClone.tag == "Mage_Eau")
             {
