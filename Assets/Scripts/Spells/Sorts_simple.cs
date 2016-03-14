@@ -295,6 +295,8 @@ public class Sorts_simple : NetworkBehaviour
             }
 
         }
+        CmdResetVarSpell(numeroJoueur);
+        CmdResetVarSpell(numeroautreJoueur);
     }
     [Command]
     public void CmdIsCasting(bool _isCasting, int _numberPlayer, int _numberSpell)
