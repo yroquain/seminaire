@@ -64,6 +64,7 @@
      <Compile Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\TwirlEffect.cs" />
      <Compile Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\VortexEffect.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\Gate.cs" />
      <Compile Include="Assets\Scripts\HUD\HealthBar.cs" />
      <Compile Include="Assets\Scripts\HUD\ManagementHpMana.cs" />
      <Compile Include="Assets\Scripts\HUD\scriptHUD.cs" />
@@ -90,6 +91,7 @@
      <Compile Include="Assets\Scripts\Spells\PreRain.cs" />
      <Compile Include="Assets\Scripts\Spells\SingleLineAttribute.cs" />
      <Compile Include="Assets\Scripts\Spells\Sorts_simple.cs" />
+     <Compile Include="Assets\Scripts\Spells\SphereCollide.cs" />
      <Compile Include="Assets\Scripts\Spells\TimeRain.cs" />
      <Compile Include="Assets\Scripts\Spells\Tornade.cs" />
      <Compile Include="Assets\Scripts\Spells\TraitFeu.cs" />
