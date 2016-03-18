@@ -7,7 +7,7 @@ public class GameController : NetworkBehaviour
 
     public bool[] isCasting;
     public int[] numberSpell;
-    public bool[] isAttacking;
+    public bool[] isActivate;
     public bool[] isUsingSpell;
     public float[] manaActual;
     public float[] hpActual;
@@ -23,9 +23,9 @@ public class GameController : NetworkBehaviour
         numberSpell = new int[2];
         numberSpell[0] = 0;
         numberSpell[1] = 0;
-        isAttacking = new bool[2];
-        isAttacking[0] = false;
-        isAttacking[1] = false;
+        isActivate = new bool[2];
+        isActivate[0] = false;
+        isActivate[1] = false;
         isUsingSpell = new bool[2];
         isUsingSpell[0] = false;
         isUsingSpell[1] = false;
@@ -42,10 +42,7 @@ public class GameController : NetworkBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        if (isCasting[0] && isUsingSpell[1] || isCasting[1] && isUsingSpell[0])
-        {
-            Debug.Log("coucou");
-        }
+       
 	}
 
     public void setHpManaActual(int _numberPlayer, float _hpActual, float _manaActual)
@@ -62,7 +59,18 @@ public class GameController : NetworkBehaviour
     {
         return this.manaActual[_numberPlayer];
     }
-    
+
+   
+    public bool getTwoTriggerActivate(){
+        if (this.isActivate[0] && this.isActivate[1])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
   
     public void SetIsCasting(bool _isCasting, int _numberPlayer, int _numberSpell)
     {
@@ -89,4 +97,9 @@ public class GameController : NetworkBehaviour
         return isUsingSpell[numeroautrejoueur];
     }
 
+    [ClientRpc]
+    public void rpcSetIsActivate(int _numeroTrigger, bool _isActivate)
+    {
+        this.isActivate[_numeroTrigger] = _isActivate;
+    }
 }

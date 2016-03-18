@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class TriggerEnigme2 : MonoBehaviour
+public class TriggerEnigme2 : NetworkBehaviour
 {
     public Transform currentMarker;
     public Transform startMarker;
     public Transform endMarker1;
     public GameObject[] g1;
     public GameObject TE2;
+    public int numeroTrigger;
     private float activation;
     private bool IsInitialised;
     private bool IsFirstIteration;
@@ -45,7 +47,7 @@ public class TriggerEnigme2 : MonoBehaviour
                         activation = Time.time;
                         IsFirstIteration = false;
                     }
-                    if (TE2.GetComponent<TriggerEnigme2>().IsReady && IsFirstIteration2 && Time.time <= activation + 1 && IsReady)
+                    if (GameObject.Find("networkManager").GetComponent<GameController>().getTwoTriggerActivate() && IsFirstIteration2 && Time.time <= activation + 1 && IsReady)
                     {
                         for (int i = 0; i < 13; i++)
                         {
@@ -72,6 +74,7 @@ public class TriggerEnigme2 : MonoBehaviour
                 {
                     IsGettingBack = false;
                     IsTriggered = false;
+                    CmdSetIsActivate(numeroTrigger, IsTriggered);
                 }
             }
         }
@@ -84,7 +87,14 @@ public class TriggerEnigme2 : MonoBehaviour
             {
                 IsInitialised = true;
                 IsTriggered = true;
+                CmdSetIsActivate(numeroTrigger,IsTriggered);
             }
         }
+    }
+
+    [Command]
+    public void CmdSetIsActivate(int _numeroTrigger, bool _isActive)
+    {
+        GameObject.Find("networkManager").GetComponent<GameController>().rpcSetIsActivate(_numeroTrigger, _isActive);
     }
 }

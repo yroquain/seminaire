@@ -285,7 +285,7 @@ public class PlayerController : NetworkBehaviour
             //when casting spell 1
             if (Input.GetButtonDown("Sort 1") && !IsCasting)
             {
-                if (Input.GetAxis("KeepSpell")>0.9)
+                if (Input.GetAxis("KeepSpell") > 0.9)
                 {
                     IsCasting = true;
                 }
