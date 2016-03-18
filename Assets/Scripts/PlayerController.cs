@@ -411,7 +411,7 @@ public class PlayerController : NetworkBehaviour
             this.sort2.GetComponent<Image>().sprite = sortfeu2;
 
             this.sort1.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(5) + "";
-            this.sort2.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(6) + "/s";
+            this.sort2.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(6) + "";
 
             this.Element.GetComponent<Image>().sprite = mageFeu;
         }
@@ -432,7 +432,7 @@ public class PlayerController : NetworkBehaviour
             this.sort1.GetComponent<Image>().sprite = sortair2;
             this.sort2.GetComponent<Image>().sprite = sortair1;
 
-            this.sort1.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(1) + "/s";
+            this.sort1.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(1) + "";
             this.sort2.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(2) + "";
 
             this.Element.GetComponent<Image>().sprite = mageAir;
