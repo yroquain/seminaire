@@ -8,6 +8,7 @@ public class scriptHUD : MonoBehaviour {
     public Sprite mageAirAllie;
     public Sprite mageEauAllie;
     public Sprite mageFeuAllie;
+    public GameObject menuPause;
 
     private int numeroJoueur;
     private int numeroAllie;
@@ -112,5 +113,11 @@ public class scriptHUD : MonoBehaviour {
         {
             ElementAllie.SetActive(false);
         }
+
+        
 	}
+
+    public void showMenuPause(){
+        menuPause.SetActive(true);
+    }
 }

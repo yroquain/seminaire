@@ -35795,7 +35795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCasting: 
   numberSpell: 
-  isAttacking: 
+  isActivate: 
   isUsingSpell: 
   manaActual: []
   hpActual: []

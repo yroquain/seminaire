@@ -2424,6 +2424,7 @@ MonoBehaviour:
   mageFeu: {fileID: 21300000, guid: cecb7b77bdc8d9d488c441c36c8ab005, type: 3}
   mageEau: {fileID: 21300000, guid: 3f3e3ac5cd9eb774cac01bdd1c3bb053, type: 3}
   mageAir: {fileID: 21300000, guid: f1a808e35799aa341a469c43d8dc951a, type: 3}
+  menuPause: {fileID: 158916, guid: 20253a8496d22914c83a470de8c49dd9, type: 2}
 --- !u!114 &11404794
 MonoBehaviour:
   m_ObjectHideFlags: 1

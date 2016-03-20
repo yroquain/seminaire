@@ -98,7 +98,7 @@ public class GameController : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void rpcSetIsActivate(int _numeroTrigger, bool _isActivate)
+    public void RpcSetIsActivate(int _numeroTrigger, bool _isActivate)
     {
         this.isActivate[_numeroTrigger] = _isActivate;
     }

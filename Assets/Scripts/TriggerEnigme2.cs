@@ -95,6 +95,6 @@ public class TriggerEnigme2 : NetworkBehaviour
     [Command]
     public void CmdSetIsActivate(int _numeroTrigger, bool _isActive)
     {
-        GameObject.Find("networkManager").GetComponent<GameController>().rpcSetIsActivate(_numeroTrigger, _isActive);
+        GameObject.Find("networkManager").GetComponent<GameController>().RpcSetIsActivate(_numeroTrigger, _isActive);
     }
 }

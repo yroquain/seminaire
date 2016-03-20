@@ -504,6 +504,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22419190}
+  - 114: {fileID: 11474990}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -2346,6 +2347,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 40
+--- !u!114 &11474990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3a2fa330755dd4fb4424f80e709ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11477070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2658,6 +2670,7 @@ MonoBehaviour:
   mageAirAllie: {fileID: 21300000, guid: 66753b66b81bb98479035d3619d7f292, type: 3}
   mageEauAllie: {fileID: 21300000, guid: d9532d01aa971074bb2c297cd757edff, type: 3}
   mageFeuAllie: {fileID: 21300000, guid: 7639dd761d2424b45b9fff3e42bd7d8f, type: 3}
+  menuPause: {fileID: 158916}
 --- !u!222 &22200474
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -277,6 +277,13 @@ public class PlayerController : NetworkBehaviour
                 }
                 IsWalking = !IsWalking;
             }
+
+            if (Input.GetButtonDown("Pause") && !IsCasting)
+            {
+                IsMoving = false;
+                CanvasJoueur.GetComponent<scriptHUD>().showMenuPause();
+                this.GetComponent<PlayerController>().enabled = false;
+            }
             if (Input.GetAxis("KeepSpell") < 0.1)
             {
                 IsCasting = false;
