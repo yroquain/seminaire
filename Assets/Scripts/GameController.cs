@@ -12,14 +12,19 @@ public class GameController : NetworkBehaviour
     public float[] manaActual;
     public float[] hpActual;
     public string[] elements;
+    public bool[] isAttacking;
 
     
 
 	// Use this for initialization
-	void Start () {
-	    isCasting = new bool[2];
+	void Start ()
+    {
+        isCasting = new bool[2];
         isCasting[0] = false;
         isCasting[1] = false;
+        isAttacking = new bool[2];
+        isAttacking[0] = false;
+        isAttacking[1] = false;
         numberSpell = new int[2];
         numberSpell[0] = 0;
         numberSpell[1] = 0;

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class TriggerEnigme2 : NetworkBehaviour
+public class TriggerEnigme2 : MonoBehaviour
 {
     public Transform currentMarker;
     public Transform startMarker;
@@ -47,7 +47,7 @@ public class TriggerEnigme2 : NetworkBehaviour
                         activation = Time.time;
                         IsFirstIteration = false;
                     }
-                    if (GameObject.Find("networkManager").GetComponent<GameController>().getTwoTriggerActivate() && IsFirstIteration2 && Time.time <= activation + 1 && IsReady)
+                    if (TE2.GetComponent<TriggerEnigme2>().IsReady && IsFirstIteration2 && Time.time <= activation + 1 && IsReady)
                     {
                         for (int i = 0; i < 13; i++)
                         {
@@ -74,7 +74,6 @@ public class TriggerEnigme2 : NetworkBehaviour
                 {
                     IsGettingBack = false;
                     IsTriggered = false;
-                    CmdSetIsActivate(numeroTrigger, IsTriggered);
                 }
             }
         }
@@ -83,18 +82,12 @@ public class TriggerEnigme2 : NetworkBehaviour
     {
         if(coll.gameObject.tag == "Mage_Feu" || coll.gameObject.tag == "Mage_Eau" || coll.gameObject.tag == "Mage_Air" )
         {
-            if(coll.gameObject.GetComponent<PlayerController>().IsAttacking && !IsTriggered)
+            int numeroJoueur = coll.gameObject.GetComponent<Sorts_simple>().numeroJoueur;
+            if (GameObject.Find("networkManager").GetComponent<GameController>().isAttacking[numeroJoueur] && !IsTriggered)
             {
                 IsInitialised = true;
                 IsTriggered = true;
-                CmdSetIsActivate(numeroTrigger,IsTriggered);
             }
         }
-    }
-
-    [Command]
-    public void CmdSetIsActivate(int _numeroTrigger, bool _isActive)
-    {
-        GameObject.Find("networkManager").GetComponent<GameController>().RpcSetIsActivate(_numeroTrigger, _isActive);
     }
 }

@@ -17,6 +17,8 @@ public class Sorts_simple : NetworkBehaviour
     public Transform pos;
     public GameObject[] Prefabs;
     public GameObject sphere;
+    private float initnumero;
+    private bool IsIniti;
     
 
     private float timeCast;
@@ -52,6 +54,8 @@ public class Sorts_simple : NetworkBehaviour
 
     // Use this for initialization
     void Start () {
+        IsIniti = false;
+        initnumero = Time.time;
         IsGoingComp = true;
         IsDone = false;
         ImmolatingSpell = false;
@@ -69,7 +73,20 @@ public class Sorts_simple : NetworkBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-       
+       if(this.gameObject.name=="Mage(Clone)" && Time.time> initnumero+2 && !IsIniti)
+        {
+            if(GameObject.Find("LOCAL Player").GetComponent<Sorts_simple>().numeroJoueur==0)
+            {
+                numeroJoueur = 1;
+                numeroautreJoueur = 0;
+            }
+            else
+            {
+                numeroJoueur = 0;
+                numeroautreJoueur = 1;
+            }
+            IsIniti = true;
+        }
         if (numberSpellCast != 0)
         {
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == true)

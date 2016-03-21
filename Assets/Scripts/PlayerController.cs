@@ -219,6 +219,7 @@ public class PlayerController : NetworkBehaviour
             {
                 IsMoving = false;
                 IsAttacking = false;
+                CmdIsAttacking(numeroJoueur, false);
             }
             if (GetComponent<Rigidbody>().velocity.y < 0.05 && GetComponent<Rigidbody>().velocity.y > -0.05)
             {
@@ -244,6 +245,7 @@ public class PlayerController : NetworkBehaviour
             if (Input.GetButtonDown("Frapper") && !IsJumping)
             {
                 Attackelapsed = Time.time;
+                CmdIsAttacking(numeroJoueur, true);
                 IsAttacking = true;
             }
 
@@ -453,7 +455,11 @@ public class PlayerController : NetworkBehaviour
 
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(newTag, thisPlayer);
     }
-
+    [Command]
+    public void CmdIsAttacking(int numeroJoueur, bool _isActive)
+    {
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcSetIsAttacking(numeroJoueur, _isActive);
+    }
     public void Animation()
     {
         if (IsUnderAnimation && !IsSavingCamInfo)
