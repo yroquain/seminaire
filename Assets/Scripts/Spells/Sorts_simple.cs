@@ -32,6 +32,8 @@ public class Sorts_simple : NetworkBehaviour
     private float timeimmo;
     private bool IsEole;
     private float timeeole;
+    private bool IsDone;
+    private bool IsGoingComp;
 
     public GameObject wind;
     public GameObject windfire;
@@ -50,6 +52,8 @@ public class Sorts_simple : NetworkBehaviour
 
     // Use this for initialization
     void Start () {
+        IsGoingComp = true;
+        IsDone = false;
         ImmolatingSpell = false;
         sphere.SetActive(false);
         numeroJoueur = 0;
@@ -70,20 +74,37 @@ public class Sorts_simple : NetworkBehaviour
         {
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == true)
             {
-                sphere.SetActive(true);
+                if (!IsDone)
+                {
+                    sphere.SetActive(true);
+                    sphere.GetComponent<SphereCollide>().IsCollided = false;
+                    IsDone = true;
+                }
                 timeCast += Time.deltaTime;
                 GameObject autrejoueur = GameObject.Find("Mage(Clone)");
                 if (autrejoueur != null)
                 {
                     if (GameObject.Find("networkManager").GetComponent<GameController>().IsotherSpelling(numeroautreJoueur) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z < 5) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z > -5))
                     {
-                        SortCombine(numberSpellCast, GameObject.Find("networkManager").GetComponent<GameController>().numberSpell[numeroautreJoueur]);
-                        numberSpellCast = 0;
+                        Component[] test = autrejoueur.gameObject.GetComponentsInChildren<Component>();
+                        foreach (Component a in test)
+                        {
+                            if (a.gameObject.name == "Eternal Flame")
+                            {
+                                IsGoingComp = false;
+                            }
+                        }
+                        if (IsGoingComp)
+                        {
+                            SortCombine(numberSpellCast, GameObject.Find("networkManager").GetComponent<GameController>().numberSpell[numeroautreJoueur]);
+                            numberSpellCast = 0;
+                        }
                     }
                 }
             }
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
             {
+                IsDone = false;
                 sphere.SetActive(false);
                 if (numberSpellCast == 2 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
@@ -129,6 +150,7 @@ public class Sorts_simple : NetworkBehaviour
                 this.gameObject.GetComponent<PlayerController>().setIsCasting(false);
                 CmdResetVarSpell(numeroJoueur);
                 ImmolatingSpell = false;
+                IsGoingComp = true;
             }
         }
         if (IsImmolating)

@@ -1202,6 +1202,7 @@ GameObject:
   - 33: {fileID: 3339326}
   - 135: {fileID: 13508222}
   - 23: {fileID: 2310470}
+  - 114: {fileID: 11437418}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -2424,7 +2425,6 @@ MonoBehaviour:
   mageFeu: {fileID: 21300000, guid: cecb7b77bdc8d9d488c441c36c8ab005, type: 3}
   mageEau: {fileID: 21300000, guid: 3f3e3ac5cd9eb774cac01bdd1c3bb053, type: 3}
   mageAir: {fileID: 21300000, guid: f1a808e35799aa341a469c43d8dc951a, type: 3}
-  menuPause: {fileID: 158916, guid: 20253a8496d22914c83a470de8c49dd9, type: 2}
 --- !u!114 &11404794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2476,6 +2476,18 @@ MonoBehaviour:
   windfire: {fileID: 175870, guid: 7cf9cf52441b24140aff03d21fdb27a1, type: 2}
   wave: {fileID: 160204, guid: f6713467256cdbb468addbf47156bcbc, type: 2}
   mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
+--- !u!114 &11437418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794ec6b65cbb858479bc7d5e6a7198e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPlayer: {fileID: 110360}
 --- !u!114 &11444428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2588,7 +2600,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13605098
 CapsuleCollider:

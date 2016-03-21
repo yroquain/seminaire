@@ -23,7 +23,7 @@ public class Tornade : MonoBehaviour {
     }
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.tag == "Mage_Feu")
+        if (coll.tag == "Mage_Feu" && this.gameObject.name!= "TornadeEnflammee(Clone)")
         {
             if (coll.GetComponent<PlayerController>().IsImmolating)
             {
