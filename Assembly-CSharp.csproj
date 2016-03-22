@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\Menu\menuPauseScript.cs" />
      <Compile Include="Assets\Scripts\Menu\positionMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\selectMenu.cs" />
+     <Compile Include="Assets\Scripts\Menu\selectMenuPause.cs" />
      <Compile Include="Assets\Scripts\Menu\sizeButton.cs" />
      <Compile Include="Assets\Scripts\NetworkedPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Plateforme1.cs" />
