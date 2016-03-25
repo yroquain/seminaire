@@ -5,19 +5,17 @@ public class Wave : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject Player = GameObject.Find("LOCAL Player");
-        if (Player != null)
+        GameObject cameraa = GameObject.Find("LOCAL Player");
+        if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
         {
-            if (Player.GetComponent<PlayerController>().CDsort2 == 0)
-            {
-                Player = GameObject.FindWithTag("Mage_Eau");
-            }
+            this.transform.rotation = cameraa.transform.rotation;
         }
         else
         {
-            Player = GameObject.Find("Mage(Clone)");
+            cameraa = GameObject.Find("Mage(Clone)");
+            this.transform.rotation = cameraa.transform.rotation;
         }
-        this.transform.rotation = Player.transform.rotation;
+        
 
     }
 	

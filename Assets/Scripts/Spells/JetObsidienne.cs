@@ -10,7 +10,7 @@ public class JetObsidienne : MonoBehaviour {
     {
         timetodie = Time.time;
         cameraa = GameObject.Find("LOCAL Player");
-        if (cameraa.GetComponent<PlayerController>().CDsort1 > 0)
+        if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
         {
             GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
         }

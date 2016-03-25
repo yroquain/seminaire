@@ -2,24 +2,21 @@
 using System.Collections;
 
 public class PreRain : MonoBehaviour {
-
-    private GameObject Player;
+    
     private GameObject cameraa;
     public GameObject cube;
     // Use this for initialization
     void Start () {
-        Player = GameObject.Find("LOCAL Player");
-        if (Player.GetComponent<PlayerController>().CDsort2 > 0)
+        cameraa = GameObject.Find("LOCAL Player");
+        if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
         {
-            cameraa = Player.transform.Find("Main Camera").gameObject;
+            GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
         }
         else
         {
-            Player = GameObject.Find("Mage(Clone)");
-            cameraa = Player.transform.Find("Main Camera").gameObject;
+            cameraa = GameObject.Find("Mage(Clone)");
+            GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
         }
-            
-        GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 10;
     }
 	
 	// Update is called once per frame

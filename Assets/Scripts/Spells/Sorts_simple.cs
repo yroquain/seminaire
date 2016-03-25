@@ -19,7 +19,8 @@ public class Sorts_simple : NetworkBehaviour
     public GameObject sphere;
     private float initnumero;
     private bool IsIniti;
-    
+    public bool IsUsingSpell;
+    private float timeUsingSpell;
 
     private float timeCast;
     private float timeCastMax = 2f;
@@ -54,6 +55,8 @@ public class Sorts_simple : NetworkBehaviour
 
     // Use this for initialization
     void Start () {
+        timeUsingSpell = 0;
+        IsUsingSpell = false;
         IsIniti = false;
         initnumero = Time.time;
         IsGoingComp = true;
@@ -73,6 +76,10 @@ public class Sorts_simple : NetworkBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+        if(Time.time> timeUsingSpell+0.1f)
+        {
+            IsUsingSpell = false;
+        }
        if(this.gameObject.name=="Mage(Clone)" && Time.time> initnumero+2 && !IsIniti)
         {
             if(GameObject.Find("LOCAL Player").GetComponent<Sorts_simple>().numeroJoueur==0)
@@ -121,8 +128,10 @@ public class Sorts_simple : NetworkBehaviour
             }
             if (this.gameObject.GetComponent<PlayerController>().getIsCasting() == false || timeCast > timeCastMax)
             {
+                IsUsingSpell = true;
                 IsDone = false;
                 sphere.SetActive(false);
+                timeUsingSpell = Time.time;
                 if (numberSpellCast == 2 && GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
                 {
                     if (ImmolatingSpell)
@@ -310,6 +319,8 @@ public class Sorts_simple : NetworkBehaviour
     }
     private void SortCombine(int sort1, int sort2)
     {
+        IsUsingSpell = true;
+        timeUsingSpell = Time.time;
         //SdB: Bourrasque infernale
         if (sort1 == 2)
         {
