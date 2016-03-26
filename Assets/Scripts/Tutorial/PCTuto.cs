@@ -74,7 +74,7 @@ public class PCTuto : MonoBehaviour
         {
             isSpelling = false;
         }
-        if(Time.time> TimeAskingForSpell+1)
+        if(Time.time> TimeAskingForSpell+0.2f)
         {
             IsAskingForSpell = false;
         }
@@ -212,6 +212,8 @@ public class PCTuto : MonoBehaviour
             }
             this.GetComponent<SortSimpleTuto>().CastSpell(2);
         }
+
+        //When asking for a spell
         if (Input.GetButtonDown("SwitchMage") && !IsAskingForSpell)
         {
             IsAskingForSpell = true;

@@ -335,12 +335,18 @@ public class SortSimpleTuto : MonoBehaviour {
             //SC: Raz de marré
             if (sort2 == 3)
             {
-                //CmdRaz();
+                Vector3 position = new Vector3(transform.position.x,
+              transform.position.y,
+              transform.position.z);
+                Instantiate(wave, position, Quaternion.identity);
             }
             //SC: Typhon
             if (sort2 == 4)
             {
-                //CmdTyphon();
+                Vector3 position = new Vector3((transform.position.x + Mycamera.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + Mycamera.transform.forward.z * 2);
+                Instantiate(pretyphon, position, Quaternion.identity);
             }
             gameObject.GetComponent<PCTuto>().CDsort2 = 1;
             gameObject.GetComponent<PCTuto>().finCDsort2 = Time.time;
@@ -352,12 +358,18 @@ public class SortSimpleTuto : MonoBehaviour {
             //SC: Raz de marré
             if (sort2 == 2)
             {
-                //CmdRaz();
+                Vector3 position = new Vector3(transform.position.x,
+              transform.position.y,
+              transform.position.z);
+                Instantiate(wave, position, Quaternion.identity);
             }
             //SC: Jet d'Obsidienne
             if (sort2 == 5)
             {
-                //CmdJetObsidienne();
+                Vector3 position = new Vector3(pos.position.x,
+                pos.position.y,
+                pos.position.z);
+                Instantiate(obsidienne, position, Quaternion.identity);
             }
             gameObject.GetComponent<PCTuto>().CDsort1 = 1;
             gameObject.GetComponent<PCTuto>().finCDsort1 = Time.time;
@@ -368,13 +380,19 @@ public class SortSimpleTuto : MonoBehaviour {
             //SC: Typhon
             if (sort2 == 2)
             {
-                //CmdTyphon();
+                Vector3 position = new Vector3((transform.position.x + Mycamera.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + Mycamera.transform.forward.z * 2);
+                Instantiate(pretyphon, position, Quaternion.identity);
 
             }
             //SC: Giboulée de feu
             if (sort2 == 5)
             {
-                //CmdGiboulee();
+                Vector3 position = new Vector3((transform.position.x + Mycamera.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + Mycamera.transform.forward.z * 2);
+                Instantiate(pregib, position, Quaternion.identity);
             }
             gameObject.GetComponent<PCTuto>().CDsort2 = 1;
             gameObject.GetComponent<PCTuto>().finCDsort2 = Time.time;
@@ -386,13 +404,18 @@ public class SortSimpleTuto : MonoBehaviour {
             //SC: Jet d'Obsidienne
             if (sort2 == 3)
             {
-                Debug.Log("test");
-                //CmdJetObsidienne();
+                Vector3 position = new Vector3(pos.position.x,
+                pos.position.y,
+                pos.position.z);
+                Instantiate(obsidienne, position, Quaternion.identity);
             }
             //SC: Giboulée de feu
             if (sort2 == 4)
             {
-                //CmdGiboulee();
+                Vector3 position = new Vector3((transform.position.x + Mycamera.transform.forward.x * 2),
+               transform.position.y + 2,
+               transform.position.z + Mycamera.transform.forward.z * 2);
+                Instantiate(pregib, position, Quaternion.identity);
             }
             gameObject.GetComponent<PCTuto>().CDsort1 = 1;
             gameObject.GetComponent<PCTuto>().finCDsort1 = Time.time;

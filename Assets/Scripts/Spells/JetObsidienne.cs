@@ -9,15 +9,23 @@ public class JetObsidienne : MonoBehaviour {
     void Start()
     {
         timetodie = Time.time;
-        cameraa = GameObject.Find("LOCAL Player");
-        if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
+        cameraa = GameObject.Find("MageTutorial");
+        if (cameraa != null)
         {
             GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
         }
         else
         {
-            cameraa = GameObject.Find("Mage(Clone)");
-            GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
+            cameraa = GameObject.Find("LOCAL Player");
+            if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
+            {
+                GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
+            }
+            else
+            {
+                cameraa = GameObject.Find("Mage(Clone)");
+                GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 20;
+            }
         }
         gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
     }
