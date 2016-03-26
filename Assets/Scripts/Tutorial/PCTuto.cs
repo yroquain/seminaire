@@ -19,10 +19,16 @@ public class PCTuto : MonoBehaviour
     private bool IsCasting;
     private float Attackelapsed;
 
+    //Déclencheur des NPC
+    public bool IsAskingForSpell;
+    private float TimeAskingForSpell;
+
     //sorts
     public bool IsImmolating;
     public GameObject Immo;
     public bool IsEole;
+    public bool isSpelling;
+    public float timeSpelling;
 
     //Rotation
     public float speed = 50.0f;
@@ -40,10 +46,12 @@ public class PCTuto : MonoBehaviour
     public float finCDsort1;
     public float CDsort2;
     public float finCDsort2;
+    public Material mage;
 
     // Use this for initialization
     void Start()
     {
+        transform.Find("Mage").GetComponent<Renderer>().material = mage;
         Barre = CanvasJoueur.GetComponentsInChildren<Button>();
         foreach (Button a in Barre)
         {
@@ -62,6 +70,14 @@ public class PCTuto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.time>timeSpelling+1)
+        {
+            isSpelling = false;
+        }
+        if(Time.time> TimeAskingForSpell+1)
+        {
+            IsAskingForSpell = false;
+        }
         if (CDsort1 > 0)
         {
             sort1mask.SetActive(true);
@@ -109,7 +125,7 @@ public class PCTuto : MonoBehaviour
         //When Moving
         if (Input.GetAxis("Vertical") != 0)
         {
-            if (!IsAttacking && !IsCasting)
+            if (!IsAttacking && !IsCasting && !isSpelling)
             {
                 transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
                 IsMoving = true;
@@ -125,7 +141,7 @@ public class PCTuto : MonoBehaviour
         }
 
         //When Attacking
-        if (Input.GetButtonDown("Frapper") && !IsJumping)
+        if (Input.GetButtonDown("Frapper") && !IsJumping && !isSpelling)
         {
             Attackelapsed = Time.time;
             IsAttacking = true;
@@ -139,7 +155,7 @@ public class PCTuto : MonoBehaviour
             IsJumping = true;
             GetComponent<Animation>().Play("JumoRun");
         }
-        if (!IsAttacking && !IsMoving && !IsJumping)
+        if (!IsAttacking && !IsMoving && !IsJumping && !IsCasting && !isSpelling)
         {
             GetComponent<Animation>().Play("CombatModeA");
         }
@@ -167,13 +183,17 @@ public class PCTuto : MonoBehaviour
             IsWalking = !IsWalking;
         }
 
-        if (Input.GetAxis("KeepSpell") < 0.1)
+        /*if (Input.GetAxis("KeepSpell") < 0.1)
         {
             IsCasting = false;
+        }*/
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            IsCasting = true;
         }
 
         //when casting spell 1
-        if (Input.GetButtonDown("Sort 1") && !IsCasting)
+        if (Input.GetButtonDown("Sort 1")/* && !IsCasting*/)
         {
             if (Input.GetAxis("KeepSpell") > 0.9)
             {
@@ -183,7 +203,7 @@ public class PCTuto : MonoBehaviour
         }
 
         //when casting spell 2
-        if (Input.GetButtonDown("Sort 2") && !IsCasting)
+        if (Input.GetButtonDown("Sort 2")/* && !IsCasting*/)
         {
 
             if (Input.GetAxis("KeepSpell") > 0.9)
@@ -191,6 +211,15 @@ public class PCTuto : MonoBehaviour
                 IsCasting = true;
             }
             this.GetComponent<SortSimpleTuto>().CastSpell(2);
+        }
+        if (Input.GetButtonDown("SwitchMage") && !IsAskingForSpell)
+        {
+            IsAskingForSpell = true;
+            TimeAskingForSpell = Time.time;
+        }
+        if(IsCasting)
+        {
+            GetComponent<Animation>().Play("Combat_Mode_C");
         }
     }
     public bool getIsCasting()

@@ -155,9 +155,6 @@ public class NetworkedPlayerScript : NetworkBehaviour
         Vector3 pos;
         float yRot = transform.rotation.eulerAngles.y;
         Vector3 forwardY = Quaternion.Euler(0.0f, yRot, 0.0f) * Vector3.forward;
-        Vector3 forward = transform.forward;
-        Vector3 right = transform.right;
-        Vector3 up = transform.up;
         Quaternion rotation = Quaternion.identity;
         GameObject currentPrefabObject = GameObject.Instantiate(myPlayer.GetComponent<Sorts_simple>().Prefabs[0]);
         FireBaseScript currentPrefabScript = currentPrefabObject.GetComponent<FireConstantBaseScript>();

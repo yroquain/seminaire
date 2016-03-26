@@ -49,6 +49,8 @@ public class SortSimpleTuto : MonoBehaviour {
     private float eau1;
     private float eau2;
 
+    public int otherspell;
+
     // Use this for initialization
     void Start () {
         timeUsingSpell = 0;
@@ -61,7 +63,8 @@ public class SortSimpleTuto : MonoBehaviour {
         sphere.SetActive(false);
         Isactivated = false;
         numberSpellCast = 0;
-	}
+        otherspell = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -82,8 +85,11 @@ public class SortSimpleTuto : MonoBehaviour {
                 timeCast += Time.deltaTime;
                
             }
-            if (this.gameObject.GetComponent<PCTuto>().getIsCasting() == false || timeCast > timeCastMax)
+            if ((this.gameObject.GetComponent<PCTuto>().getIsCasting() == false || timeCast > timeCastMax) && otherspell==0)
             {
+                GetComponent<PCTuto>().GetComponent<Animation>().Play("Spell_Cast_C");
+                GetComponent<PCTuto>().isSpelling = true;
+                GetComponent<PCTuto>().timeSpelling = Time.time;
                 IsUsingSpell = true;
                 IsDone = false;
                 sphere.SetActive(false);
@@ -201,6 +207,13 @@ public class SortSimpleTuto : MonoBehaviour {
                 ImmolatingSpell = false;
                 IsGoingComp = true;
             }
+            if(numberSpellCast!=0 && otherspell!=0)
+            {
+                GetComponent<PCTuto>().GetComponent<Animation>().Play("Spell_Cast_C");
+                GetComponent<PCTuto>().isSpelling = true;
+                GetComponent<PCTuto>().timeSpelling = Time.time;
+                SortCombine(numberSpellCast, otherspell);
+            }
         }
 
 
@@ -311,45 +324,87 @@ public class SortSimpleTuto : MonoBehaviour {
                 numberSpellCast = 4;
             }
         }
-        /*if (GetComponent<ManagementHpMana>().getCurMana() >= GetComponent<ManagementHpMana>().getCostManaSpell(numberSpellCast))
-        {
-            CmdIsCasting(this.gameObject.GetComponent<PlayerController>().getIsCasting(), numeroJoueur, numberSpellCast);
-            GameObject autrejoueur = GameObject.Find("Mage(Clone)");
-            if (autrejoueur != null)
-            {
-                if (GameObject.Find("networkManager").GetComponent<GameController>().IsotherCasting(numeroautreJoueur) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z < 4) && (autrejoueur.transform.position.x + autrejoueur.transform.position.z - transform.position.x - transform.position.z > -4))
-                {
-                    GetComponent<ManagementHpMana>().removeManaFromSpell(numberSpellCast);
-                    if (numberSpellCast == 5)
-                    {
-                        feu1 = Time.time;
-                        gameObject.GetComponent<PlayerController>().CDsort1 = 5;
-                        gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
-                    }
-                    if (numberSpellCast == 3)
-                    {
-                        eau1 = Time.time;
-                        gameObject.GetComponent<PlayerController>().CDsort1 = 3;
-                        gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
-                    }
-                    if (numberSpellCast == 2)
-                    {
-                        air2 = Time.time;
-                        gameObject.GetComponent<PlayerController>().CDsort2 = 5;
-                        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
-                    }
-                    if (numberSpellCast == 4)
-                    {
-                        eau2 = Time.time;
-                        gameObject.GetComponent<PlayerController>().CDsort2 = 10;
-                        gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
-                    }
-                    numberSpellCast = 0;
-                }
-            }
-        }*/
     }
+    private void SortCombine(int sort1, int sort2)
+    {
+        IsUsingSpell = true;
+        timeUsingSpell = Time.time;
+        //SdB: Bourrasque infernale
+        if (sort1 == 2)
+        {
+            //SC: Raz de marré
+            if (sort2 == 3)
+            {
+                //CmdRaz();
+            }
+            //SC: Typhon
+            if (sort2 == 4)
+            {
+                //CmdTyphon();
+            }
+            gameObject.GetComponent<PCTuto>().CDsort2 = 1;
+            gameObject.GetComponent<PCTuto>().finCDsort2 = Time.time;
 
+        }
+        //SdB: Choc Aquatique
+        if (sort1 == 3)
+        {
+            //SC: Raz de marré
+            if (sort2 == 2)
+            {
+                //CmdRaz();
+            }
+            //SC: Jet d'Obsidienne
+            if (sort2 == 5)
+            {
+                //CmdJetObsidienne();
+            }
+            gameObject.GetComponent<PCTuto>().CDsort1 = 1;
+            gameObject.GetComponent<PCTuto>().finCDsort1 = Time.time;
+        }
+        //SdB: Pluie Divine
+        if (sort1 == 4)
+        {
+            //SC: Typhon
+            if (sort2 == 2)
+            {
+                //CmdTyphon();
+
+            }
+            //SC: Giboulée de feu
+            if (sort2 == 5)
+            {
+                //CmdGiboulee();
+            }
+            gameObject.GetComponent<PCTuto>().CDsort2 = 1;
+            gameObject.GetComponent<PCTuto>().finCDsort2 = Time.time;
+
+        }
+        //SdB: Trait de feu
+        if (sort1 == 5)
+        {
+            //SC: Jet d'Obsidienne
+            if (sort2 == 3)
+            {
+                Debug.Log("test");
+                //CmdJetObsidienne();
+            }
+            //SC: Giboulée de feu
+            if (sort2 == 4)
+            {
+                //CmdGiboulee();
+            }
+            gameObject.GetComponent<PCTuto>().CDsort1 = 1;
+            gameObject.GetComponent<PCTuto>().finCDsort1 = Time.time;
+
+        }
+        otherspell = 0;
+        numberSpellCast = 0;
+        sphere.SetActive(false);
+        gameObject.GetComponent<PCTuto>().setIsCasting(false);
+        //CmdResetVarSpell(numeroJoueur);
+        //CmdResetVarSpell(numeroautreJoueur);
+    }
     public bool getIsActivated()
     {
         return Isactivated;
