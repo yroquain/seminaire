@@ -8,13 +8,21 @@ public class PreRain : MonoBehaviour {
     // Use this for initialization
     void Start () {
         cameraa = GameObject.Find("LOCAL Player");
-        if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
+        if (cameraa != null)
         {
-            GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
+            if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
+            {
+                GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
+            }
+            else
+            {
+                cameraa = GameObject.Find("Mage(Clone)");
+                GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
+            }
         }
         else
         {
-            cameraa = GameObject.Find("Mage(Clone)");
+            cameraa = GameObject.Find("MageTutorial");
             GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
         }
     }
