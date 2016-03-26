@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 39d03f82786b57d41af8bd27bce84402
+guid: 9951fc1171c58d941b31a65a0d7765fb
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -167,6 +167,7 @@ ModelImporter:
     7400044: JumpLoop
     7400046: LandFromJump
     9500000: //RootNode
+    11100000: //RootNode
     13700000: SM_Skeleton_Base
   materials:
     importMaterials: 1
@@ -1521,14 +1522,14 @@ ModelImporter:
       name: Run
       takeName: Take 001
       firstFrame: 814
-      lastFrame: 829
+      lastFrame: 831
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -4210,7 +4211,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
