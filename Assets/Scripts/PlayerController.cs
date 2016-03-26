@@ -286,17 +286,13 @@ public class PlayerController : NetworkBehaviour
                 CanvasJoueur.GetComponent<scriptHUD>().showMenuPause();
                 this.GetComponent<PlayerController>().enabled = false;
             }
-            /*if (Input.GetAxis("KeepSpell") < 0.1)
+            if (Input.GetAxis("KeepSpell") < 0.1)
             {
                 IsCasting = false;
-            }*/
-            if(Input.GetKeyDown(KeyCode.J))
-            {
-                IsCasting = true;
             }
 
             //when casting spell 1
-            if (Input.GetButtonDown("Sort 1") /*&& !IsCasting*/)
+            if (Input.GetButtonDown("Sort 1") && !IsCasting)
             {
                 if (Input.GetAxis("KeepSpell") > 0.9)
                 {
@@ -306,7 +302,7 @@ public class PlayerController : NetworkBehaviour
             }
 
             //when casting spell 2
-            if (Input.GetButtonDown("Sort 2") /*&& !IsCasting*/)
+            if (Input.GetButtonDown("Sort 2") && !IsCasting)
             {
 
                 if (Input.GetAxis("KeepSpell") > 0.9)
