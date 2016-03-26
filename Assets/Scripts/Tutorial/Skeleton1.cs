@@ -8,6 +8,7 @@ public class Skeleton1 : MonoBehaviour {
     private float timestanding;
     private bool Isstanding;
     private bool IsDying;
+    public float diffQat;
 	// Use this for initialization
 	void Start () {
 	
@@ -24,7 +25,7 @@ public class Skeleton1 : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 4.5f, transform.position.z), Time.deltaTime/4);
             if (IsDying)
             {
-                transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+                transform.rotation = Quaternion.Euler(0.0f, -90.0f+ diffQat, 0.0f);
                 IsDying = false;
                 GetComponent<Animation>().Play("StandUp02");
                 timestanding = Time.time;
@@ -33,7 +34,7 @@ public class Skeleton1 : MonoBehaviour {
         }
         if(!IsDying && (!Isstanding || Time.time> timestanding+2))
         {
-            transform.rotation= Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, -180.0f, 0.0f), Time.deltaTime * 50f * 2);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, 180.0f + diffQat, 0.0f), Time.deltaTime * 50f * 2);
             GetComponent<Animation>().Play("Idle");
             Isstanding = false;
         }
@@ -42,7 +43,19 @@ public class Skeleton1 : MonoBehaviour {
     {
         if(Collide.gameObject.name!="Cube" && !IsDying)
         {
-            if (Quaternion.Euler(0.0f, -180.0f, 0.0f) == transform.rotation)
+            if ((transform.rotation.eulerAngles.y> 180.0f + diffQat-0.2f && transform.rotation.eulerAngles.y < 180.0f + diffQat + 0.2f ))
+            {
+                GetComponent<Animation>().Play("Death");
+                IsDying = true;
+                timeDying = Time.time;
+            }
+        }
+    }
+    public void OnTriggerEnter(Collider Collide)
+    {
+        if (Collide.gameObject.name != "Cube" && !IsDying)
+        {
+            if ((transform.rotation.eulerAngles.y > 180.0f + diffQat - 0.2f && transform.rotation.eulerAngles.y < 180.0f + diffQat + 0.2f))
             {
                 GetComponent<Animation>().Play("Death");
                 IsDying = true;

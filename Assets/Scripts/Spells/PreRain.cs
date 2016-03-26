@@ -4,25 +4,41 @@ using System.Collections;
 public class PreRain : MonoBehaviour {
     
     private GameObject cameraa;
+    private bool AmIHuman;
     public GameObject cube;
     // Use this for initialization
     void Start () {
-        cameraa = GameObject.Find("MageTutorial");
+        cameraa = GameObject.Find("MagePluieDivine");
         if (cameraa != null)
         {
-            GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
+            if (!cameraa.GetComponent<MagePluieDivine>().IsActivated)
+            {
+                AmIHuman = true;
+            }
+            else
+            {
+                GetComponent<Rigidbody>().velocity = cameraa.transform.Find("FalseCamera").gameObject.transform.forward * 20;
+            }
         }
-        else
+        if (cameraa == null || AmIHuman)
         {
-            cameraa = GameObject.Find("LOCAL Player");
-            if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
+            cameraa = GameObject.Find("MageTutorial");
+            if (cameraa != null)
             {
                 GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
             }
             else
             {
-                cameraa = GameObject.Find("Mage(Clone)");
-                GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
+                cameraa = GameObject.Find("LOCAL Player");
+                if (cameraa.GetComponent<Sorts_simple>().IsUsingSpell)
+                {
+                    GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
+                }
+                else
+                {
+                    cameraa = GameObject.Find("Mage(Clone)");
+                    GetComponent<Rigidbody>().velocity = cameraa.transform.Find("Main Camera").gameObject.transform.forward * 20;
+                }
             }
         }
     }

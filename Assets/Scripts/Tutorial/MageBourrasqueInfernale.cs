@@ -2,9 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MageChocAqua : MonoBehaviour {
-    
-    public GameObject trait;
+public class MageBourrasqueInfernale : MonoBehaviour {
+
+    public GameObject wind;
+    public GameObject Mycamera;
     public Transform pos;
     public bool IsActivated;
     public float TimeBeforeActivated;
@@ -14,38 +15,40 @@ public class MageChocAqua : MonoBehaviour {
     public GameObject Message;
     private bool IsMessageDesactivated;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         transform.Find("Mage").GetComponent<Renderer>().material = mage;
         ActivatedOnce = false;
         GetComponent<Animation>().Play("CombatModeA");
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if(IsActivated && Time.time < TimeBeforeActivated + 3.90f)
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (IsActivated && Time.time < TimeBeforeActivated + 3.90f)
         {
             IsMessageDesactivated = false;
             Message.SetActive(true);
             Message.GetComponent<Text>().text = "Le sort sera activé dans:\n" + ((int)(TimeBeforeActivated + 4 - Time.time)).ToString();
         }
-        if(IsActivated && Time.time> TimeBeforeActivated+4 && !ActivatedOnce)
+        if (IsActivated && Time.time > TimeBeforeActivated + 4 && !ActivatedOnce)
         {
             Message.SetActive(false);
-            Vector3 position = new Vector3(pos.position.x,
-                    pos.position.y,
-                    pos.position.z);
-            Instantiate(trait, position, Quaternion.identity);
+            Vector3 position = new Vector3(transform.position.x + Mycamera.transform.forward.x * 2,
+                           transform.position.y,
+                           transform.position.z + Mycamera.transform.forward.z * 2);
+            Instantiate(wind, position, Quaternion.identity);
             ActivatedOnce = true;
             TimeBeforeUnactivated = Time.time;
             GetComponent<Animation>().Play("Spell_Cast_C");
         }
-        if(Time.time> TimeBeforeUnactivated+1 && ActivatedOnce)
+        if (Time.time > TimeBeforeUnactivated + 1 && ActivatedOnce)
         {
             GetComponent<Animation>().Play("CombatModeA");
             ActivatedOnce = false;
             IsActivated = false;
         }
-        if(!IsActivated && !ActivatedOnce && !IsMessageDesactivated)
+        if (!IsActivated && !ActivatedOnce && !IsMessageDesactivated)
         {
             GetComponent<Animation>().Play("CombatModeA");
             IsMessageDesactivated = true;
@@ -66,7 +69,7 @@ public class MageChocAqua : MonoBehaviour {
             }
             if (collide.gameObject.GetComponent<PCTuto>().getIsCasting() && IsActivated)
             {
-                collide.gameObject.GetComponent<SortSimpleTuto>().otherspell = 3;
+                collide.gameObject.GetComponent<SortSimpleTuto>().otherspell = 2;
                 IsActivated = false;
             }
         }
@@ -82,9 +85,9 @@ public class MageChocAqua : MonoBehaviour {
                 IsActivated = true;
                 TimeBeforeActivated = Time.time;
             }
-            if(collide.gameObject.GetComponent<PCTuto>().getIsCasting() && IsActivated)
+            if (collide.gameObject.GetComponent<PCTuto>().getIsCasting() && IsActivated)
             {
-                collide.gameObject.GetComponent<SortSimpleTuto>().otherspell = 3;
+                collide.gameObject.GetComponent<SortSimpleTuto>().otherspell = 2;
                 IsActivated = false;
             }
         }

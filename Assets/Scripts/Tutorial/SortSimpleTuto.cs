@@ -13,8 +13,6 @@ public class SortSimpleTuto : MonoBehaviour {
     public Transform pos;
     public GameObject[] Prefabs;
     public GameObject sphere;
-    private float initnumero;
-    private bool IsIniti;
     public bool IsUsingSpell;
     private float timeUsingSpell;
 
@@ -28,11 +26,8 @@ public class SortSimpleTuto : MonoBehaviour {
     private bool castMurEole;
     private bool castBourrasqueInfernale;
     public bool IsImmolating;
-    private float timeimmo;
     public bool IsEole;
-    private float timeeole;
     private bool IsDone;
-    private bool IsGoingComp;
 
     public GameObject wind;
     public GameObject windfire;
@@ -55,9 +50,6 @@ public class SortSimpleTuto : MonoBehaviour {
     void Start () {
         timeUsingSpell = 0;
         IsUsingSpell = false;
-        IsIniti = false;
-        initnumero = Time.time;
-        IsGoingComp = true;
         IsDone = false;
         ImmolatingSpell = false;
         sphere.SetActive(false);
@@ -144,9 +136,9 @@ public class SortSimpleTuto : MonoBehaviour {
                     gameObject.GetComponent<PCTuto>().CDsort1 = 1;
                     gameObject.GetComponent<PCTuto>().finCDsort1 = Time.time;
                     GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
-                    Vector3 position = new Vector3(player.transform.position.x + player.transform.forward.x * 2,
-                        player.transform.position.y + 2,
-                        player.transform.position.z + player.transform.forward.z * 2);
+                    Vector3 position = new Vector3(transform.position.x + transform.forward.x * 2,
+                        transform.position.y + 2,
+                        transform.position.z + transform.forward.z * 2);
 
 
                     Instantiate(Prefabs[1], position, Quaternion.identity);
@@ -205,7 +197,6 @@ public class SortSimpleTuto : MonoBehaviour {
                 timeCast = 0f;
                 this.gameObject.GetComponent<PCTuto>().setIsCasting(false);
                 ImmolatingSpell = false;
-                IsGoingComp = true;
             }
             if(numberSpellCast!=0 && otherspell!=0)
             {
@@ -270,7 +261,6 @@ public class SortSimpleTuto : MonoBehaviour {
                     GetComponent<SortSimpleTuto>().setIsActivated(!GetComponent<SortSimpleTuto>().getIsActivated());
                     IsEole = true;
                     gameObject.GetComponent<PCTuto>().IsEole = true;
-                    timeeole = Time.time;
                 }
             } else if (this.gameObject.tag == "Mage_Eau" && Time.time>=eau1+1){
                 //Choc aquatique
@@ -314,7 +304,6 @@ public class SortSimpleTuto : MonoBehaviour {
                         GetComponent<PCTuto>().Immo.SetActive(false);
                     }
                     IsImmolating = true;
-                    timeimmo = Time.time;
                 }
             } else if (this.gameObject.tag == "Mage_Air" && Time.time>=air2+1){
                 //Bourrasque Infernale

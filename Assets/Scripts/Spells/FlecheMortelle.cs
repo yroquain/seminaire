@@ -22,7 +22,7 @@ public class FlecheMortelle : MonoBehaviour
     }
     public void OnTriggerEnter(Collider Coll)
     {
-        if (Coll.gameObject.tag != "Mage_Feu" && Coll.gameObject.tag != "Mage_Eau" && Coll.gameObject.tag != "Mage_Air" && Coll.gameObject.name != "FireboltCollider" && Coll.gameObject.name != "Trigger1C" && Coll.gameObject.name != "Trigger2C" && Coll.gameObject.tag!="MurEole")
+        if (Coll.gameObject.tag != "Mage_Feu" && Coll.gameObject.tag != "Mage_Eau" && Coll.gameObject.tag != "Mage_Air" && Coll.gameObject.name != "FireboltCollider" && Coll.gameObject.name != "FireballCollider" && Coll.gameObject.name != "Trigger1C" && Coll.gameObject.name != "Trigger2C" && Coll.gameObject.name != "MageTutorial" && Coll.gameObject.name != "MagePluieDivine" && Coll.gameObject.name != "MageChocAqua" && Coll.gameObject.name != "MageBourraqueInfernale" && Coll.gameObject.name != "MageTraitdeFeu" && Coll.gameObject.name != "Giboule(Clone)" && Coll.tag != "MurEole")
         {
             Destroy(gameObject);
         }

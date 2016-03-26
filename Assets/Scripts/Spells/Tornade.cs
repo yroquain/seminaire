@@ -5,11 +5,23 @@ public class Tornade : MonoBehaviour {
 
     private float timetodie;
     private GameObject cameraa;
+    private bool AmIHuman;
     public GameObject tornade;
     // Use this for initialization
     void Start()
     {
-        cameraa = GameObject.FindWithTag("Mage_Air");
+        cameraa = GameObject.Find("MageBourraqueInfernale");
+        if (cameraa != null)
+        {
+            if (!cameraa.GetComponent<MageBourrasqueInfernale>().IsActivated)
+            {
+                AmIHuman = true;
+            }
+        }
+        if (cameraa == null || AmIHuman)
+        {
+            cameraa = GameObject.FindWithTag("Mage_Air");
+        }
         GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 10;
         timetodie = Time.time;
     }
@@ -25,9 +37,20 @@ public class Tornade : MonoBehaviour {
     {
         if (coll.tag == "Mage_Feu" && this.gameObject.name!= "TornadeEnflammee(Clone)")
         {
-            if (coll.GetComponent<PlayerController>().IsImmolating)
+            if (coll.name == "LOCAL Player" || coll.name == "Mage(Clone)")
             {
-                this.GetComponent<ParticleSystem>().startColor = tornade.GetComponent<ParticleSystem>().startColor;
+                if (coll.GetComponent<PlayerController>().IsImmolating)
+                {
+                    this.GetComponent<ParticleSystem>().startColor = tornade.GetComponent<ParticleSystem>().startColor;
+                }
+            }
+            else if(coll.name=="MageTutorial")
+            {
+
+                if (coll.GetComponent<PCTuto>().IsImmolating)
+                {
+                    this.GetComponent<ParticleSystem>().startColor = tornade.GetComponent<ParticleSystem>().startColor;
+                }
             }
         }
     }

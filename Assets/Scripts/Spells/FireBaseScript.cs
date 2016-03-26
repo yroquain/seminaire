@@ -76,7 +76,7 @@ public class FireBaseScript : MonoBehaviour
     protected virtual void Awake()
     {
         Starting = true;
-        int fireLayer = UnityEngine.LayerMask.NameToLayer("FireLayer");
+        //int fireLayer = UnityEngine.LayerMask.NameToLayer("FireLayer");
         //UnityEngine.Physics.IgnoreLayerCollision(fireLayer, fireLayer);
     }
 

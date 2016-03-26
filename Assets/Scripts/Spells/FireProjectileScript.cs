@@ -14,6 +14,8 @@ using System.Collections;
 /// </summary>
 public class FireProjectileScript : FireBaseScript, ICollisionHandler
 {
+    private bool AmIHuman;
+    private GameObject cameraa;
     [Tooltip("The collider object to use for collision and physics.")]
     public GameObject ProjectileColliderObject;
 
@@ -52,12 +54,28 @@ public class FireProjectileScript : FireBaseScript, ICollisionHandler
     private IEnumerator SendCollisionAfterDelay()
     {
         yield return new WaitForSeconds(ProjectileColliderDelay);
-        GameObject Player = GameObject.FindWithTag("Mage_Feu");
-        if (Player == null)
+        GameObject Player = GameObject.Find("MageTraitdeFeu");
+        if (Player != null)
         {
-            Player = GameObject.FindWithTag("Mage_Eau");
+            if (!Player.GetComponent<MageTraitdeFeu>().IsActivated)
+            {
+                AmIHuman = true;
+            }
+            else
+            {
+                cameraa = Player.transform.Find("FalseCamera").gameObject;
+            }
         }
-        ProjectileColliderObject.GetComponent<Rigidbody>().velocity = Player.transform.Find("Main Camera").gameObject.transform.forward*10;
+        if (Player == null || AmIHuman)
+        {
+            Player = GameObject.FindWithTag("Mage_Feu");
+            if (Player == null)
+            {
+                Player = GameObject.FindWithTag("Mage_Eau");
+            }
+            cameraa = Player.transform.Find("Main Camera").gameObject;
+        }
+        ProjectileColliderObject.GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 10;
     }
 
     protected override void Start()
