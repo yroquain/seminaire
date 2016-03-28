@@ -42,9 +42,9 @@ public class NetworkedPlayerScript : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcSynchronizeManaHp(int _numberPlayer, float _currentHp, float _currentMana)
+    public void RpcSynchronizeManaHp(int _numberPlayer, float _currentHp, float _currentMana, float _maxHp, float _maxMana)
     {
-        GameObject.Find("networkManager").GetComponent<GameController>().setHpManaActual(_numberPlayer, _currentHp, _currentMana);
+        GameObject.Find("networkManager").GetComponent<GameController>().setHpManaActual(_numberPlayer, _currentHp, _currentMana, _maxHp, _maxMana);
     }
     [ClientRpc]
     public void RpcSetIsAttacking(int _numberPlayer, bool isAttacking)

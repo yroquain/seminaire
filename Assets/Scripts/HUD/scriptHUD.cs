@@ -109,11 +109,18 @@ public class scriptHUD : MonoBehaviour {
                 ElementAllie.GetComponent<Image>().sprite = mageAirAllie;
             }
             float curHpAllie = myGameController.getHpActual(numeroAllie);
-            float maxHpAllie = 100;//MageClone.GetComponent<ManagementHpMana>().getMaxHp();
+            float maxHpAllie = myGameController.getMaxHp(numeroAllie);
             float curManaAllie = myGameController.getManaActual(numeroAllie);
-            float maxManaAllie = 100;//MageClone.GetComponent<ManagementHpMana>().getMaxMana();
+            float maxManaAllie = myGameController.getMaxMana(numeroAllie);
 
-            
+            if (maxHpAllie == 0)
+            {
+                maxHpAllie = 1;
+            }
+            if (maxManaAllie == 0)
+            {
+                maxManaAllie = 1;
+            }
 
             GameObject.Find("HealthAllie").GetComponent<RectTransform>().sizeDelta = new Vector2(60 * curHpAllie / maxHpAllie, 10);
             GameObject.Find("HealthAllie").GetComponent<RectTransform>().position = new Vector3(barreHpMaxAllie.GetComponent<RectTransform>().position.x - 60 * (maxHpAllie - curHpAllie) / (2 * maxHpAllie), barreHpMaxAllie.GetComponent<RectTransform>().position.y, 0);

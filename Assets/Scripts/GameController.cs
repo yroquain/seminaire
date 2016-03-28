@@ -11,6 +11,8 @@ public class GameController : NetworkBehaviour
     public bool[] isUsingSpell;
     public float[] manaActual;
     public float[] hpActual;
+    public float[] manaMax;
+    public float[] hpMax;
     public string[] elements;
     public bool[] isAttacking;
 
@@ -40,6 +42,12 @@ public class GameController : NetworkBehaviour
         hpActual = new float[2];
         hpActual[0] = 0f;
         hpActual[1] = 0f;
+        manaMax = new float[2];
+        manaMax[0] = 0f;
+        manaMax[1] = 0f;
+        hpMax = new float[2];
+        hpMax[0] = 0f;
+        hpMax[1] = 0f;
         elements = new string[2];
         elements[0] = "null";
         elements[1] = "null";
@@ -50,10 +58,12 @@ public class GameController : NetworkBehaviour
        
 	}
 
-    public void setHpManaActual(int _numberPlayer, float _hpActual, float _manaActual)
+    public void setHpManaActual(int _numberPlayer, float _hpActual, float _manaActual, float _maxHp, float _maxMana)
     {
         this.hpActual[_numberPlayer] = _hpActual;
         this.manaActual[_numberPlayer] = _manaActual;
+        this.hpMax[_numberPlayer] = _maxHp;
+        this.manaMax[_numberPlayer] = _maxMana;
     }
 
     public float getHpActual(int _numberPlayer)
@@ -63,6 +73,14 @@ public class GameController : NetworkBehaviour
     public float getManaActual(int _numberPlayer)
     {
         return this.manaActual[_numberPlayer];
+    }
+    public float getMaxHp(int _numberPlayer)
+    {
+        return this.hpMax[_numberPlayer];
+    }
+    public float getMaxMana(int _numberPlayer)
+    {
+        return this.manaMax[_numberPlayer];
     }
 
    

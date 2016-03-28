@@ -95,14 +95,18 @@ public class ManagementHpMana : NetworkBehaviour
             ManaBarre.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f * curMana / maxMana, widthScreen * 0.012f);
             ManaBarre.GetComponent<RectTransform>().position = new Vector3(ManaBarreRef.GetComponent<RectTransform>().position.x - widthScreen * 0.156f * (maxMana-curMana) / (2*maxMana), ManaBarreRef.GetComponent<RectTransform>().position.y, 0);
         }
-        this.CmdSynchronizeManaHp(numeroJoueur,this.curHP, this.curMana);
+        if (this.gameObject.name == "LOCAL Player")
+        {
+            this.CmdSynchronizeManaHp(numeroJoueur, this.curHP, this.curMana, this.maxHP, this.maxMana);
+        }
+       
 	}
 
 
     [Command]
-    private void CmdSynchronizeManaHp(int _numberPlayer, float _curHp, float _curMana)
+    private void CmdSynchronizeManaHp(int _numberPlayer, float _curHp, float _curMana, float _maxHp, float _maxMana)
     {
-        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcSynchronizeManaHp(_numberPlayer, _curHp, _curMana);
+        this.gameObject.GetComponent<NetworkedPlayerScript>().RpcSynchronizeManaHp(_numberPlayer, _curHp, _curMana, _maxHp, _maxMana);
     }
     public void setFullMana()
     {
