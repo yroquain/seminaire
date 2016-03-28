@@ -14,6 +14,16 @@ public class selectMenuPause : MonoBehaviour
     private Text grimoire;
     private Text mainMenu;
 
+    public GameObject Alamanach;
+    public GameObject AlmanachFeu;
+    public GameObject AlmanachEau;
+    public GameObject AlmanachAir;    
+
+    /* 0 : reprendre
+     * 1 : almanach
+     * 2 : retour au menu principal
+     */
+
 
     private float timer = 0.0f;
     // Use this for initialization
@@ -31,10 +41,15 @@ public class selectMenuPause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))
+        {
+            this.gameObject.SetActive(false);
+            GameObject.Find("LOCAL Player").GetComponent<PlayerController>().enabled = true;
+        }
+
         //on descend dans la liste
         if ((Input.GetAxis("Vertical") < 0 || Input.GetAxis("SelectMenu") < 0) && ((Time.time - timer) > 0.2f))
         {
-
             selectingOption = (selectingOption + 1) % numberMenu; //le modulo sert à retourner à 0 si on est déjà en bas.
             timer = Time.time;
         }
@@ -49,13 +64,32 @@ public class selectMenuPause : MonoBehaviour
         //Jump is the "A" button on gamepad
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Submit"))
         {
-            if (selectingOption < (numberMenu - 1))
+            if (selectingOption == 0)
             {
-                SceneManager.LoadScene(selectingOption + 1);
+                //reprendre
+                this.gameObject.SetActive(false);
+                GameObject.Find("LOCAL Player").GetComponent<PlayerController>().enabled = true;
+            } else if (selectingOption == 1){
+
+                Alamanach.SetActive(true);
+                //almanach
+                if (GameObject.Find("LOCAL Player").tag == "Mage_Air")
+                {
+                    AlmanachAir.SetActive(true);
+                }
+                else if (GameObject.Find("LOCAL Player").tag == "Mage_Feu")
+                {
+                    AlmanachFeu.SetActive(true);
+                }
+                else
+                {
+                    AlmanachEau.SetActive(true);
+                }
+                this.gameObject.SetActive(false);
             }
             else
             {
-                Application.Quit();
+                //retour au menu principal
             }
 
         }

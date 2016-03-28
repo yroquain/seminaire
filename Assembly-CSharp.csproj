@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Menu\LoadScenesMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\menuPauseScript.cs" />
      <Compile Include="Assets\Scripts\Menu\positionMenu.cs" />
+     <Compile Include="Assets\Scripts\Menu\scriptAlmanach.cs" />
      <Compile Include="Assets\Scripts\Menu\selectMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\selectMenuPause.cs" />
      <Compile Include="Assets\Scripts\Menu\sizeButton.cs" />
@@ -101,6 +102,15 @@
      <Compile Include="Assets\Scripts\Spells\Wave.cs" />
      <Compile Include="Assets\Scripts\TriggerEnigme2.cs" />
      <Compile Include="Assets\Scripts\TriggerInstensifes.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\CanvaTuto.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\MageBourrasqueInfernale.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\MageChocAqua.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\MagePluieDivine.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\MageTraitdeFeu.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\PCTuto.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\Skeleton1.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\SortSimpleTuto.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\TriggerEnter.cs" />
      <Compile Include="Assets\Scripts\WallDestruction.cs" />
      <Compile Include="Assets\Scripts\WindWall.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />

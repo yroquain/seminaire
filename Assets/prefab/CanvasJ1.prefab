@@ -281,6 +281,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22437078}
+  - 114: {fileID: 11409408}
   m_Layer: 5
   m_Name: GameObjectAlmanac
   m_TagString: Untagged
@@ -572,7 +573,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22419190}
-  - 114: {fileID: 11474990}
   - 114: {fileID: 11498344}
   m_Layer: 5
   m_Name: Pause
@@ -1258,6 +1258,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11409408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f1aca8a0535b0429b59f35242e8654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPause: {fileID: 158916}
 --- !u!114 &11410000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2585,17 +2597,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 40
---- !u!114 &11474990
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d3a2fa330755dd4fb4424f80e709ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11477070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2988,6 +2989,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fae5778aaf0da347a7f3ab9276f13b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Alamanach: {fileID: 130536}
+  AlmanachFeu: {fileID: 172836}
+  AlmanachEau: {fileID: 132442}
+  AlmanachAir: {fileID: 134974}
 --- !u!222 &22200364
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -4414,6 +4419,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 7639dd761d2424b45b9fff3e42bd7d8f,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: Alamanach
+      value: 
+      objectReference: {fileID: 130536}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 143612}
