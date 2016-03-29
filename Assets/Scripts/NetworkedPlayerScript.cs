@@ -74,6 +74,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
             transform.position = spawn.position;
             transform.rotation = spawn.rotation;
             fpsCamera.enabled = false;
+            this.GetComponent<PlayerController>().qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
         Invoke("RpcRespawn", 2f);
     }

@@ -20,6 +20,7 @@ TagManager:
   - MurIfrit
   - BarriereGivree
   - FlecheMortelle
+  - test
   layers:
   - Default
   - TransparentFX

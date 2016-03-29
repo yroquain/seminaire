@@ -38,7 +38,9 @@ public class PlayerController : NetworkBehaviour
     private bool IsSavingCamInfo;
     private Vector3 CamPos;
     private Quaternion CamRot;
-    public GameObject MainCamera;
+    public GameObject MainCamera; //camera for players
+    public GameObject SubCamera; //camera for cut-scenes
+    public subCameraController scc;
 
     //Texture Mage
     public Material texture_air;
@@ -56,7 +58,7 @@ public class PlayerController : NetworkBehaviour
     //Rotation
     public float speed = 50.0f;
     private float rotate;
-    private Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+    public Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
     //HUD
     float widthScreen;
@@ -165,6 +167,9 @@ public class PlayerController : NetworkBehaviour
 
         CDsort1 = 0;
         CDsort2 = 0;
+
+        SubCamera = GameObject.Find("SubCamera");
+
     }
     #endregion
 
@@ -241,6 +246,13 @@ public class PlayerController : NetworkBehaviour
                 IsMoving = false;
             }
 
+            if (Input.GetAxis("Straffe") != 0 && !IsAttacking && !IsCasting)
+            {
+                
+                transform.Translate(Input.GetAxis("Straffe") * Time.deltaTime * movementSpeed, 0, 0);
+                IsMoving = true;
+            }
+
             //When Attacking
             if (Input.GetButtonDown("Frapper") && !IsJumping)
             {
@@ -263,6 +275,8 @@ public class PlayerController : NetworkBehaviour
                 rotate += Input.GetAxis("Horizontal")*2;
                 qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
             }
+
+
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed * 2);
 
@@ -358,6 +372,16 @@ public class PlayerController : NetworkBehaviour
         {
             //the player die
             GetComponent<ManagementHpMana>().removeHp(GetComponent<ManagementHpMana>().getMaxHp());
+        }
+    }
+
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "test")
+        {
+            Debug.Log(scc);
+            SubCamera.GetComponent<subCameraController>().changeMusic("ambiance");
         }
     }
 
