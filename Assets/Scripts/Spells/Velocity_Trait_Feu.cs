@@ -6,6 +6,7 @@ public class Velocity_Trait_Feu : MonoBehaviour {
     private GameObject cameraa;
     private bool AmIHuman;
     private float timetodie;
+    public int Degat;
 	// Use this for initialization
 	void Start () {
         timetodie = Time.time;
@@ -22,11 +23,25 @@ public class Velocity_Trait_Feu : MonoBehaviour {
             cameraa = GameObject.FindWithTag("Mage_Eau");
         }
         GetComponent<Rigidbody>().velocity = cameraa.transform.forward * 10;
+        transform.rotation = cameraa.transform.rotation;
+
     }
     void Update()
     {
         if(Time.time>timetodie+0.5f)
         {
+            Destroy(gameObject);
+        }
+    }
+    public void OnCollisionEnter(Collision Coll)
+    {
+        if(Coll.gameObject.name!= "SteamSpray")
+        {
+            if(Coll.gameObject.tag=="ennemi")
+            {
+                //Reduire HP
+                //Repousser
+            }
             Destroy(gameObject);
         }
     }

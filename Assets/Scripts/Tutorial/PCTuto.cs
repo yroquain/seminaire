@@ -182,14 +182,18 @@ public class PCTuto : MonoBehaviour
             }
             IsWalking = !IsWalking;
         }
-
+        /*
         if (Input.GetAxis("KeepSpell") < 0.1)
         {
             IsCasting = false;
-        }
+        }*/
 
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            IsCasting = true;
+        }
         //when casting spell 1
-        if (Input.GetButtonDown("Sort 1") && !IsCasting)
+        if (Input.GetButtonDown("Sort 1") /*&& !IsCasting*/)
         {
             if (Input.GetAxis("KeepSpell") > 0.9)
             {
@@ -199,7 +203,7 @@ public class PCTuto : MonoBehaviour
         }
 
         //when casting spell 2
-        if (Input.GetButtonDown("Sort 2") && !IsCasting)
+        if (Input.GetButtonDown("Sort 2")/*&& !IsCasting*/)
         {
 
             if (Input.GetAxis("KeepSpell") > 0.9)

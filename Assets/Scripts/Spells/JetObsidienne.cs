@@ -5,6 +5,7 @@ public class JetObsidienne : MonoBehaviour {
 
     private GameObject cameraa;
     private float timetodie;
+    private int degat;
     // Use this for initialization
     void Start()
     {
@@ -34,6 +35,15 @@ public class JetObsidienne : MonoBehaviour {
         if (Time.time > timetodie + 5f)
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void OnCollisionEnter(Collision Coll)
+    {        
+        Destroy(gameObject);
+        if(Coll.gameObject.tag=="ennemi")
+        {
+            //Reduire HP
         }
     }
 }

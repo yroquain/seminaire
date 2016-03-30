@@ -30,14 +30,6 @@ public class WindWall : MonoBehaviour {
                     particle1.GetComponent<ParticleSystem>().startColor = new Color(1, 0.5f, 0, 0f);
                     particle2.GetComponent<ParticleSystem>().startColor = new Color(1, 0.25f, 0, .5f);
                     particle2.GetComponent<ParticleSystem>().startLifetime = 4;
-                    /*var overtime1 = particle1.GetComponent<ParticleSystem>().colorOverLifetime;
-                    overtime1.enabled = true;
-                    Gradient grad = new Gradient();
-                    grad.SetKeys(new GradientColorKey[] { new GradientColorKey(new Color(1,0.5f,0,1), 0.0f), new GradientColorKey(Color.red, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
-                    overtime1.color= new ParticleSystem.MinMaxGradient(grad);
-                    var overtime2 = particle2.GetComponent<ParticleSystem>().colorOverLifetime;
-                    overtime2.enabled = true;
-                    overtime2.color = new ParticleSystem.MinMaxGradient(grad);*/
                     this.tag = "MurIfrit";
                     IsIfrit = true;
                 }
@@ -50,6 +42,17 @@ public class WindWall : MonoBehaviour {
                 IsGivre = true;
                 this.tag = "BarriereGivree";
             }
+        }
+        if(IsIfrit && coll.gameObject.tag=="ennemi")
+        {
+            //Reduire HP
+        }
+    }
+    public void OnTriggerStay(Collider coll)
+    {
+        if (IsIfrit && coll.gameObject.tag == "ennemi")
+        {
+            //Reduire HP
         }
     }
 }

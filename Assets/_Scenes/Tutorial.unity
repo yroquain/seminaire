@@ -2531,7 +2531,7 @@ MonoBehaviour:
   pretyphon: {fileID: 105284, guid: 3b39d9675806e084d93daf65d5ee17c0, type: 2}
   pos: {fileID: 1540023909}
   Prefabs:
-  - {fileID: 121802, guid: 8f18e1d8c46c51f429429815455062fc, type: 2}
+  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
   - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
   sphere: {fileID: 695577847}
   IsUsingSpell: 0
@@ -16236,6 +16236,8 @@ GameObject:
   - 4: {fileID: 1141755515}
   - 198: {fileID: 1141755517}
   - 199: {fileID: 1141755516}
+  - 135: {fileID: 1141755518}
+  - 114: {fileID: 1141755519}
   m_Layer: 0
   m_Name: Eternal Flame
   m_TagString: Untagged
@@ -17742,6 +17744,29 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
+--- !u!135 &1141755518
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141755514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Center: {x: 0.029079914, y: 0.06850578, z: 10}
+--- !u!114 &1141755519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141755514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322e986b418812245a85d4f89aca0d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1142137455
 GameObject:
   m_ObjectHideFlags: 0
@@ -19044,6 +19069,14 @@ Prefab:
       propertyPath: mage
       value: 
       objectReference: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
+    - target: {fileID: 11418488, guid: a315b6d16f9699941a55439305722628, type: 2}
+      propertyPath: Prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
+    - target: {fileID: 176122, guid: a315b6d16f9699941a55439305722628, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a315b6d16f9699941a55439305722628, type: 2}
   m_IsPrefabParent: 0
@@ -20303,7 +20336,7 @@ MonoBehaviour:
   mage: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
   Message: {fileID: 893957344}
   Prefabs:
-  - {fileID: 121802, guid: 8f18e1d8c46c51f429429815455062fc, type: 2}
+  - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
   - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
 --- !u!1 &1318705193
 GameObject:
@@ -20772,6 +20805,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fae5778aaf0da347a7f3ab9276f13b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Alamanach: {fileID: 0}
+  AlmanachFeu: {fileID: 0}
+  AlmanachEau: {fileID: 0}
+  AlmanachAir: {fileID: 0}
 --- !u!114 &1343775731
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -562,6 +562,8 @@ GameObject:
   - 4: {fileID: 491628}
   - 198: {fileID: 19838710}
   - 199: {fileID: 19914696}
+  - 114: {fileID: 11428430}
+  - 135: {fileID: 13592074}
   m_Layer: 0
   m_Name: Eternal Flame
   m_TagString: Untagged
@@ -2406,6 +2408,8 @@ MonoBehaviour:
   IsEole: 0
   IsAttacking: 0
   MainCamera: {fileID: 193730}
+  SubCamera: {fileID: 0}
+  scc: {fileID: 0}
   texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
   texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
   texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
@@ -2416,6 +2420,7 @@ MonoBehaviour:
   sortair1: {fileID: 21300000, guid: ed9c15381b3cfe5438c5e101ab00e63e, type: 3}
   sortair2: {fileID: 21300000, guid: 81387dded8d769f4398327fe5fe057f8, type: 3}
   speed: 50
+  qTo: {x: 0, y: 0, z: 0, w: 1}
   CanvasJoueur: {fileID: 0}
   Canvas: {fileID: 143612, guid: 20253a8496d22914c83a470de8c49dd9, type: 2}
   CDsort1: 0
@@ -2470,12 +2475,24 @@ MonoBehaviour:
   - {fileID: 141530, guid: 369eee557c4d41c479225bf744fa6a5f, type: 2}
   - {fileID: 140072, guid: 4d1334e8db5854c4fb28b3213b780f2b, type: 2}
   sphere: {fileID: 197792}
+  IsUsingSpell: 0
   ImmolatingSpell: 0
   IsImmolating: 0
   wind: {fileID: 112950, guid: 4d3ff2e17d6d41349b8023212a549536, type: 2}
   windfire: {fileID: 175870, guid: 7cf9cf52441b24140aff03d21fdb27a1, type: 2}
   wave: {fileID: 160204, guid: f6713467256cdbb468addbf47156bcbc, type: 2}
   mur: {fileID: 100548, guid: cd8e99208ff452142a1c119dfea1c14d, type: 2}
+--- !u!114 &11428430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322e986b418812245a85d4f89aca0d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11437418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2488,6 +2505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyPlayer: {fileID: 110360}
+  IsCollided: 0
 --- !u!114 &11444428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2602,6 +2620,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13592074
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Center: {x: 0, y: 0, z: 10}
 --- !u!136 &13605098
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -4292,7 +4322,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Radius
-      value: 1.079858
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Height
@@ -4300,7 +4330,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Center.y
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
@@ -4512,6 +4542,10 @@ Prefab:
       propertyPath: prefire
       value: 
       objectReference: {fileID: 135868, guid: f9d6b304278990345982a0b3e117b385, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Center.z
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

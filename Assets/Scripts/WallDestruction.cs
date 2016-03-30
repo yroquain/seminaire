@@ -26,7 +26,7 @@ public class WallDestruction : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag =="ChocAquatique")
+        if(collision.gameObject.tag =="ChocAquatique" || collision.gameObject.tag== "Obsidienne")
         {
             IsActivated = true;
         }

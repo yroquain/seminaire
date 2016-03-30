@@ -21,6 +21,10 @@ TagManager:
   - BarriereGivree
   - FlecheMortelle
   - test
+  - Obsidienne
+  - FireRain
+  - TornadeEnflammee
+  - Typhon
   layers:
   - Default
   - TransparentFX

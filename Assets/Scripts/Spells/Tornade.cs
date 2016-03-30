@@ -7,9 +7,12 @@ public class Tornade : MonoBehaviour {
     private GameObject cameraa;
     private bool AmIHuman;
     public GameObject tornade;
+    private int degat;
+    private bool Once;
     // Use this for initialization
     void Start()
     {
+        Once = true;
         cameraa = GameObject.Find("MageBourraqueInfernale");
         if (cameraa != null)
         {
@@ -51,6 +54,16 @@ public class Tornade : MonoBehaviour {
                 {
                     this.GetComponent<ParticleSystem>().startColor = tornade.GetComponent<ParticleSystem>().startColor;
                 }
+            }
+        }
+        if(coll.gameObject.tag=="ennemi" && Once)
+        {
+            Once = false;
+            //Reduire HP
+            coll.gameObject.transform.position = new Vector3(coll.gameObject.transform.position.x, coll.gameObject.transform.position.y + 3, coll.gameObject.transform.position.z);
+            if(tag== "TornadeEnflammee")
+            {
+                //Reduire HP encore plus
             }
         }
     }
