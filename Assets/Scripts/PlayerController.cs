@@ -491,6 +491,7 @@ public class PlayerController : NetworkBehaviour
             MainCamera.transform.position = CamPos;
             MainCamera.transform.rotation = CamRot;
             IsSavingCamInfo = true;
+
         }
         IsUnderAnimation = !IsUnderAnimation;
     }

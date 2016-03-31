@@ -121,6 +121,8 @@ public class NetworkedPlayerScript : NetworkBehaviour
         Destroy(triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent1);
         Destroy(triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent2);
         Destroy(triggerRespawn);
+        this.gameObject.GetComponent<ManagementHpMana>().addMaxMana(10);
+        this.gameObject.GetComponent<ManagementHpMana>().addMaxHp(10);
     }
 
     #region Gestion sorts

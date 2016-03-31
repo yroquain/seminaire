@@ -26,9 +26,10 @@ public class SkeletonController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
+        hpSkeleton = 10;
         IsAttacking = false;
         Attackelapsed = 0f;
-        IsDead = true;
+        IsDead = false;
         IsMoving = false;
         IsJumping = false;
         IsWalking = false;

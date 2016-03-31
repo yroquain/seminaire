@@ -89,6 +89,7 @@
      <Compile Include="Assets\Scripts\Spells\FireProjectileScript.cs" />
      <Compile Include="Assets\Scripts\Spells\FlecheMortelle.cs" />
      <Compile Include="Assets\Scripts\Spells\Giboule.cs" />
+     <Compile Include="Assets\Scripts\Spells\Immolation.cs" />
      <Compile Include="Assets\Scripts\Spells\JetObsidienne.cs" />
      <Compile Include="Assets\Scripts\Spells\MeteorSwarmScript.cs" />
      <Compile Include="Assets\Scripts\Spells\PreRain.cs" />
@@ -115,6 +116,7 @@
      <Compile Include="Assets\Scripts\WindWall.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\playerChoixElement.cs" />
+     <Compile Include="Assets\Scripts\subCameraController.cs" />
      <Compile Include="Assets\Scripts\triggerEnigme1.cs" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />

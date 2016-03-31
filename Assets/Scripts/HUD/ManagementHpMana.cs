@@ -56,17 +56,18 @@ public class ManagementHpMana : NetworkBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (curHP <= 0)
+        {
+            this.GetComponent<PlayerController>().CmdDeadPlayer(this.gameObject);
+        }
         //Management HP
         curHP += Time.deltaTime * 5;
         if (curHP > maxHP)
         {
             curHP = maxHP;
         }
-        if (curHP <= 0)
-        {
-            this.GetComponent<PlayerController>().CmdDeadPlayer(this.gameObject);
-        }
+        
+       
 
         //Management Mana
         if (Time.time >= recupmana + 1)
@@ -107,6 +108,16 @@ public class ManagementHpMana : NetworkBehaviour
     private void CmdSynchronizeManaHp(int _numberPlayer, float _curHp, float _curMana, float _maxHp, float _maxMana)
     {
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcSynchronizeManaHp(_numberPlayer, _curHp, _curMana, _maxHp, _maxMana);
+    }
+    public void addMaxMana(float _bonus)
+    {
+        this.maxMana += _bonus;
+        curMana += _bonus;
+    }
+    public void addMaxHp(float _bonus)
+    {
+        this.maxHP += _bonus;
+        curHP += _bonus;
     }
     public void setFullMana()
     {
