@@ -300,10 +300,17 @@ public class PlayerController : NetworkBehaviour
                 CanvasJoueur.GetComponent<scriptHUD>().showMenuPause();
                 this.GetComponent<PlayerController>().enabled = false;
             }
+            
             if (Input.GetAxis("KeepSpell") < 0.1)
             {
                 IsCasting = false;
             }
+            //For Yoann's test
+            /*
+            if(Input.GetKeyDown(KeyCode.J))
+            {
+                IsCasting = true;
+            }*/
 
             //when casting spell 1
             if (Input.GetButtonDown("Sort 1") && !IsCasting)
