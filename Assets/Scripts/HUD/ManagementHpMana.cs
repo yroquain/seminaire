@@ -186,4 +186,11 @@ public class ManagementHpMana : NetworkBehaviour
     {
         this.curMana -= this.costManaSpell[numberSpell];
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Epee")
+        {
+            curHP -= 10;
+        }
+    }
 }

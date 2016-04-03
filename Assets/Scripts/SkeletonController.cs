@@ -17,6 +17,8 @@ public class SkeletonController : MonoBehaviour {
     private float Attackelapsed;
 
     private int hpSkeleton;
+    private GameObject playerLocal;
+    private GameObject player2;
 
     //Rotation
     public float speed = 50.0f;
@@ -39,40 +41,75 @@ public class SkeletonController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (IsActivate && !IsDead)
+
+        if (playerLocal == null)
         {
+            if (GameObject.Find("LOCAL Player") != null)
+            {
+                playerLocal = GameObject.Find("LOCAL Player").gameObject;
+            }
+        }
+        else if (IsActivate && !IsDead)
+        {
+
             if (Time.time > Attackelapsed + 0.8f)
             {
                 IsMoving = false;
                 IsAttacking = false;
             }
-            /*if (Input.GetAxis("Vertical") != 0)
+
+            float difX = (playerLocal.transform.position.x - this.gameObject.transform.position.x) * (playerLocal.transform.position.x - this.gameObject.transform.position.x);
+            float difZ = (playerLocal.transform.position.z - this.gameObject.transform.position.z) * (playerLocal.transform.position.z - this.gameObject.transform.position.z);
+            if (difZ < 4 && difX < 4)
             {
-                if (!IsAttacking && !IsCasting)
-                {
-                    transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
-                    IsMoving = true;
-                }
+                IsMoving = false;
             }
+            int directionZ = 0;
+            if(playerLocal.transform.position.z > this.gameObject.transform.position.z && difZ > 4)
+            {
+                directionZ = -1;
+            }
+            if (playerLocal.transform.position.z < this.gameObject.transform.position.z && difZ > 4)
+            {
+                directionZ = 1;
+            }
+
+            int directionX = 0;
+            if (playerLocal.transform.position.x > this.gameObject.transform.position.x && difX > 4)
+            {
+                directionX = -1;
+            }
+            if (playerLocal.transform.position.x < this.gameObject.transform.position.x && difX > 4)
+            {
+                directionX = 1;
+            }
+
+           
+
+            if (!IsAttacking && !IsCasting)
+            {
+                transform.Translate(directionX * Time.deltaTime * movementSpeed, 0, directionZ * Time.deltaTime * movementSpeed);
+                IsMoving = true;
+            }
+
+
             //Rotating
-            if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
-            {
-                rotate += Input.GetAxis("Horizontal") * 2;
-                qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
-            }
+             Vector3 relativePos = playerLocal.transform.position - this.transform.position;
+             Quaternion rotation = Quaternion.LookRotation(relativePos);
+             transform.rotation = rotation;
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed * 2);
 
-      
 
-            if (Input.GetButtonDown("Frapper") && !IsJumping)
+            if (difZ < 4 && difX < 4)
             {
                 Attackelapsed = Time.time;
                 IsAttacking = true;
-            }*/
+            }
             if (hpSkeleton <= 0)
             {
                 IsDead = true;
+                IsAttacking = false;
+                IsMoving = false;
             }
         }
         
@@ -100,5 +137,15 @@ public class SkeletonController : MonoBehaviour {
     public int getHpSkeleton()
     {
         return this.hpSkeleton;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "TraitFeu" || other.gameObject.tag == "BourrasqueInfernale" || other.gameObject.tag == "ChocAquatique" || other.gameObject.tag == "Obsidienne" || other.gameObject.tag == "FlecheMortelle" || other.gameObject.tag == "TornadeEnflammee")
+        {
+            IsAttacking = false;
+            IsMoving = false;
+            IsDead = true;
+        }
     }
 }

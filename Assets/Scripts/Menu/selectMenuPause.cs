@@ -72,19 +72,6 @@ public class selectMenuPause : MonoBehaviour
             } else if (selectingOption == 1){
 
                 Alamanach.SetActive(true);
-                //almanach
-                if (GameObject.Find("LOCAL Player").tag == "Mage_Air")
-                {
-                    AlmanachAir.SetActive(true);
-                }
-                else if (GameObject.Find("LOCAL Player").tag == "Mage_Feu")
-                {
-                    AlmanachFeu.SetActive(true);
-                }
-                else
-                {
-                    AlmanachEau.SetActive(true);
-                }
                 this.gameObject.SetActive(false);
             }
             else

@@ -25,6 +25,7 @@ TagManager:
   - FireRain
   - TornadeEnflammee
   - Typhon
+  - Epee
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - 

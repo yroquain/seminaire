@@ -124,7 +124,7 @@ GameObject:
   - 136: {fileID: 13605098}
   - 114: {fileID: 11413364}
   - 114: {fileID: 11465582}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mage
   m_TagString: Mage_Air
   m_Icon: {fileID: 0}
@@ -4545,6 +4545,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Center.z
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
