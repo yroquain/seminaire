@@ -86,16 +86,18 @@ public class PlayerController : NetworkBehaviour
     private GameObject TextReady;
     private GameObject ReadyText;
     private float refresh;
+    private float WaitBeforeReady;
     #endregion
 
     #region Initialisation
     // Use this for initialization
     void Start()
     {
-        numeroJoueur = 0;
-        if (GameObject.Find("Mage(Clone)") != null && this.gameObject.name == "LOCAL Player")
+        WaitBeforeReady = Time.time;
+        numeroJoueur = 1;
+        if (GameObject.Find("Mage(Clone)") == null && this.gameObject.name == "LOCAL Player")
         {
-            numeroJoueur = 1;
+            numeroJoueur = 0;
         }
         GameHasStarted = false;
         IsImmolating = false;
@@ -211,7 +213,7 @@ public class PlayerController : NetworkBehaviour
                     IsGettingObject = false;
                 }
             }
-            if (Input.GetButtonDown("Sort 1"))
+            if (Input.GetButtonDown("Sort 1") && Time.time > WaitBeforeReady + 2f)
             {
                 CmdIsReady(numeroJoueur);
                 refresh = Time.time;
