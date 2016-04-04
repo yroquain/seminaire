@@ -15,12 +15,14 @@ public class GameController : NetworkBehaviour
     public float[] hpMax;
     public string[] elements;
     public bool[] isAttacking;
+    public bool[] isReady;
 
-    
+    private bool GameHasStarted;
 
 	// Use this for initialization
 	void Start ()
     {
+        GameHasStarted = false;
         isCasting = new bool[2];
         isCasting[0] = false;
         isCasting[1] = false;
@@ -49,13 +51,20 @@ public class GameController : NetworkBehaviour
         hpMax[0] = 0f;
         hpMax[1] = 0f;
         elements = new string[2];
-        elements[0] = "null";
-        elements[1] = "null";
-	}
+        elements[0] = "Mage_Feu";
+        elements[1] = "Mage_Feu";
+        isReady = new bool[2];
+        isReady[0] = false;
+        isReady[1] = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-       
+       if(isReady[0] && isReady[1] && !GameHasStarted)
+        {
+            GameHasStarted = true;
+            GameObject.Find("LOCAL Player").GetComponent<PlayerController>().StartGame();
+        }
 	}
 
     public void setHpManaActual(int _numberPlayer, float _hpActual, float _manaActual, float _maxHp, float _maxMana)
@@ -119,10 +128,15 @@ public class GameController : NetworkBehaviour
     {
         return isUsingSpell[numeroautrejoueur];
     }
+    public void Ready(int numero)
+    {
+        isReady[numero] = !isReady[numero];
+    }
 
     [ClientRpc]
     public void RpcSetIsActivate(int _numeroTrigger, bool _isActivate)
     {
         this.isActivate[_numeroTrigger] = _isActivate;
     }
+    
 }

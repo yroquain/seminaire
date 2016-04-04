@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class NetworkedPlayerScript : NetworkBehaviour
 {
@@ -63,6 +64,16 @@ public class NetworkedPlayerScript : NetworkBehaviour
         GameObject.Find("networkManager").GetComponent<GameController>().ResetVarSpell(_numberPlayer);
     }
     [ClientRpc]
+    public void RpcIsReady(int _numberPlayer)
+    {
+        GameObject.Find("networkManager").GetComponent<GameController>().Ready(_numberPlayer);
+    }
+    [ClientRpc]
+    public void RpcIsReadyRefresh(int _numberPlayer, bool ready)
+    {
+        GameObject.Find("networkManager").GetComponent<GameController>().isReady[_numberPlayer]=ready;
+    }
+    [ClientRpc]
     public void RpcResolveDead()
     {
         ToggleRenderer(false);
@@ -75,6 +86,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
             transform.rotation = spawn.rotation;
             fpsCamera.enabled = false;
             this.GetComponent<PlayerController>().qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.GetComponent<PlayerController>().rotate = 0.0f;
         }
         Invoke("RpcRespawn", 2f);
     }
@@ -91,7 +103,18 @@ public class NetworkedPlayerScript : NetworkBehaviour
             fpsCamera.enabled = true;
         }            
     }
-
+    [ClientRpc]
+    public void RpcStartGame(GameObject myPlayer)
+    {
+        if(myPlayer.GetComponent<Sorts_simple>().numeroJoueur==0)
+        {
+            myPlayer.transform.position = new Vector3(0, -0.78f, -450);
+        }
+        if (myPlayer.GetComponent<Sorts_simple>().numeroJoueur == 1)
+        {
+            myPlayer.transform.position = new Vector3(4, -0.79f, -450);
+        }
+    }
     [ClientRpc]
     public void RpcChangerTenue(string newTag, GameObject myPlayer)
     {

@@ -57,7 +57,7 @@ public class PlayerController : NetworkBehaviour
 
     //Rotation
     public float speed = 50.0f;
-    private float rotate;
+    public float rotate;
     public Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
     //HUD
@@ -71,14 +71,21 @@ public class PlayerController : NetworkBehaviour
     public float finCDsort1;
     public float CDsort2;
     public float finCDsort2;
-    private GameObject sort1;
-    private GameObject sort2;
-    private GameObject Element;
+    public GameObject sort1;
+    public GameObject sort2;
+    public GameObject Element;
     private GameObject ElementAllie;
     public Sprite mageFeu;
     public Sprite mageEau;
     public Sprite mageAir;
     private GameObject MageClone;
+
+    //Before game starts
+    private bool IsGettingObject;
+    public bool GameHasStarted;
+    private GameObject TextReady;
+    private GameObject ReadyText;
+    private float refresh;
     #endregion
 
     #region Initialisation
@@ -90,6 +97,7 @@ public class PlayerController : NetworkBehaviour
         {
             numeroJoueur = 1;
         }
+        GameHasStarted = false;
         IsImmolating = false;
         IsUnderAnimation = false;
         IsAttacking = false;
@@ -167,8 +175,22 @@ public class PlayerController : NetworkBehaviour
 
         CDsort1 = 0;
         CDsort2 = 0;
-
+        IsGettingObject = true;
         SubCamera = GameObject.Find("SubCamera");
+        
+        if(numeroJoueur==0)
+        {
+            string newTag = "";
+            newTag = "Mage_Feu";
+            this.sort1.GetComponent<Image>().sprite = sortfeu1;
+            this.sort2.GetComponent<Image>().sprite = sortfeu2;
+
+            this.sort1.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(5) + "";
+            this.sort2.GetComponentInChildren<Text>().text = this.GetComponent<ManagementHpMana>().getCostManaSpell(6) + "";
+
+            this.Element.GetComponent<Image>().sprite = mageFeu;
+            CmdChangerMage(newTag, this.gameObject);
+        }
 
     }
     #endregion
@@ -178,9 +200,38 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (!GameHasStarted)
+        {
+            if (IsGettingObject)
+            {
+                TextReady = GameObject.Find("TextReady");
+                ReadyText = GameObject.Find("ReadyText");
+                if (TextReady != null)
+                {
+                    IsGettingObject = false;
+                }
+            }
+            if (Input.GetButtonDown("Sort 1"))
+            {
+                CmdIsReady(numeroJoueur);
+                refresh = Time.time;
+            }
+            if (GameObject.Find("networkManager").GetComponent<GameController>().isReady[numeroJoueur])
+            {
+                TextReady.SetActive(true);
+            }
+            else
+            {
+                TextReady.SetActive(false);
+            }
+            if (Time.time > refresh + 0.5f)
+            {
+                CmdIsReadyRefresh(numeroJoueur, GameObject.Find("networkManager").GetComponent<GameController>().isReady[numeroJoueur]);
+                refresh = Time.time;
+            }
+        }
         //Gestion hp et mort
-        
+
 
         if (CDsort1 > 0)
         {
@@ -188,7 +239,7 @@ public class PlayerController : NetworkBehaviour
             sort1mask.GetComponent<RectTransform>().position = new Vector3(.469f * widthScreen, 0.055f * widthScreen, 0);
             sort1mask.GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.047f, widthScreen * 0.047f);
             sort1mask.GetComponentInChildren<Text>().text = CDsort1.ToString();
-            if(Time.time>=finCDsort1+1)
+            if (Time.time >= finCDsort1 + 1)
             {
                 finCDsort1 = Time.time;
                 CDsort1 -= 1;
@@ -214,9 +265,9 @@ public class PlayerController : NetworkBehaviour
         {
             sort2mask.SetActive(false);
         }
-     
 
-     
+
+
         if (!IsUnderAnimation)
         {
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y, 0); //Set X and Z velocity to 0
@@ -235,7 +286,7 @@ public class PlayerController : NetworkBehaviour
             //When Moving
             if (Input.GetAxis("Vertical") != 0)
             {
-                if (!IsAttacking&&!IsCasting)
+                if (!IsAttacking && !IsCasting)
                 {
                     transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed);
                     IsMoving = true;
@@ -248,7 +299,7 @@ public class PlayerController : NetworkBehaviour
 
             if (Input.GetAxis("Straffe") != 0 && !IsAttacking && !IsCasting)
             {
-                
+
                 transform.Translate(Input.GetAxis("Straffe") * Time.deltaTime * movementSpeed, 0, 0);
                 IsMoving = true;
             }
@@ -272,7 +323,7 @@ public class PlayerController : NetworkBehaviour
             //Rotating
             if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
             {
-                rotate += Input.GetAxis("Horizontal")*2;
+                rotate += Input.GetAxis("Horizontal") * 2;
                 qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
             }
 
@@ -300,7 +351,7 @@ public class PlayerController : NetworkBehaviour
                 CanvasJoueur.GetComponent<scriptHUD>().showMenuPause();
                 this.GetComponent<PlayerController>().enabled = false;
             }
-            
+
             if (Input.GetAxis("KeepSpell") < 0.1)
             {
                 IsCasting = false;
@@ -313,7 +364,7 @@ public class PlayerController : NetworkBehaviour
             }*/
 
             //when casting spell 1
-            if (Input.GetButtonDown("Sort 1") && !IsCasting)
+            if (Input.GetButtonDown("Sort 1") && !IsCasting && GameHasStarted)
             {
                 if (Input.GetAxis("KeepSpell") > 0.9)
                 {
@@ -323,7 +374,7 @@ public class PlayerController : NetworkBehaviour
             }
 
             //when casting spell 2
-            if (Input.GetButtonDown("Sort 2") && !IsCasting)
+            if (Input.GetButtonDown("Sort 2") && !IsCasting && GameHasStarted)
             {
 
                 if (Input.GetAxis("KeepSpell") > 0.9)
@@ -332,7 +383,7 @@ public class PlayerController : NetworkBehaviour
                 }
                 this.GetComponent<Sorts_simple>().CastSpell(2);
             }
-            if (Input.GetButtonDown("SwitchMage"))
+            if (Input.GetButtonDown("SwitchMage") && GameHasStarted)
             {
                 if (CDsort1 == 0 && CDsort2 == 0 && !IsImmolating && !IsEole)
                 {
@@ -360,6 +411,7 @@ public class PlayerController : NetworkBehaviour
             MainCamera.transform.position = new Vector3(-40f, 21f, -170.0f);
             MainCamera.transform.rotation = Quaternion.Euler(27.0f, 90.0f, 0.0f);
         }
+
     }
 
 
@@ -369,6 +421,16 @@ public class PlayerController : NetworkBehaviour
     public void CmdDeadPlayer(GameObject myPlayer)
     {
         myPlayer.GetComponent<NetworkedPlayerScript>().RpcResolveDead();
+    }
+    [Command]
+    public void CmdIsReady(int numeroJoueur)
+    {
+        this.GetComponent<NetworkedPlayerScript>().RpcIsReady(numeroJoueur);
+    }
+    [Command]
+    public void CmdIsReadyRefresh(int numeroJoueur, bool ready)
+    {
+        this.GetComponent<NetworkedPlayerScript>().RpcIsReadyRefresh(numeroJoueur, ready);
     }
 
     void OnCollisionEnter(Collision col)
@@ -435,7 +497,12 @@ public class PlayerController : NetworkBehaviour
         anim.SetBool("isAttacking", IsAttacking);
         anim.SetBool("isCasting", IsCasting);
     }
-
+    public void StartGame()
+    {
+        CmdStartGame(this.gameObject);
+        GameHasStarted = true;
+        ReadyText.SetActive(false);
+    }
     private void changerMage()
     {
         string newTag = "";
@@ -479,9 +546,14 @@ public class PlayerController : NetworkBehaviour
         }
         CmdChangerMage(newTag, this.gameObject);
     }
-
     [Command]
-    private void CmdChangerMage(string newTag, GameObject thisPlayer)
+    private void CmdStartGame(GameObject Player)
+    {
+
+        this.GetComponent<NetworkedPlayerScript>().RpcStartGame(Player);
+    }
+    [Command]
+    public void CmdChangerMage(string newTag, GameObject thisPlayer)
     {
 
         this.gameObject.GetComponent<NetworkedPlayerScript>().RpcChangerTenue(newTag, thisPlayer);

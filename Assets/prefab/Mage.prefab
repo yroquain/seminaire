@@ -126,7 +126,7 @@ GameObject:
   - 114: {fileID: 11465582}
   m_Layer: 8
   m_Name: Mage
-  m_TagString: Mage_Air
+  m_TagString: Mage_Feu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2420,6 +2420,7 @@ MonoBehaviour:
   sortair1: {fileID: 21300000, guid: ed9c15381b3cfe5438c5e101ab00e63e, type: 3}
   sortair2: {fileID: 21300000, guid: 81387dded8d769f4398327fe5fe057f8, type: 3}
   speed: 50
+  rotate: 0
   qTo: {x: 0, y: 0, z: 0, w: 1}
   CanvasJoueur: {fileID: 0}
   Canvas: {fileID: 143612, guid: 20253a8496d22914c83a470de8c49dd9, type: 2}
@@ -2427,9 +2428,13 @@ MonoBehaviour:
   finCDsort1: 0
   CDsort2: 0
   finCDsort2: 0
+  sort1: {fileID: 0}
+  sort2: {fileID: 0}
+  Element: {fileID: 0}
   mageFeu: {fileID: 21300000, guid: cecb7b77bdc8d9d488c441c36c8ab005, type: 3}
   mageEau: {fileID: 21300000, guid: 3f3e3ac5cd9eb774cac01bdd1c3bb053, type: 3}
   mageAir: {fileID: 21300000, guid: f1a808e35799aa341a469c43d8dc951a, type: 3}
+  GameHasStarted: 0
 --- !u!114 &11404794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4366,7 +4371,7 @@ Prefab:
       objectReference: {fileID: 11465110}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Mage_Air
+      value: Mage_Feu
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cameraa
