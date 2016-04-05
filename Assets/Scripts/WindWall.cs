@@ -32,6 +32,10 @@ public class WindWall : MonoBehaviour {
                     particle2.GetComponent<ParticleSystem>().startLifetime = 4;
                     this.tag = "MurIfrit";
                     IsIfrit = true;
+                    if (PlayerPrefs.GetFloat("MurIfrit") == 0)
+                    {
+                        PlayerPrefs.SetFloat("MurIfrit", 1);
+                    }
                 }
             }
             if (coll.tag == "ChocAquatique")
@@ -41,6 +45,10 @@ public class WindWall : MonoBehaviour {
                 murG.SetActive(true);
                 IsGivre = true;
                 this.tag = "BarriereGivree";
+                if (PlayerPrefs.GetFloat("BarriereGivree") == 0)
+                {
+                    PlayerPrefs.SetFloat("BarriereGivree", 1);
+                }
             }
         }
         if(IsIfrit && coll.gameObject.tag=="ennemi")

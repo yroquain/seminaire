@@ -45,6 +45,10 @@ public class Tornade : MonoBehaviour {
                 if (coll.GetComponent<PlayerController>().IsImmolating)
                 {
                     this.GetComponent<ParticleSystem>().startColor = tornade.GetComponent<ParticleSystem>().startColor;
+                    if (PlayerPrefs.GetFloat("TornadeEnflammee") == 0)
+                    {
+                        PlayerPrefs.SetFloat("TornadeEnflammee", 1);
+                    }
                 }
             }
             else if(coll.name=="MageTutorial")

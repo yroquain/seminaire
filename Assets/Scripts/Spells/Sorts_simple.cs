@@ -142,6 +142,10 @@ public class Sorts_simple : NetworkBehaviour
                         air2 = Time.time;
                         gameObject.GetComponent<PlayerController>().CDsort2 = 5;
                         gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+                        if(PlayerPrefs.GetFloat("TornadeEnflammee")==0)
+                        {
+                            PlayerPrefs.SetFloat("TornadeEnflammee", 1);
+                        }
                         CmdTornadeEnflammee();
                     }
                     else
@@ -168,6 +172,10 @@ public class Sorts_simple : NetworkBehaviour
                         eau2 = Time.time;
                         gameObject.GetComponent<PlayerController>().CDsort2 = 10;
                         gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+                        if (PlayerPrefs.GetFloat("PluiedeFeu") == 0)
+                        {
+                            PlayerPrefs.SetFloat("PluiedeFeu", 1);
+                        }
                         CmdPluiedeFeu();
                     }
                     else
@@ -357,6 +365,10 @@ public class Sorts_simple : NetworkBehaviour
                     gameObject.GetComponent<PlayerController>().CDsort1 = 3;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                 }
+                if (PlayerPrefs.GetFloat("Raz") == 0)
+                {
+                    PlayerPrefs.SetFloat("Raz", 1);
+                }
                 CmdRaz();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);
             }
@@ -374,6 +386,10 @@ public class Sorts_simple : NetworkBehaviour
                     eau2 = Time.time;
                     gameObject.GetComponent<PlayerController>().CDsort2 = 10;
                     gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+                }
+                if (PlayerPrefs.GetFloat("Typhon") == 0)
+                {
+                    PlayerPrefs.SetFloat("Typhon", 1);
                 }
                 CmdTyphon();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);
@@ -398,6 +414,10 @@ public class Sorts_simple : NetworkBehaviour
                     gameObject.GetComponent<PlayerController>().CDsort1 = 3;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                 }
+                if (PlayerPrefs.GetFloat("Raz") == 0)
+                {
+                    PlayerPrefs.SetFloat("Raz", 1);
+                }
                 CmdRaz();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);
             }
@@ -414,6 +434,10 @@ public class Sorts_simple : NetworkBehaviour
                     eau1 = Time.time;
                     gameObject.GetComponent<PlayerController>().CDsort1 = 3;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
+                }
+                if (PlayerPrefs.GetFloat("JetObsidienne") == 0)
+                {
+                    PlayerPrefs.SetFloat("JetObsidienne", 1);
                 }
                 CmdJetObsidienne();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);
@@ -437,6 +461,10 @@ public class Sorts_simple : NetworkBehaviour
                     gameObject.GetComponent<PlayerController>().CDsort2 = 10;
                     gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
                 }
+                if (PlayerPrefs.GetFloat("Typhon") == 0)
+                {
+                    PlayerPrefs.SetFloat("Typhon", 1);
+                }
                 CmdTyphon();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);
 
@@ -454,6 +482,10 @@ public class Sorts_simple : NetworkBehaviour
                     eau2 = Time.time;
                     gameObject.GetComponent<PlayerController>().CDsort2 = 10;
                     gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+                }
+                if (PlayerPrefs.GetFloat("Giboulee") == 0)
+                {
+                    PlayerPrefs.SetFloat("Giboulee", 1);
                 }
                 CmdGiboulee();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);
@@ -477,6 +509,10 @@ public class Sorts_simple : NetworkBehaviour
                     gameObject.GetComponent<PlayerController>().CDsort1 = 3;
                     gameObject.GetComponent<PlayerController>().finCDsort1 = Time.time;
                 }
+                if (PlayerPrefs.GetFloat("JetObsidienne") == 0)
+                {
+                    PlayerPrefs.SetFloat("JetObsidienne", 1);
+                }
                 CmdJetObsidienne();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);
             }
@@ -493,6 +529,10 @@ public class Sorts_simple : NetworkBehaviour
                     eau2 = Time.time;
                     gameObject.GetComponent<PlayerController>().CDsort2 = 10;
                     gameObject.GetComponent<PlayerController>().finCDsort2 = Time.time;
+                }
+                if (PlayerPrefs.GetFloat("Giboulee") == 0)
+                {
+                    PlayerPrefs.SetFloat("Giboulee", 1);
                 }
                 CmdGiboulee();
                 GetComponent<ManagementHpMana>().removeManaFromSpell(numberspellcastcombo);

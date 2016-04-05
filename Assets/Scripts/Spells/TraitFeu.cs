@@ -63,6 +63,10 @@ public class TraitFeu : MonoBehaviour
                 {
                     GameObject FlecheMortelle = (GameObject)Instantiate(fleche, this.transform.position, Quaternion.Euler(cameraa.transform.rotation.x / 3.14f * 360 + 270, cameraa.transform.rotation.y / 3.14f * 360, cameraa.transform.rotation.z / 3.14f * 360));
                     FlecheMortelle.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
+                    if (PlayerPrefs.GetFloat("FlecheMortelle") == 0)
+                    {
+                        PlayerPrefs.SetFloat("FlecheMortelle", 1);
+                    }
                 }
                 Destroy(GameObject.Find("Firebolt(Clone)"));
                 Destroy(GameObject.Find("Fireball(Clone)"));
