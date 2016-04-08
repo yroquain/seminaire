@@ -60,12 +60,7 @@ public class ManagementHpMana : NetworkBehaviour
         {
             this.GetComponent<PlayerController>().CmdDeadPlayer(this.gameObject);
         }
-        //Management HP
-        curHP += Time.deltaTime * 5;
-        if (curHP > maxHP)
-        {
-            curHP = maxHP;
-        }
+        
         
        
 
@@ -73,6 +68,11 @@ public class ManagementHpMana : NetworkBehaviour
         if (Time.time >= recupmana + 1)
         {
             recupmana = Time.time;
+            curHP += 5;
+            if (curHP > maxHP)
+            {
+                curHP = maxHP;
+            }
             if (curMana < maxMana)
             {
                 if (curMana + 5 < maxMana)

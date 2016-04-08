@@ -12,16 +12,16 @@ public class SkeletonController : MonoBehaviour {
     private bool IsCasting;
     private bool IsActivate;
     private bool IsDead;
-    private float movementSpeed = 10.0f;
     private Animator anim;
     private float Attackelapsed;
 
     private int hpSkeleton;
     private GameObject playerLocal;
-    private GameObject player2;
+    public int joueurAttack;
+
 
     //Rotation
-    public float speed = 50.0f;
+    public float speed= 10f;
     private float rotate;
     private Quaternion qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
@@ -36,7 +36,8 @@ public class SkeletonController : MonoBehaviour {
         IsJumping = false;
         IsWalking = false;
         IsCasting = false;
-        IsActivate = false;
+        IsActivate = true;
+        
 	}
 	
 	// Update is called once per frame
@@ -64,6 +65,7 @@ public class SkeletonController : MonoBehaviour {
             {
                 IsMoving = false;
             }
+
             int directionZ = 0;
             if(playerLocal.transform.position.z > this.gameObject.transform.position.z && difZ > 4)
             {
@@ -84,11 +86,10 @@ public class SkeletonController : MonoBehaviour {
                 directionX = 1;
             }
 
-           
 
             if (!IsAttacking && !IsCasting)
             {
-                transform.Translate(directionX * Time.deltaTime * movementSpeed, 0, directionZ * Time.deltaTime * movementSpeed);
+                transform.Translate(directionX * Time.deltaTime * speed, 0, directionZ * Time.deltaTime * speed);
                 IsMoving = true;
             }
 
@@ -97,7 +98,6 @@ public class SkeletonController : MonoBehaviour {
              Vector3 relativePos = playerLocal.transform.position - this.transform.position;
              Quaternion rotation = Quaternion.LookRotation(relativePos);
              transform.rotation = rotation;
-
 
 
             if (difZ < 4 && difX < 4)
@@ -139,13 +139,26 @@ public class SkeletonController : MonoBehaviour {
         return this.hpSkeleton;
     }
 
+    public void isDead()
+    {
+        IsAttacking = false;
+        IsMoving = false;
+        IsDead = true;
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "TraitFeu" || other.gameObject.tag == "BourrasqueInfernale" || other.gameObject.tag == "ChocAquatique" || other.gameObject.tag == "Obsidienne" || other.gameObject.tag == "FlecheMortelle" || other.gameObject.tag == "TornadeEnflammee")
+        if (other.gameObject.tag == "TraitFeu" || other.gameObject.tag == "BourrasqueInfernale" || other.gameObject.tag == "FlecheMortelle" || other.gameObject.tag == "TornadeEnflammee")
         {
-            IsAttacking = false;
-            IsMoving = false;
-            IsDead = true;
+            isDead();
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "ChocAquatique" || other.gameObject.tag == "Obsidienne" )
+        {
+            isDead();
         }
     }
 }
