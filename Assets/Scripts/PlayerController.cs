@@ -38,9 +38,6 @@ public class PlayerController : NetworkBehaviour
     private bool IsSavingCamInfo;
     private Vector3 CamPos;
     private Quaternion CamRot;
-    public GameObject MainCamera; //camera for players
-    public GameObject SubCamera; //camera for cut-scenes
-    public subCameraController scc;
 
     //Texture Mage
     public Material texture_air;
@@ -87,6 +84,10 @@ public class PlayerController : NetworkBehaviour
     private GameObject ReadyText;
     private float refresh;
     private float WaitBeforeReady;
+
+    //camera and trigger animation
+    public GameObject MainCamera; //camera for players
+    public GameObject SubCamera; //camera for cut-scenes
     #endregion
 
     #region Initialisation
@@ -116,7 +117,7 @@ public class PlayerController : NetworkBehaviour
         anim = GetComponent<Animator>();
         CanvasJoueur = Instantiate(Canvas);
         Barre = CanvasJoueur.GetComponentsInChildren<Image>();
-        foreach(Image a in Barre)
+        foreach (Image a in Barre)
         {
             if (a.name == "Mana2")
             {
@@ -171,16 +172,15 @@ public class PlayerController : NetworkBehaviour
 
 
         widthScreen = Screen.width;
-        
+
         sort1mask.SetActive(false);
         sort2mask.SetActive(false);
 
         CDsort1 = 0;
         CDsort2 = 0;
         IsGettingObject = true;
-        SubCamera = GameObject.Find("SubCamera");
-        
-        if(numeroJoueur==0)
+
+        if (numeroJoueur == 0)
         {
             string newTag = "";
             newTag = "Mage_Feu";
@@ -193,8 +193,9 @@ public class PlayerController : NetworkBehaviour
             this.Element.GetComponent<Image>().sprite = mageFeu;
             CmdChangerMage(newTag, this.gameObject);
         }
-
     }
+
+   
     #endregion
 
 
@@ -446,16 +447,6 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.tag == "test")
-        {
-            Debug.Log(scc);
-            SubCamera.GetComponent<subCameraController>().changeMusic("ambiance");
-        }
-    }
-
     void OnCollisionStay(Collision collision)
     {
 
@@ -585,6 +576,15 @@ public class PlayerController : NetworkBehaviour
     public void setIsCasting(bool _isCasting)
     {
         this.IsCasting = _isCasting;
+    }
+
+    public bool getIsUnderAnimation()
+    {
+        return IsUnderAnimation;
+    }
+    public void setIsUnderAnimation(bool _isUnderAnimation)
+    {
+        this.IsUnderAnimation = _isUnderAnimation;
     }
 
     #endregion
