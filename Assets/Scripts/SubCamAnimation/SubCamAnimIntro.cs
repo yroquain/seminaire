@@ -3,13 +3,11 @@ using System.Collections;
 
 public class SubCamAnimIntro : MonoBehaviour
 {
-
+    private bool isIntroPassed;
+    private bool Once;
+    private float timer;
     public GameObject MainCamera;
     public GameObject SubCamera;
-    private bool Once;
-    private bool isIntroPassed;
-    private float timer;
-
     public bool skip;
 
     /* à ajouter aux autres triggers
