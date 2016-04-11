@@ -12,6 +12,7 @@ public class TraitFeu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        degat = 10;
         Player = GameObject.Find("MageTraitdeFeu");
         if (Player != null)
         {
@@ -57,7 +58,7 @@ public class TraitFeu : MonoBehaviour
 
                 if (Coll.gameObject.tag == "ennemi")
                 {
-                    //Reduire HP
+                    Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - degat;
                 }
                 if (Coll.tag == "MurEole")
                 {

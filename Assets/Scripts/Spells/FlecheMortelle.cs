@@ -9,7 +9,7 @@ public class FlecheMortelle : MonoBehaviour
     void Start()
     {
         todie = Time.time;
-
+        Degat = 15;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class FlecheMortelle : MonoBehaviour
         {
             if(Coll.gameObject.tag=="ennemi")
             {
-                //Reduire Hp
+                Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - Degat;
             }
             Destroy(gameObject);
         }

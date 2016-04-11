@@ -15,7 +15,7 @@ public class SkeletonController : MonoBehaviour {
     private Animator anim;
     private float Attackelapsed;
 
-    private int hpSkeleton;
+    public int hpSkeleton;
     private GameObject playerLocal;
     public int joueurAttack;
 
@@ -27,8 +27,9 @@ public class SkeletonController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        anim = GetComponent<Animator>();
         hpSkeleton = 10;
+        speed = 10f;
+        anim = GetComponent<Animator>();
         IsAttacking = false;
         Attackelapsed = 0f;
         IsDead = false;
@@ -42,7 +43,10 @@ public class SkeletonController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(hpSkeleton<=0)
+        {
+            isDead();
+        }
         if (playerLocal == null)
         {
             if (GameObject.Find("LOCAL Player") != null)
@@ -129,36 +133,10 @@ public class SkeletonController : MonoBehaviour {
         anim.SetBool("isCasting", IsCasting);*/
     }
 
-    public void setHpSkeleton(int _newHp)
-    {
-        this.hpSkeleton = _newHp;
-    }
-
-    public int getHpSkeleton()
-    {
-        return this.hpSkeleton;
-    }
-
     public void isDead()
     {
         IsAttacking = false;
         IsMoving = false;
         IsDead = true;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "TraitFeu" || other.gameObject.tag == "BourrasqueInfernale" || other.gameObject.tag == "FlecheMortelle" || other.gameObject.tag == "TornadeEnflammee")
-        {
-            isDead();
-        }
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "ChocAquatique" || other.gameObject.tag == "Obsidienne" )
-        {
-            isDead();
-        }
     }
 }

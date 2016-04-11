@@ -10,6 +10,7 @@ public class Velocity_Trait_Feu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timetodie = Time.time;
+        Degat = 10;
         cameraa = GameObject.Find("MageChocAqua");
         if(cameraa!= null)
         {
@@ -39,8 +40,7 @@ public class Velocity_Trait_Feu : MonoBehaviour {
         {
             if(Coll.gameObject.tag=="ennemi")
             {
-                //Reduire HP
-                //Repousser
+                Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - Degat;
             }
             Destroy(gameObject);
         }

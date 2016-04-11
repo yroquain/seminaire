@@ -9,6 +9,7 @@ public class JetObsidienne : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        degat = 15;
         timetodie = Time.time;
         cameraa = GameObject.Find("MageTutorial");
         if (cameraa != null)
@@ -43,7 +44,7 @@ public class JetObsidienne : MonoBehaviour {
         Destroy(gameObject);
         if(Coll.gameObject.tag=="ennemi")
         {
-            //Reduire HP
+            Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - degat;
         }
     }
 }

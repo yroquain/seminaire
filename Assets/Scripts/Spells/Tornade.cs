@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tornade : MonoBehaviour {
+public class Tornade : MonoBehaviour
+{
 
     private float timetodie;
     private GameObject cameraa;
@@ -12,6 +13,7 @@ public class Tornade : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        degat = 10;
         Once = true;
         cameraa = GameObject.Find("MageBourraqueInfernale");
         if (cameraa != null)
@@ -31,14 +33,14 @@ public class Tornade : MonoBehaviour {
 
     void Update()
     {
-        if(Time.time>timetodie+3)
+        if (Time.time > timetodie + 3)
         {
             Destroy(gameObject);
         }
     }
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.tag == "Mage_Feu" && this.gameObject.name!= "TornadeEnflammee(Clone)")
+        if (coll.tag == "Mage_Feu" && this.gameObject.name != "TornadeEnflammee(Clone)")
         {
             if (coll.name == "LOCAL Player" || coll.name == "Mage(Clone)")
             {
@@ -51,7 +53,7 @@ public class Tornade : MonoBehaviour {
                     }
                 }
             }
-            else if(coll.name=="MageTutorial")
+            else if (coll.name == "MageTutorial")
             {
 
                 if (coll.GetComponent<PCTuto>().IsImmolating)
@@ -60,16 +62,23 @@ public class Tornade : MonoBehaviour {
                 }
             }
         }
-        if(coll.gameObject.tag=="ennemi" && Once)
+        if (coll.gameObject.tag == "ennemi")
         {
-            Once = false;
-            //Reduire HP
-            coll.gameObject.transform.position = new Vector3(coll.gameObject.transform.position.x, coll.gameObject.transform.position.y + 3, coll.gameObject.transform.position.z);
-            if(tag== "TornadeEnflammee")
+            coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - degat;
+            coll.gameObject.transform.position = new Vector3(coll.gameObject.transform.position.x, 3, coll.gameObject.transform.position.z);
+            if (tag == "TornadeEnflammee")
             {
-                //Reduire HP encore plus
+                coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - 2;
             }
         }
     }
+    void OnTriggerStay(Collider coll)
+    {
+        if (coll.gameObject.tag == "ennemi")
+        {
+            coll.gameObject.transform.position = new Vector3(coll.gameObject.transform.position.x, 3, coll.gameObject.transform.position.z);
 
+        }
+
+    }
 }

@@ -4,9 +4,13 @@ using System.Collections;
 public class TimeRain : MonoBehaviour {
 
     private int Degat;
+    private float tic;
     private float timebeforedeath;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        Degat = 2;
+        tic = 0;
         timebeforedeath = Time.time;
     }
 	
@@ -21,15 +25,16 @@ public class TimeRain : MonoBehaviour {
     {
         if(Coll.gameObject.tag=="ennemi" && tag != "FireRain")
         {
-            //Slow les ennemis
+            Coll.gameObject.GetComponent<SkeletonController>().speed=5f;
         }
-        if(Coll.gameObject.tag == "ennemi" && tag == "FireRain")
+        if (Coll.gameObject.tag == "ennemi" && tag == "FireRain" && Time.time > tic + 0.5f)
         {
-            //Reduit HP
+            Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - Degat;
+            tic = Time.time;
         }
-        if(Coll.gameObject.name== "Trait_Feu(Clone)")
+        if (Coll.gameObject.name== "Trait_Feu(Clone)")
         {
-            //Coll.gameObject.GetComponent<Velocity_Trait_Feu>().Degat = valeur_boostee;
+            Coll.gameObject.GetComponent<Velocity_Trait_Feu>().Degat = 15;
         }
     }
     public void OnTriggerStay(Collider Coll)
@@ -37,11 +42,12 @@ public class TimeRain : MonoBehaviour {
 
         if (Coll.gameObject.tag == "ennemi" && tag!="FireRain")
         {
-            //Slow les ennemis
+            Coll.gameObject.GetComponent<SkeletonController>().speed = 5f;
         }
-        if (Coll.gameObject.tag == "ennemi" && tag == "FireRain")
+        if (Coll.gameObject.tag == "ennemi" && tag == "FireRain" && Time.time > tic + 0.5f)
         {
-            //Reduit HP
+                Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton = Coll.gameObject.GetComponent<SkeletonController>().hpSkeleton - Degat;
+                tic = Time.time;
         }
         if (Coll.gameObject.tag == "ennemi" && tag == "Typhon")
         {
@@ -54,7 +60,18 @@ public class TimeRain : MonoBehaviour {
         }
         if (Coll.gameObject.name == "Trait_Feu(Clone)")
         {
-            //Coll.gameObject.GetComponent<Velocity_Trait_Feu>().Degat = valeur_boostee;
+            Coll.gameObject.GetComponent<Velocity_Trait_Feu>().Degat = 15;
+        }
+    }
+    public void OnTriggerExit(Collider coll)
+    {
+        if (coll.gameObject.tag == "ennemi" && tag != "FireRain")
+        {
+            coll.gameObject.GetComponent<SkeletonController>().speed = 10f;
+        }
+        if (coll.gameObject.name == "Trait_Feu(Clone)")
+        {
+            coll.gameObject.GetComponent<Velocity_Trait_Feu>().Degat = 10;
         }
     }
 }
