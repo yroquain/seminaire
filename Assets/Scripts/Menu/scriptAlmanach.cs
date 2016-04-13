@@ -20,9 +20,9 @@ public class scriptAlmanach : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if ((Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))&& this.gameObject.GetComponentsInChildren<Transform>().Length > 0)
-        {            
-            this.gameObject.SetActive(false);
+        {
             menuPause.SetActive(true);
+            this.gameObject.SetActive(false);
         }
 
         if (Input.GetAxis("Horizontal") > 0 && ((Time.time - timer) > 0.3f))

@@ -67,7 +67,7 @@ public class CanvasTuto : MonoBehaviour {
             ImgNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.05f * widthScreen, 0);
             ImgEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.05f * widthScreen, 0);
         }
-        else
+        else if (i<=7)
         {
             Text1 = GameObject.Find("Text" + i.ToString() + "_" + 1);
             Text2 = GameObject.Find("Text" + i.ToString() + "_" + 2);
@@ -83,6 +83,47 @@ public class CanvasTuto : MonoBehaviour {
             Text3.GetComponent<RectTransform>().position = new Vector3(.750f * widthScreen, 0.40f * widthScreen, 0);
             Img1.GetComponent<RectTransform>().position = new Vector3(.250f * widthScreen, 0.3f * widthScreen, 0);
             Img2.GetComponent<RectTransform>().position = new Vector3(.750f * widthScreen, 0.3f * widthScreen, 0);
+            TextNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.10f * widthScreen, 0);
+            TextEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.1f * widthScreen, 0);
+            ImgNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.05f * widthScreen, 0);
+            ImgEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.05f * widthScreen, 0);
+        }
+        else if (i < 12 && i!=10)
+        {
+            Text1 = GameObject.Find("Text" + i.ToString() + "_" + 1);
+            Img1 = GameObject.Find("Image" + i.ToString() + "_" + 1);
+            TextNext = GameObject.Find("TextNext");
+            TextEnd = GameObject.Find("TextEnd");
+            ImgNext = GameObject.Find("ImageNext");
+            ImgEnd = GameObject.Find("ImageEnd");
+            Text1.GetComponent<RectTransform>().position = new Vector3(.5f * widthScreen, 0.52f * widthScreen, 0);
+            Img1.GetComponent<RectTransform>().position = new Vector3(.5f * widthScreen, 0.3f * widthScreen, 0);
+            TextNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.10f * widthScreen, 0);
+            TextEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.1f * widthScreen, 0);
+            ImgNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.05f * widthScreen, 0);
+            ImgEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.05f * widthScreen, 0);
+        }
+        else if (i == 10)
+        {
+            Text1 = GameObject.Find("Text" + i.ToString() + "_" + 1);
+            TextNext = GameObject.Find("TextNext");
+            TextEnd = GameObject.Find("TextEnd");
+            ImgNext = GameObject.Find("ImageNext");
+            ImgEnd = GameObject.Find("ImageEnd");
+            Text1.GetComponent<RectTransform>().position = new Vector3(.5f * widthScreen, 0.52f * widthScreen, 0);
+            TextNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.10f * widthScreen, 0);
+            TextEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.1f * widthScreen, 0);
+            ImgNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.05f * widthScreen, 0);
+            ImgEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.05f * widthScreen, 0);
+        }
+        else
+        {
+            Text1 = GameObject.Find("Text" + i.ToString() + "_" + 1);
+            TextNext = GameObject.Find("TextNext");
+            TextEnd = GameObject.Find("TextEnd");
+            ImgNext = GameObject.Find("ImageNext");
+            ImgEnd = GameObject.Find("ImageEnd");
+            Text1.GetComponent<RectTransform>().position = new Vector3(.5f * widthScreen, 0.40f * widthScreen, 0);
             TextNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.10f * widthScreen, 0);
             TextEnd.GetComponent<RectTransform>().position = new Vector3(.1f * widthScreen, 0.1f * widthScreen, 0);
             ImgNext.GetComponent<RectTransform>().position = new Vector3(.90f * widthScreen, 0.05f * widthScreen, 0);

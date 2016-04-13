@@ -42,8 +42,6 @@ public class Giboule : MonoBehaviour
             float yRot = transform.rotation.eulerAngles.y;
             Vector3 forwardY = Quaternion.Euler(0.0f, yRot, 0.0f) * Vector3.forward;
             Vector3 forward = transform.forward;
-            Vector3 right = transform.right;
-            Vector3 up = transform.up;
             Quaternion rotation = Quaternion.identity;
 
             GameObject currentPrefabObject;

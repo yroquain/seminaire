@@ -50,6 +50,7 @@ public class PCTuto : MonoBehaviour
     public GameObject[] Tuto;
     private bool IsTutoActif;
     private int i;
+    public GameObject menuPause;
 
     // Use this for initialization
     void Start()
@@ -255,6 +256,12 @@ public class PCTuto : MonoBehaviour
             if (IsCasting)
             {
                 GetComponent<Animation>().Play("Combat_Mode_C");
+            }
+            if (Input.GetButtonDown("Pause") && !IsCasting)
+            {
+                IsMoving = false;
+                menuPause.SetActive(true);
+                GetComponent<PCTuto>().enabled = false;
             }
         }
     }

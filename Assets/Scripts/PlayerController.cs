@@ -365,8 +365,8 @@ public class PlayerController : NetworkBehaviour
             if(Input.GetKeyDown(KeyCode.J))
             {
                 IsCasting = true;
-            }*/
-
+            }
+            */
             //when casting spell 1
             if (Input.GetButtonDown("Sort 1") && !IsCasting && GameHasStarted)
             {

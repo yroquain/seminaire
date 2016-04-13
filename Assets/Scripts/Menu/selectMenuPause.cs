@@ -44,7 +44,15 @@ public class selectMenuPause : MonoBehaviour
         if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel"))
         {
             this.gameObject.SetActive(false);
-            GameObject.Find("LOCAL Player").GetComponent<PlayerController>().enabled = true;
+            GameObject Player = GameObject.Find("LOCAL Player");
+            if (Player != null)
+            {
+                GameObject.Find("LOCAL Player").GetComponent<PlayerController>().enabled = true;
+            }
+            else
+            {
+                GameObject.Find("MageTutorial").GetComponent<PCTuto>().enabled = true;
+            }
         }
 
         //on descend dans la liste
@@ -68,7 +76,15 @@ public class selectMenuPause : MonoBehaviour
             {
                 //reprendre
                 this.gameObject.SetActive(false);
-                GameObject.Find("LOCAL Player").GetComponent<PlayerController>().enabled = true;
+                GameObject Player = GameObject.Find("LOCAL Player");
+                if (Player != null)
+                {
+                    GameObject.Find("LOCAL Player").GetComponent<PlayerController>().enabled = true;
+                }
+                else
+                {
+                    GameObject.Find("MageTutorial").GetComponent<PCTuto>().enabled = true;
+                }
             } else if (selectingOption == 1){
 
                 Alamanach.SetActive(true);
@@ -76,7 +92,7 @@ public class selectMenuPause : MonoBehaviour
             }
             else
             {
-                //retour au menu principal
+                SceneManager.LoadScene(0);
             }
 
         }
