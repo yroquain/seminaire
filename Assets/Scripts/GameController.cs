@@ -16,12 +16,21 @@ public class GameController : NetworkBehaviour
     public string[] elements;
     public bool[] isAttacking;
     public bool[] isReady;
+    public GameObject Mage_offline_eau;
+    public GameObject Mage_offline_feu;
+    public GameObject Mage_offline_air;
+    public Material texture_air;
+    public Material texture_eau;
+    public Material texture_feu;
 
     private bool GameHasStarted;
 
 	// Use this for initialization
 	void Start ()
     {
+        Mage_offline_eau.transform.Find("Mage").GetComponent<Renderer>().material = texture_eau;
+        Mage_offline_feu.transform.Find("Mage").GetComponent<Renderer>().material = texture_feu;
+        Mage_offline_air.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
         GameHasStarted = false;
         isCasting = new bool[2];
         isCasting[0] = false;

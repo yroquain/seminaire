@@ -11,6 +11,15 @@ public class subCameraController : MonoBehaviour
     public AudioClip preBossMusic;
     public AudioClip bossMusic;
 
+    //Voices
+    public AudioClip Intro;
+    public AudioClip Preenigme1;
+    public AudioClip Postenigme1;
+    public AudioClip Preskelette;
+    public AudioClip enigme2;
+    public AudioClip AvantBoss;
+    public AudioClip Boss;
+
     public AnimationClip introAnim;
     public AnimationClip enigm1Anim;
     public AnimationClip skeletonAnim;
@@ -35,7 +44,8 @@ public class subCameraController : MonoBehaviour
         {
             case "intro":
                 music = introMusic;
-                AudioSource.PlayClipAtPoint(music, transform.position, 0.1f);
+                AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 0.15f);
+                AudioSource.PlayClipAtPoint(Intro, GameObject.Find("LOCAL Player").transform.position, 1f);
                 break;
 
             case "ambiance":

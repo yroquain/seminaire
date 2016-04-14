@@ -9,6 +9,7 @@ public class SubCamAnimIntro : MonoBehaviour
     public GameObject MainCamera;
     public GameObject SubCamera;
     public bool skip;
+    public GameObject AmbiantSound;
 
     /* à ajouter aux autres triggers
     private bool isEnigm1EventPassed;
@@ -47,10 +48,11 @@ public class SubCamAnimIntro : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.name == "LOCAL Player")
+        if (col.gameObject.name == "LOCAL Player" || col.gameObject.name == "Mage(Clone)")
         {
             if (!Once)
             {
+                col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
                 timer = Time.time;
@@ -60,9 +62,11 @@ public class SubCamAnimIntro : MonoBehaviour
 
             }
 
-            if (Time.time - timer > 15.0f && !skip)
+            if (Time.time - timer > 32.0f && !skip)
             {
+                col.GetComponent<PlayerController>().IsUnderCine = false;
                 SubCamera.SetActive(false);
+                AmbiantSound.SetActive(true);
                 Destroy(gameObject);
             }
         }

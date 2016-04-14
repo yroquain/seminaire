@@ -84,6 +84,7 @@ public class PlayerController : NetworkBehaviour
     private GameObject ReadyText;
     private float refresh;
     private float WaitBeforeReady;
+    public bool IsUnderCine;
 
     //camera and trigger animation
     public GameObject MainCamera; //camera for players
@@ -94,6 +95,7 @@ public class PlayerController : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        IsUnderCine = false;
         WaitBeforeReady = Time.time;
         numeroJoueur = 1;
         if (GameObject.Find("Mage(Clone)") == null && this.gameObject.name == "LOCAL Player")
@@ -288,7 +290,7 @@ public class PlayerController : NetworkBehaviour
 
 
             //When Moving
-            if (Input.GetAxis("Vertical") != 0)
+            if (Input.GetAxis("Vertical") != 0 && !IsUnderCine)
             {
                 if (!IsAttacking && !IsCasting)
                 {
@@ -301,7 +303,7 @@ public class PlayerController : NetworkBehaviour
                 IsMoving = false;
             }
 
-            if (Input.GetAxis("Straffe") != 0 && !IsAttacking && !IsCasting)
+            if (Input.GetAxis("Straffe") != 0 && !IsAttacking && !IsCasting && !IsUnderCine)
             {
 
                 transform.Translate(Input.GetAxis("Straffe") * Time.deltaTime * movementSpeed, 0, 0);
@@ -309,7 +311,7 @@ public class PlayerController : NetworkBehaviour
             }
 
             //When Attacking
-            if (Input.GetButtonDown("Frapper") && !IsJumping)
+            if (Input.GetButtonDown("Frapper") && !IsJumping && !IsUnderCine)
             {
                 Attackelapsed = Time.time;
                 CmdIsAttacking(numeroJoueur, true);
@@ -325,7 +327,7 @@ public class PlayerController : NetworkBehaviour
 
 
             //Rotating
-            if (Input.GetAxis("Horizontal") != 0 && !IsAttacking)
+            if (Input.GetAxis("Horizontal") != 0 && !IsAttacking && !IsUnderCine)
             {
                 rotate += Input.GetAxis("Horizontal") * 2;
                 qTo = Quaternion.Euler(0.0f, rotate, 0.0f);
@@ -349,7 +351,7 @@ public class PlayerController : NetworkBehaviour
                 IsWalking = !IsWalking;
             }
 
-            if (Input.GetButtonDown("Pause") && !IsCasting)
+            if (Input.GetButtonDown("Pause") && !IsCasting && !IsUnderCine)
             {
                 IsMoving = false;
                 CanvasJoueur.GetComponent<scriptHUD>().showMenuPause();
@@ -368,7 +370,7 @@ public class PlayerController : NetworkBehaviour
             }
             */
             //when casting spell 1
-            if (Input.GetButtonDown("Sort 1") && !IsCasting && GameHasStarted)
+            if (Input.GetButtonDown("Sort 1") && !IsCasting && GameHasStarted && Time.time>WaitBeforeReady + 6f && !IsUnderCine)
             {
                 if (Input.GetAxis("KeepSpell") > 0.9)
                 {
@@ -378,7 +380,7 @@ public class PlayerController : NetworkBehaviour
             }
 
             //when casting spell 2
-            if (Input.GetButtonDown("Sort 2") && !IsCasting && GameHasStarted)
+            if (Input.GetButtonDown("Sort 2") && !IsCasting && GameHasStarted && !IsUnderCine)
             {
 
                 if (Input.GetAxis("KeepSpell") > 0.9)
@@ -387,7 +389,7 @@ public class PlayerController : NetworkBehaviour
                 }
                 this.GetComponent<Sorts_simple>().CastSpell(2);
             }
-            if (Input.GetButtonDown("SwitchMage") && GameHasStarted)
+            if (Input.GetButtonDown("SwitchMage") && GameHasStarted && !IsUnderCine)
             {
                 if (CDsort1 == 0 && CDsort2 == 0 && !IsImmolating && !IsEole)
                 {
