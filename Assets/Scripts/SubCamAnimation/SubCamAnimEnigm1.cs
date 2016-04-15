@@ -21,10 +21,12 @@ public class SubCamAnimEnigm1 : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("EscapeAnimation"))
+        if (Input.GetButtonDown("EscapeAnimation") && Once)
         {
             skip = true;
             SubCamera.SetActive(false);
+            GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = false;
+            Destroy(GameObject.Find("One shot audio"));
             Destroy(gameObject);
         }
     }

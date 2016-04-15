@@ -10,18 +10,32 @@ public class Plateforme1 : MonoBehaviour {
     private float speed = 1f;
     public Material texture_depart;
     public Material texture_finale;
+    private bool IsCompleted;
     public bool IsDeadly;
     // Use this for initialization
     void Start () {
         GetComponent<Renderer>().material = texture_depart;
         IsDeadly = true;
+        IsCompleted = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Trigger.GetComponent<Script1>().IsCompleted)
+        if (GameObject.Find("Trigger1") != null)
         {
-            float step = speed * Time.deltaTime;
+            if (Trigger.GetComponent<Script1>().IsCompleted)
+            {
+                IsCompleted = true;
+            }
+        }
+        else
+        {
+            speed = 10f;
+        }
+        if(IsCompleted)
+        {
+
+            float step = speed * Time.deltaTime / 5;
             transform.position = Vector3.MoveTowards(startMarker.position, endMarker.position, step);
         }
     }

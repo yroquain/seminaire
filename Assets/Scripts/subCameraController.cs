@@ -54,8 +54,8 @@ public class subCameraController : MonoBehaviour
                 break;
 
             case "battle":
-                music = battleMusic;
-                AudioSource.PlayClipAtPoint(music, transform.position, 0.1f);
+                music = Preskelette;
+                AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 1f);
                 break;
 
             case "preBoss":
@@ -70,6 +70,11 @@ public class subCameraController : MonoBehaviour
 
             case "enigme1":
                 music = Preenigme1;
+                AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 1f);
+                break;
+
+            case "Postenigme1":
+                music = Postenigme1;
                 AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 1f);
                 break;
 
