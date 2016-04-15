@@ -68,6 +68,11 @@ public class subCameraController : MonoBehaviour
                 AudioSource.PlayClipAtPoint(music, transform.position, 0.1f);
                 break;
 
+            case "enigme1":
+                music = Preenigme1;
+                AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 1f);
+                break;
+
             default:
                 break;
         }

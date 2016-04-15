@@ -1,15 +1,62 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SubCamAnimEnigm1 : MonoBehaviour {
+public class SubCamAnimEnigm1 : MonoBehaviour
+{
+    private bool isIntroPassed;
+    private bool Once;
+    private float timer;
+    public GameObject MainCamera;
+    public GameObject SubCamera;
+    public bool skip;
+    // Use this for initialization
+    void Start()
+    {
+        isIntroPassed = false;
+        timer = 0.0f;
+        skip = false;
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetButtonDown("EscapeAnimation"))
+        {
+            skip = true;
+            SubCamera.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
+    void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.name == "LOCAL Player" || col.gameObject.name == "Mage(Clone)")
+        {
+            if (!Once)
+            {
+                col.GetComponent<PlayerController>().IsUnderCine = true;
+                MainCamera = GameObject.Find("Main Camera");
+                SubCamera.SetActive(true);
+                SubCamera.GetComponent<Animation>().enabled = false;
+                SubCamera.GetComponent<Animator>().enabled = false;
+                timer = Time.time;
+                SubCamera.GetComponent<subCameraController>().changeMusic("enigme1");
+                SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
+                SubCamera.transform.position = new Vector3(-190f, 7.4f, -363.5f);
+                SubCamera.transform.rotation = Quaternion.Euler(25, 90, 0);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -366f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-179.84f, 0.5f, -366f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-183.72f, 0.5f, -366f);
+                Once = true;
+
+            }
+
+            if (Time.time - timer > 29.4f && !skip)
+            {
+                col.GetComponent<PlayerController>().IsUnderCine = false;
+                SubCamera.SetActive(false);
+                Destroy(gameObject);
+            }
+        }
+    }
 }
