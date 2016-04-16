@@ -8,6 +8,7 @@ public class SubCamAnimEnigm1 : MonoBehaviour
     private float timer;
     public GameObject MainCamera;
     public GameObject SubCamera;
+    private GameObject CanvasJoueur;
     public bool skip;
     // Use this for initialization
     void Start()
@@ -21,10 +22,13 @@ public class SubCamAnimEnigm1 : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("EscapeAnimation"))
+        if (Input.GetButtonDown("EscapeAnimation") && Once)
         {
             skip = true;
+            CanvasJoueur.SetActive(true);
             SubCamera.SetActive(false);
+            GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = false;
+            Destroy(GameObject.Find("One shot audio"));
             Destroy(gameObject);
         }
     }
@@ -34,6 +38,8 @@ public class SubCamAnimEnigm1 : MonoBehaviour
         {
             if (!Once)
             {
+                CanvasJoueur = GameObject.Find("CanvasJ1(Clone)");
+                CanvasJoueur.SetActive(false);
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
@@ -53,6 +59,7 @@ public class SubCamAnimEnigm1 : MonoBehaviour
 
             if (Time.time - timer > 29.4f && !skip)
             {
+                CanvasJoueur.SetActive(true);
                 col.GetComponent<PlayerController>().IsUnderCine = false;
                 SubCamera.SetActive(false);
                 Destroy(gameObject);

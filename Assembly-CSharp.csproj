@@ -70,7 +70,6 @@
      <Compile Include="Assets\Scripts\HUD\scriptHUD.cs" />
      <Compile Include="Assets\Scripts\LavaMovement.cs" />
      <Compile Include="Assets\Scripts\Menu\LoadScenesMenu.cs" />
-     <Compile Include="Assets\Scripts\Menu\menuPauseScript.cs" />
      <Compile Include="Assets\Scripts\Menu\positionMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\scriptAlmanach.cs" />
      <Compile Include="Assets\Scripts\Menu\selectMenu.cs" />
@@ -80,6 +79,7 @@
      <Compile Include="Assets\Scripts\Plateforme1.cs" />
      <Compile Include="Assets\Scripts\PlateformePlacement.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PreGame.cs" />
      <Compile Include="Assets\Scripts\Script1.cs" />
      <Compile Include="Assets\Scripts\SkeletonController.cs" />
      <Compile Include="Assets\Scripts\Spells\FireBaseScript.cs" />
@@ -101,9 +101,15 @@
      <Compile Include="Assets\Scripts\Spells\TraitFeu.cs" />
      <Compile Include="Assets\Scripts\Spells\Velocity_Trait_Feu.cs" />
      <Compile Include="Assets\Scripts\Spells\Wave.cs" />
+     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm1.cs" />
+     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm2.cs" />
+     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimIntro.cs" />
+     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimPreBoss.cs" />
+     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimSkeleton.cs" />
      <Compile Include="Assets\Scripts\TriggerEnigme2.cs" />
      <Compile Include="Assets\Scripts\TriggerInstensifes.cs" />
      <Compile Include="Assets\Scripts\Tutorial\CanvaTuto.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\CanvasTuto.cs" />
      <Compile Include="Assets\Scripts\Tutorial\MageBourrasqueInfernale.cs" />
      <Compile Include="Assets\Scripts\Tutorial\MageChocAqua.cs" />
      <Compile Include="Assets\Scripts\Tutorial\MagePluieDivine.cs" />
@@ -114,6 +120,7 @@
      <Compile Include="Assets\Scripts\Tutorial\TriggerEnter.cs" />
      <Compile Include="Assets\Scripts\WallDestruction.cs" />
      <Compile Include="Assets\Scripts\WindWall.cs" />
+     <Compile Include="Assets\Scripts\boss\Script_MageRenegat.cs" />
      <Compile Include="Assets\Scripts\cameraController.cs" />
      <Compile Include="Assets\Scripts\playerChoixElement.cs" />
      <Compile Include="Assets\Scripts\subCameraController.cs" />

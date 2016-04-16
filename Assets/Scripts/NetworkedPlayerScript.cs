@@ -114,6 +114,8 @@ public class NetworkedPlayerScript : NetworkBehaviour
         {
             myPlayer.transform.position = new Vector3(4, -0.79f, -450);
         }
+        this.GetComponent<PlayerController>().qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        this.GetComponent<PlayerController>().rotate = 0.0f;
     }
     [ClientRpc]
     public void RpcChangerTenue(string newTag, GameObject myPlayer)

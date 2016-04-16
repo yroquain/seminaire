@@ -5,11 +5,14 @@ public class SubCamAnimIntro : MonoBehaviour
 {
     private bool isIntroPassed;
     private bool Once;
+    private bool Twice;
     private float timer;
+    private float timer2;
     public GameObject MainCamera;
     public GameObject SubCamera;
     public bool skip;
     public GameObject AmbiantSound;
+    private GameObject CanvasJoueur;
 
     /* à ajouter aux autres triggers
     private bool isEnigm1EventPassed;
@@ -22,6 +25,7 @@ public class SubCamAnimIntro : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Twice = false;
         isIntroPassed = false;
         timer = 0.0f;
         skip = false;
@@ -37,11 +41,30 @@ public class SubCamAnimIntro : MonoBehaviour
     void Update()
     {
        // if(Input.GetButtonDown("Pause"))
-        if (Input.GetButtonDown("EscapeAnimation"))
+        if (Input.GetButtonDown("EscapeAnimation") && Once)
         {
             skip = true;
-            SubCamera.SetActive(false);
-            Destroy(gameObject);
+
+        }
+        if(skip)
+        {
+            if (!Twice)
+            {
+                timer2 = Time.time;
+                Twice = true;
+            }
+            if (GameObject.Find("One shot audio") != null)
+            {
+                Destroy(GameObject.Find("One shot audio"));
+            }
+            if (Time.time > timer2 + 0.2f)
+            {
+                CanvasJoueur.SetActive(true);
+                SubCamera.SetActive(false);
+                AmbiantSound.SetActive(true);
+                GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = false;
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -52,6 +75,8 @@ public class SubCamAnimIntro : MonoBehaviour
         {
             if (!Once)
             {
+                CanvasJoueur = GameObject.Find("CanvasJ1(Clone)");
+                CanvasJoueur.SetActive(false);
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
@@ -64,6 +89,7 @@ public class SubCamAnimIntro : MonoBehaviour
 
             if (Time.time - timer > 32.0f && !skip)
             {
+                CanvasJoueur.SetActive(true);
                 col.GetComponent<PlayerController>().IsUnderCine = false;
                 SubCamera.SetActive(false);
                 AmbiantSound.SetActive(true);

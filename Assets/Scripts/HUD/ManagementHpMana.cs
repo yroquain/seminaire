@@ -22,7 +22,7 @@ public class ManagementHpMana : NetworkBehaviour
     private float maxMana=100f;
     private float recupmana;
 
-    private int numeroJoueur;
+    public int numeroJoueur;
 
     //HP
     private float curHP;

@@ -10,13 +10,13 @@ public class SkeletonController : MonoBehaviour {
     private bool IsWalking;
     private bool IsJumping;
     private bool IsCasting;
-    private bool IsActivate;
+    public bool IsActivate;
     private bool IsDead;
     private Animator anim;
     private float Attackelapsed;
 
     public int hpSkeleton;
-    private GameObject playerLocal;
+    private GameObject playerTarget;
     public int joueurAttack;
 
 
@@ -36,9 +36,7 @@ public class SkeletonController : MonoBehaviour {
         IsMoving = false;
         IsJumping = false;
         IsWalking = false;
-        IsCasting = false;
-        IsActivate = true;
-        
+        IsCasting = false;      
 	}
 	
 	// Update is called once per frame
@@ -47,11 +45,20 @@ public class SkeletonController : MonoBehaviour {
         {
             isDead();
         }
-        if (playerLocal == null)
+        if (!IsActivate&&GameObject.Find("triggerSkeletonAnim") == null)
         {
-            if (GameObject.Find("LOCAL Player") != null)
+            IsActivate = true;
+        }
+        if (IsActivate && playerTarget == null)
+        {
+            if (GameObject.Find("LOCAL Player").GetComponent<ManagementHpMana>().numeroJoueur == joueurAttack)
             {
-                playerLocal = GameObject.Find("LOCAL Player").gameObject;
+                playerTarget = GameObject.Find("LOCAL Player").gameObject;
+            }
+
+            if (GameObject.Find("Mage(Clone)").GetComponent<ManagementHpMana>().numeroJoueur == joueurAttack)
+            {
+                playerTarget = GameObject.Find("Mage(Clone)").gameObject;
             }
         }
         else if (IsActivate && !IsDead)
@@ -63,29 +70,29 @@ public class SkeletonController : MonoBehaviour {
                 IsAttacking = false;
             }
 
-            float difX = (playerLocal.transform.position.x - this.gameObject.transform.position.x) * (playerLocal.transform.position.x - this.gameObject.transform.position.x);
-            float difZ = (playerLocal.transform.position.z - this.gameObject.transform.position.z) * (playerLocal.transform.position.z - this.gameObject.transform.position.z);
+            float difX = (playerTarget.transform.position.x - this.gameObject.transform.position.x) * (playerTarget.transform.position.x - this.gameObject.transform.position.x);
+            float difZ = (playerTarget.transform.position.z - this.gameObject.transform.position.z) * (playerTarget.transform.position.z - this.gameObject.transform.position.z);
             if (difZ < 4 && difX < 4)
             {
                 IsMoving = false;
             }
 
             int directionZ = 0;
-            if(playerLocal.transform.position.z > this.gameObject.transform.position.z && difZ > 4)
+            if (playerTarget.transform.position.z > this.gameObject.transform.position.z && difZ > 4)
             {
                 directionZ = -1;
             }
-            if (playerLocal.transform.position.z < this.gameObject.transform.position.z && difZ > 4)
+            if (playerTarget.transform.position.z < this.gameObject.transform.position.z && difZ > 4)
             {
                 directionZ = 1;
             }
 
             int directionX = 0;
-            if (playerLocal.transform.position.x > this.gameObject.transform.position.x && difX > 4)
+            if (playerTarget.transform.position.x > this.gameObject.transform.position.x && difX > 4)
             {
                 directionX = -1;
             }
-            if (playerLocal.transform.position.x < this.gameObject.transform.position.x && difX > 4)
+            if (playerTarget.transform.position.x < this.gameObject.transform.position.x && difX > 4)
             {
                 directionX = 1;
             }
@@ -99,7 +106,7 @@ public class SkeletonController : MonoBehaviour {
 
 
             //Rotating
-             Vector3 relativePos = playerLocal.transform.position - this.transform.position;
+            Vector3 relativePos = playerTarget.transform.position - this.transform.position;
              Quaternion rotation = Quaternion.LookRotation(relativePos);
              transform.rotation = rotation;
 

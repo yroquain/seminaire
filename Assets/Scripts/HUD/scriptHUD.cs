@@ -41,19 +41,19 @@ public class scriptHUD : MonoBehaviour {
             GameObject.Find("Sort1").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.047f, widthScreen * 0.047f);
 
             GameObject.Find("BackgroundTextSort1").GetComponent<RectTransform>().position = new Vector3(.485f * widthScreen, 0.054f * widthScreen, 0);
-            GameObject.Find("BackgroundTextSort1").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.01667f, widthScreen * 0.01f);
+            GameObject.Find("BackgroundTextSort1").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.01667f * 1.5f, widthScreen * 0.015f);
 
             GameObject.Find("TextSort1").GetComponent<RectTransform>().position = new Vector3(.485f * widthScreen, 0.0595f * widthScreen, 0);
-            GameObject.Find("TextSort1").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.01667f, widthScreen * 0.01f);
+            GameObject.Find("TextSort1").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen  * 0.03334f, widthScreen * 0.02f);
         
             GameObject.Find("Sort2").GetComponent<RectTransform>().position = new Vector3(.531f * widthScreen, 0.055f * widthScreen, 0);
             GameObject.Find("Sort2").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.047f, widthScreen * 0.047f);
 
             GameObject.Find("BackgroundTextSort2").GetComponent<RectTransform>().position = new Vector3(.5471f * widthScreen, 0.054f * widthScreen, 0);
-            GameObject.Find("BackgroundTextSort2").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.01667f, widthScreen * 0.01f);
+            GameObject.Find("BackgroundTextSort2").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.01667f * 1.5f, widthScreen * 0.015f);
 
             GameObject.Find("TextSort2").GetComponent<RectTransform>().position = new Vector3(.5471f * widthScreen, 0.0595f * widthScreen, 0);
-            GameObject.Find("TextSort2").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.01667f, widthScreen * 0.01f);
+            GameObject.Find("TextSort2").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.03334f, widthScreen * 0.02f);
 
             GameObject.Find("Health1").GetComponent<RectTransform>().position = new Vector3(0.5f * widthScreen, 0.035f * widthScreen, 0);
             GameObject.Find("Health1").GetComponent<RectTransform>().sizeDelta = new Vector2(widthScreen * 0.156f, widthScreen * 0.012f);
