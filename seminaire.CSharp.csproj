@@ -136,6 +136,7 @@
     <Compile Include="Assets\Scripts\TriggerEnigme2.cs" />
     <Compile Include="Assets\Scripts\TriggerInstensifes.cs" />
     <Compile Include="Assets\Scripts\Tutorial\CanvaTuto.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\CanvasTuto.cs" />
     <Compile Include="Assets\Scripts\Tutorial\MageBourrasqueInfernale.cs" />
     <Compile Include="Assets\Scripts\Tutorial\MageChocAqua.cs" />
     <Compile Include="Assets\Scripts\Tutorial\MagePluieDivine.cs" />
