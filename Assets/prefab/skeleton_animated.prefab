@@ -2119,7 +2119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf28d83da3779a5449c11218328c7a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  IsActivate: 0
+  hpSkeleton: 10
+  joueurAttack: 0
+  speed: 10
 --- !u!114 &11440744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2274,6 +2277,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Epee
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hpSkeleton
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
