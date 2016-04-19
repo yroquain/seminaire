@@ -147,6 +147,7 @@
     <Compile Include="Assets\Scripts\Tutorial\TriggerEnter.cs" />
     <Compile Include="Assets\Scripts\WallDestruction.cs" />
     <Compile Include="Assets\Scripts\WindWall.cs" />
+    <Compile Include="Assets\Scripts\boss\Script_MageRenegat.cs" />
     <Compile Include="Assets\Scripts\cameraController.cs" />
     <Compile Include="Assets\Scripts\playerChoixElement.cs" />
     <Compile Include="Assets\Scripts\subCameraController.cs" />
