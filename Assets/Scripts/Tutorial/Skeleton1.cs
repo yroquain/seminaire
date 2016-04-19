@@ -53,7 +53,7 @@ public class Skeleton1 : MonoBehaviour {
     }
     public void OnTriggerEnter(Collider Collide)
     {
-        if (Collide.gameObject.name != "Cube" && !IsDying)
+        if (Collide.gameObject.name != "Cube (4)" && Collide.gameObject.name != "Cube (26)" && Collide.gameObject.name != "Cube (70)" && Collide.gameObject.name != "Cube (9)" && !IsDying)
         {
             if ((transform.rotation.eulerAngles.y > 180.0f + diffQat - 0.2f && transform.rotation.eulerAngles.y < 180.0f + diffQat + 0.2f))
             {
