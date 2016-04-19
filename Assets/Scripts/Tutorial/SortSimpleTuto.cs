@@ -135,7 +135,6 @@ public class SortSimpleTuto : MonoBehaviour {
                     feu1 = Time.time;
                     gameObject.GetComponent<PCTuto>().CDsort1 = 1;
                     gameObject.GetComponent<PCTuto>().finCDsort1 = Time.time;
-                    GameObject player = GameObject.FindGameObjectWithTag("Mage_Feu");
                     Vector3 position = new Vector3(transform.position.x + transform.forward.x * 2,
                         transform.position.y + 2,
                         transform.position.z + transform.forward.z * 2);

@@ -11,7 +11,7 @@ public class HealthBar : NetworkBehaviour
     public static HealthBar HPBar;
     public static int score;
 
-    private int bestScore = 0;
+    //private int bestScore = 0;
     public static GameState gameState;
 
     float curHP = 100.0f;
@@ -22,7 +22,7 @@ public class HealthBar : NetworkBehaviour
     public int HpBarX = 160;
     public int HpBarY = 10;
     public int HpBarHeight = 15;*/
-    float PercentOfHP;
+    //float PercentOfHP;
 
     void Awake()
     {
@@ -96,7 +96,7 @@ public class HealthBar : NetworkBehaviour
             curHP = maxHP;
         }
 
-        PercentOfHP = curHP / maxHP;
+        //PercentOfHP = curHP / maxHP;
         //HpBarLenght = PercentOfHP * 130;
 
         //if hp = 0

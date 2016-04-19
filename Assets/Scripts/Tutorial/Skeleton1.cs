@@ -19,6 +19,7 @@ public class Skeleton1 : MonoBehaviour {
         if(IsDying)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 4, transform.position.z), Time.deltaTime/3);
+            GetComponent<BoxCollider>().enabled = false;
         }
 	    if(Time.time> timeDying+1.8f)
         {
@@ -37,11 +38,12 @@ public class Skeleton1 : MonoBehaviour {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, 180.0f + diffQat, 0.0f), Time.deltaTime * 50f * 2);
             GetComponent<Animation>().Play("Idle");
             Isstanding = false;
+            GetComponent<BoxCollider>().enabled = true;
         }
 	}
     public void OnCollisionEnter(Collision Collide)
     {
-        if(Collide.gameObject.name!="Cube" && !IsDying)
+        if (Collide.gameObject.name != "Cube (4)" && Collide.gameObject.name != "Cube (26)" && Collide.gameObject.name != "Cube (70)" && Collide.gameObject.name != "Cube (9)" && !IsDying)
         {
             if ((transform.rotation.eulerAngles.y> 180.0f + diffQat-0.2f && transform.rotation.eulerAngles.y < 180.0f + diffQat + 0.2f ))
             {
@@ -53,7 +55,7 @@ public class Skeleton1 : MonoBehaviour {
     }
     public void OnTriggerEnter(Collider Collide)
     {
-        if (Collide.gameObject.name != "Cube" && !IsDying)
+        if (Collide.gameObject.name != "Cube (4)" && Collide.gameObject.name != "Cube (26)" && Collide.gameObject.name != "Cube (70)" && Collide.gameObject.name != "Cube (9)" && !IsDying)
         {
             if ((transform.rotation.eulerAngles.y > 180.0f + diffQat - 0.2f && transform.rotation.eulerAngles.y < 180.0f + diffQat + 0.2f))
             {

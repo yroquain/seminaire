@@ -19,9 +19,6 @@ public class FireProjectileScript : FireBaseScript, ICollisionHandler
     [Tooltip("The collider object to use for collision and physics.")]
     public GameObject ProjectileColliderObject;
 
-    [Tooltip("The sound to play upon collision.")]
-    public AudioSource ProjectileCollisionSound;
-
     [Tooltip("The particle system to play upon collision.")]
     public ParticleSystem ProjectileExplosionParticleSystem;
 
@@ -104,12 +101,7 @@ public class FireProjectileScript : FireBaseScript, ICollisionHandler
                 GameObject.Destroy(p, 0.1f);
             }
         }
-
-        // play collision sound
-        if (ProjectileCollisionSound != null)
-        {
-            ProjectileCollisionSound.Play();
-        }
+        
 
         // if we have contacts, play the collision particle system and call the delegate
         if (c.contacts.Length != 0)
