@@ -14,6 +14,8 @@ public class TriggerEnter : MonoBehaviour
     public GameObject Sort1;
     public GameObject Sort2;
     public GameObject Image;
+    public GameObject TextSort1;
+    public GameObject TextSort2;
 
     public Material mage;
     // Use this for initialization
@@ -48,14 +50,20 @@ public class TriggerEnter : MonoBehaviour
             if (collide.gameObject.transform.position.x < -34)
             {
                 collide.gameObject.tag = "Mage_Feu";
+                TextSort1.GetComponent<Text>().text = "50";
+                TextSort2.GetComponent<Text>().text = "10";
             }
             else if (collide.gameObject.transform.position.x > -30)
             {
                 collide.gameObject.tag = "Mage_Air";
+                TextSort1.GetComponent<Text>().text = "15";
+                TextSort2.GetComponent<Text>().text = "30";
             }
             else
             {
                 collide.gameObject.tag = "Mage_Eau";
+                TextSort1.GetComponent<Text>().text = "30";
+                TextSort2.GetComponent<Text>().text = "50";
             }
             collide.gameObject.transform.Find("Mage").GetComponent<Renderer>().material = mage;
             Sort1.GetComponent<Image>().sprite = sort1Image;

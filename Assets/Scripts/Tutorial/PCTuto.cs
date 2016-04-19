@@ -48,8 +48,8 @@ public class PCTuto : MonoBehaviour
     public float finCDsort2;
     public Material mage;
     public GameObject[] Tuto;
-    private bool IsTutoActif;
-    private int i;
+    public bool IsTutoActif;
+    public int i;
     public GameObject menuPause;
 
     // Use this for initialization
@@ -221,8 +221,8 @@ public class PCTuto : MonoBehaviour
             {
                 IsCasting = false;
             }
-
-            /*if (Input.GetKeyDown(KeyCode.J))
+/*
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 IsCasting = true;
             }*/
