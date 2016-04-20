@@ -142,6 +142,7 @@
     <Compile Include="Assets\Scripts\Tutorial\MagePluieDivine.cs" />
     <Compile Include="Assets\Scripts\Tutorial\MageTraitdeFeu.cs" />
     <Compile Include="Assets\Scripts\Tutorial\PCTuto.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\SelectMenuPauseTuto.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Skeleton1.cs" />
     <Compile Include="Assets\Scripts\Tutorial\SortSimpleTuto.cs" />
     <Compile Include="Assets\Scripts\Tutorial\TriggerEnter.cs" />
