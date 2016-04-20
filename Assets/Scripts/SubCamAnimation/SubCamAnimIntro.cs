@@ -14,6 +14,10 @@ public class SubCamAnimIntro : MonoBehaviour
     public GameObject AmbiantSound;
     private GameObject CanvasJoueur;
 
+    public GameObject mageAir;
+    public GameObject mageEau;
+    public GameObject mageFeu;
+
     /* à ajouter aux autres triggers
     private bool isEnigm1EventPassed;
     private bool isEnigm2EventPassed;
@@ -83,6 +87,7 @@ public class SubCamAnimIntro : MonoBehaviour
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("intro");
                 SubCamera.GetComponent<subCameraController>().playAnimation("intro");
+                mageFeu.GetComponent<MageCinematique>().moveMage(0f,1f,3f);
                 Once = true;
 
             }
