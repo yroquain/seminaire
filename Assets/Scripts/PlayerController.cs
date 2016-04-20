@@ -334,7 +334,7 @@ public class PlayerController : NetworkBehaviour
             }
 
 
-
+            
             transform.rotation = Quaternion.RotateTowards(transform.rotation, qTo, Time.deltaTime * speed * 2);
 
             //Switching between running and walking
