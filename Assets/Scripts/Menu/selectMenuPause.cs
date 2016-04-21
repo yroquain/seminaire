@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class selectMenuPause : MonoBehaviour
 {
@@ -94,6 +95,7 @@ public class selectMenuPause : MonoBehaviour
             {
                 
                 Network.Disconnect();
+                GameObject.Find("networkManager").GetComponent<NetworkManager>().StopHost();
                 MasterServer.UnregisterHost();
                 SceneManager.LoadScene(0);
             }

@@ -26,6 +26,9 @@ TagManager:
   - TornadeEnflammee
   - Typhon
   - Epee
+  - test
+  - ennemi
+  - teleport
   layers:
   - Default
   - TransparentFX

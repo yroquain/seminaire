@@ -43,7 +43,7 @@ public class ManagementHpMana : NetworkBehaviour
 	// Use this for initialization
 	void Start () {
         numeroJoueur = 0;
-        if (GameObject.Find("Mage(Clone)") != null && this.gameObject.name == "LOCAL Player")
+        if (GameObject.Find("Mage(Clone)") != null)
         {
             numeroJoueur = 1;
         }

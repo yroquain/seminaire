@@ -102,7 +102,7 @@ public class PlayerController : NetworkBehaviour
         {
             numeroJoueur = 0;
         }
-        GameHasStarted = false;
+        GameHasStarted = false; 
         IsImmolating = false;
         IsUnderAnimation = false;
         IsAttacking = false;
@@ -437,6 +437,14 @@ public class PlayerController : NetworkBehaviour
     public void CmdIsReadyRefresh(int numeroJoueur, bool ready)
     {
         this.GetComponent<NetworkedPlayerScript>().RpcIsReadyRefresh(numeroJoueur, ready);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "teleport")
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z +25);
+        }
     }
 
     void OnCollisionEnter(Collision col)

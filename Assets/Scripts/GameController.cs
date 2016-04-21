@@ -100,7 +100,10 @@ public class GameController : NetworkBehaviour
     {
         return this.manaMax[_numberPlayer];
     }
-
+    public bool getIsAttacking(int _numberPlayer)
+    {
+        return this.isAttacking[_numberPlayer];
+    }
    
     public bool getTwoTriggerActivate(){
         if (this.isActivate[0] && this.isActivate[1])

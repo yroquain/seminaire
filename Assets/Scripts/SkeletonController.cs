@@ -12,6 +12,7 @@ public class SkeletonController : MonoBehaviour {
     private bool IsCasting;
     public bool IsActivate;
     private bool IsDead;
+    private float timerDead;
     private Animator anim;
     private float Attackelapsed;
 
@@ -32,6 +33,7 @@ public class SkeletonController : MonoBehaviour {
         anim = GetComponent<Animator>();
         IsAttacking = false;
         Attackelapsed = 0f;
+        timerDead = 0f;
         IsDead = false;
         IsMoving = false;
         IsJumping = false;
@@ -44,6 +46,15 @@ public class SkeletonController : MonoBehaviour {
         if(hpSkeleton<=0)
         {
             isDead();
+        }
+        if (IsDead)
+        {
+            timerDead += Time.deltaTime;
+            if (timerDead > 5)
+            {
+                Destroy(this.gameObject);
+                
+            }
         }
         if (!IsActivate&&GameObject.Find("triggerSkeletonAnim") == null)
         {
@@ -77,38 +88,16 @@ public class SkeletonController : MonoBehaviour {
                 IsMoving = false;
             }
 
-            int directionZ = 0;
-            if (playerTarget.transform.position.z > this.gameObject.transform.position.z && difZ > 4)
-            {
-                directionZ = -1;
-            }
-            if (playerTarget.transform.position.z < this.gameObject.transform.position.z && difZ > 4)
-            {
-                directionZ = 1;
-            }
-
-            int directionX = 0;
-            if (playerTarget.transform.position.x > this.gameObject.transform.position.x && difX > 4)
-            {
-                directionX = -1;
-            }
-            if (playerTarget.transform.position.x < this.gameObject.transform.position.x && difX > 4)
-            {
-                directionX = 1;
-            }
-
+            //Rotating
+            Vector3 relativePos = playerTarget.transform.position - this.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
 
             if (!IsAttacking && !IsCasting)
             {
-                transform.Translate(directionX * Time.deltaTime * speed, 0, directionZ * Time.deltaTime * speed);
+                transform.Translate(0, 0,  Time.deltaTime * speed);
                 IsMoving = true;
             }
-
-
-            //Rotating
-            Vector3 relativePos = playerTarget.transform.position - this.transform.position;
-             Quaternion rotation = Quaternion.LookRotation(relativePos);
-             transform.rotation = rotation;
 
 
             if (difZ < 4 && difX < 4)
@@ -118,9 +107,8 @@ public class SkeletonController : MonoBehaviour {
             }
             if (hpSkeleton <= 0)
             {
-                IsDead = true;
-                IsAttacking = false;
-                IsMoving = false;
+                isDead();
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 4, transform.position.z), Time.deltaTime / 3);
             }
         }
         
