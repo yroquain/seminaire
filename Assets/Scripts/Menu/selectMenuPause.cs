@@ -92,6 +92,9 @@ public class selectMenuPause : MonoBehaviour
             }
             else
             {
+                
+                Network.Disconnect();
+                MasterServer.UnregisterHost();
                 SceneManager.LoadScene(0);
             }
 

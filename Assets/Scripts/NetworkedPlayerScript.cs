@@ -9,6 +9,8 @@ public class NetworkedPlayerScript : NetworkBehaviour
     public AudioListener audioListener;
     public cameraController myCameraController;
 
+    
+
     //Texture
     public Material texture_air;
     public Material texture_eau;
@@ -25,11 +27,14 @@ public class NetworkedPlayerScript : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
+        
 
         fpsController.enabled = true;
         fpsCamera.enabled = true;
         audioListener.enabled = true;
         myCameraController.enabled = true;
+
+        Destroy(GameObject.Find("CameraDebut"));
 
         this.gameObject.name = "LOCAL Player";
         base.OnStartLocalPlayer();
@@ -87,6 +92,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
             fpsCamera.enabled = false;
             this.GetComponent<PlayerController>().qTo = Quaternion.Euler(0.0f, 0.0f, 0.0f);
             this.GetComponent<PlayerController>().rotate = 0.0f;
+            GameObject.Find("CanvasJ1(Clone)").GetComponent<scriptHUD>().setPlayerDead(true);
         }
         Invoke("RpcRespawn", 2f);
     }
@@ -100,6 +106,7 @@ public class NetworkedPlayerScript : NetworkBehaviour
             this.GetComponent<ManagementHpMana>().setFullMana();
             this.GetComponent<ManagementHpMana>().setFullHp();
             fpsController.enabled = true;
+            GameObject.Find("CanvasJ1(Clone)").GetComponent<scriptHUD>().setPlayerDead(false);
             fpsCamera.enabled = true;
         }            
     }
@@ -134,6 +141,14 @@ public class NetworkedPlayerScript : NetworkBehaviour
             myPlayer.transform.Find("Mage").GetComponent<Renderer>().material = texture_air;
         }
         GameObject.Find("networkManager").GetComponent<GameController>().SetElement(myPlayer.GetComponent<Sorts_simple>().numeroJoueur, newTag);
+        
+    }
+
+    [ClientRpc]
+    public void RpcSwitchRespawnBegin()
+    {
+        GameObject.Find("Spawn_joueur1").transform.position = new Vector3(0, -0.78f, -450);
+        GameObject.Find("Spawn_joueur2").transform.position = new Vector3(4, -0.79f, -450);
         
     }
 

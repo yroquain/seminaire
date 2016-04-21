@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class scriptHUD : MonoBehaviour {
 
+
+    public GameObject HUDMort;
     private GameObject ElementAllie;
     public Sprite mageAirAllie;
     public Sprite mageEauAllie;
@@ -135,6 +137,10 @@ public class scriptHUD : MonoBehaviour {
 
         
 	}
+
+    public void setPlayerDead(bool _playerDead){
+        HUDMort.SetActive(_playerDead);
+    }
 
     public void showMenuPause(){
         menuPause.SetActive(true);

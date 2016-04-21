@@ -2407,9 +2407,6 @@ MonoBehaviour:
   Immo: {fileID: 143232}
   IsEole: 0
   IsAttacking: 0
-  MainCamera: {fileID: 193730}
-  SubCamera: {fileID: 0}
-  scc: {fileID: 0}
   texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
   texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
   texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
@@ -2435,6 +2432,9 @@ MonoBehaviour:
   mageEau: {fileID: 21300000, guid: 3f3e3ac5cd9eb774cac01bdd1c3bb053, type: 3}
   mageAir: {fileID: 21300000, guid: f1a808e35799aa341a469c43d8dc951a, type: 3}
   GameHasStarted: 0
+  IsUnderCine: 0
+  MainCamera: {fileID: 193730}
+  SubCamera: {fileID: 0}
 --- !u!114 &11404794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2526,6 +2526,7 @@ MonoBehaviour:
   fpsCamera: {fileID: 2019912}
   audioListener: {fileID: 8187764}
   myCameraController: {fileID: 11465110}
+  respawnBegin: {fileID: 117380, guid: 2a54b6cc544c0174facf3afeeaf2e0e9, type: 2}
   texture_air: {fileID: 2100000, guid: 5fe4c18273c287548886139a88a4b9fe, type: 2}
   texture_eau: {fileID: 2100000, guid: 4212d4b119f29064f83d49c224eeb28c, type: 2}
   texture_feu: {fileID: 2100000, guid: 78de23e01dd8b174baf18b1cc5cff2f3, type: 2}
@@ -2575,6 +2576,11 @@ MonoBehaviour:
   target: {fileID: 488982}
   Mycamera: {fileID: 0}
   angularSpeed: 40
+  intro: {fileID: 0}
+  ambiance: {fileID: 0}
+  battle: {fileID: 0}
+  preBoss: {fileID: 0}
+  boss: {fileID: 0}
 --- !u!114 &11465582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2587,6 +2593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curMana: 0
+  numeroJoueur: 0
 --- !u!114 &11473042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4555,6 +4562,14 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cameraDebut
+      value: 
+      objectReference: {fileID: 189042, guid: d10787ad30de8d34f857ffaefadddda6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: respawnBegin
+      value: 
+      objectReference: {fileID: 117380, guid: 2a54b6cc544c0174facf3afeeaf2e0e9, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

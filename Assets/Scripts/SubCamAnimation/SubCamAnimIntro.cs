@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class SubCamAnimIntro : MonoBehaviour
+public class SubCamAnimIntro : NetworkBehaviour
 {
     private bool isIntroPassed;
     private bool Once;
@@ -63,6 +64,7 @@ public class SubCamAnimIntro : MonoBehaviour
             }
             if (Time.time > timer2 + 0.2f)
             {
+                CmdSwitchRespawnBegin();
                 CanvasJoueur.SetActive(true);
                 SubCamera.SetActive(false);
                 AmbiantSound.SetActive(true);
@@ -94,6 +96,7 @@ public class SubCamAnimIntro : MonoBehaviour
 
             if (Time.time - timer > 32.0f && !skip)
             {
+                CmdSwitchRespawnBegin();
                 CanvasJoueur.SetActive(true);
                 col.GetComponent<PlayerController>().IsUnderCine = false;
                 SubCamera.SetActive(false);
@@ -102,5 +105,13 @@ public class SubCamAnimIntro : MonoBehaviour
             }
         }
     }
+
+    [Command]
+    private void CmdSwitchRespawnBegin()
+    {
+        GameObject.Find("LOCAL Player").GetComponent<NetworkedPlayerScript>().RpcSwitchRespawnBegin();
+    }
+
+
 }
 
