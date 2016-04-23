@@ -40,6 +40,13 @@ public class NetworkedPlayerScript : NetworkBehaviour
         base.OnStartLocalPlayer();
     }
 
+    public void ajouterHpMana(){
+        if (isLocalPlayer)
+        {
+            this.gameObject.GetComponent<ManagementHpMana>().addMaxMana(10);
+            this.gameObject.GetComponent<ManagementHpMana>().addMaxHp(10);
+        } 
+    }
 
     void ToggleRenderer(bool isAlive)
     {
@@ -161,8 +168,22 @@ public class NetworkedPlayerScript : NetworkBehaviour
         Destroy(triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent1);
         Destroy(triggerRespawn.GetComponent<triggerEnigme1>().spawnPrecedent2);
         Destroy(triggerRespawn);
-        this.gameObject.GetComponent<ManagementHpMana>().addMaxMana(10);
-        this.gameObject.GetComponent<ManagementHpMana>().addMaxHp(10);
+        if (GameObject.FindGameObjectWithTag("Mage_Feu") != null)
+        {
+            GameObject.FindGameObjectWithTag("Mage_Feu").GetComponent<ManagementHpMana>().addMaxMana(10);
+            GameObject.FindGameObjectWithTag("Mage_Feu").GetComponent<ManagementHpMana>().addMaxHp(10);
+        }
+        if (GameObject.FindGameObjectWithTag("Mage_Eau") != null)
+        {
+            GameObject.FindGameObjectWithTag("Mage_Eau").GetComponent<ManagementHpMana>().addMaxMana(10);
+            GameObject.FindGameObjectWithTag("Mage_Eau").GetComponent<ManagementHpMana>().addMaxHp(10);
+        }
+        if (GameObject.FindGameObjectWithTag("Mage_Air") != null)
+        {
+            GameObject.FindGameObjectWithTag("Mage_Air").GetComponent<ManagementHpMana>().addMaxMana(10);
+            GameObject.FindGameObjectWithTag("Mage_Air").GetComponent<ManagementHpMana>().addMaxHp(10);
+        }
+        
     }
 
     #region Gestion sorts

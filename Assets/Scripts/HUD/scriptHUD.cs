@@ -12,6 +12,8 @@ public class scriptHUD : MonoBehaviour {
     public Sprite mageFeuAllie;
     public GameObject menuPause;
 
+    public GameObject menuFinJeu;
+
     private int numeroJoueur;
     private int numeroAllie;
 
@@ -133,6 +135,11 @@ public class scriptHUD : MonoBehaviour {
         else
         {
             ElementAllie.SetActive(false);
+        }
+        if (GameObject.Find("Mage_renegat").GetComponent<Script_MageRenegat>().dead)
+        {
+            menuFinJeu.SetActive(true);
+            Destroy(GameObject.Find("skeleton_animated(Clone)"));
         }
 
         

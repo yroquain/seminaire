@@ -56,7 +56,7 @@ public class SkeletonController : MonoBehaviour {
                 
             }
         }
-        if (!IsActivate&&GameObject.Find("triggerSkeletonAnim") == null)
+        if (!IsActivate && GameObject.Find("triggerSkeletonAnim") == null && !GameObject.Find("LOCAL Player").GetComponent<PlayerController>().getIsUnderAnimation() && !GameObject.Find("Mage(Clone)").GetComponent<PlayerController>().getIsUnderAnimation())
         {
             IsActivate = true;
         }

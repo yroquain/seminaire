@@ -4,6 +4,7 @@ using System.Collections;
 public class Script_MageRenegat : MonoBehaviour {
 
     private bool isActivate;
+    public bool dead;
     public GameObject squelette;
     private ArrayList allSquelette;
     private Animator anim;
@@ -54,6 +55,7 @@ public class Script_MageRenegat : MonoBehaviour {
     {
         anim.SetBool("isDead", true);
         isActivate = false;
+        dead = true;
     }
 
     public void setActive(bool _isActive)
