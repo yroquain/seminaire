@@ -89,7 +89,7 @@ public class SubCamAnimIntro : NetworkBehaviour
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("intro");
                 SubCamera.GetComponent<subCameraController>().playAnimation("intro");
-                mageFeu.GetComponent<MageCinematique>().moveMage(0f,1f,3f);
+                //mageFeu.GetComponent<MageCinematique>().moveMage(0f,1f,3f);
                 Once = true;
 
             }

@@ -16,6 +16,7 @@ public class MageCinematique : MonoBehaviour {
 
     private float x;
     private float z;
+    private float speed;
 
 
 	// Use this for initialization
@@ -27,6 +28,8 @@ public class MageCinematique : MonoBehaviour {
         IsWalking = true;
         IsCasting = false;
         IsRotating = false;
+
+        speed = 6;
 
         anim = GetComponent<Animator>();
 	}
@@ -41,7 +44,7 @@ public class MageCinematique : MonoBehaviour {
             if (delay > 0)
             {
                 // 6 = vitesse déplacement
-                transform.Translate(x * Time.deltaTime * 6, 0, z * Time.deltaTime * 6);
+                transform.Translate(x * Time.deltaTime * speed, 0, z * Time.deltaTime * speed);
             }
             else
             {
@@ -78,6 +81,15 @@ public class MageCinematique : MonoBehaviour {
     {
         this.delay = delay;
         IsRotating = true;
+    }
+
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+    public float getSpeed(float speed)
+    {
+        return this.speed;
     }
 
     private void miseAJourVarAnimation()

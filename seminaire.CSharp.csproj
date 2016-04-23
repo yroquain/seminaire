@@ -94,11 +94,15 @@
     <Compile Include="Assets\Scripts\Gate.cs" />
     <Compile Include="Assets\Scripts\HUD\HealthBar.cs" />
     <Compile Include="Assets\Scripts\HUD\ManagementHpMana.cs" />
+    <Compile Include="Assets\Scripts\HUD\MenuNetwork.cs" />
+    <Compile Include="Assets\Scripts\HUD\MenuNetworkManager.cs" />
+    <Compile Include="Assets\Scripts\HUD\NetworkManagerHUD.cs" />
     <Compile Include="Assets\Scripts\HUD\scriptHUD.cs" />
     <Compile Include="Assets\Scripts\LavaMovement.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadScenesMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\positionMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\scriptAlmanach.cs" />
+    <Compile Include="Assets\Scripts\Menu\selectFinJeu.cs" />
     <Compile Include="Assets\Scripts\Menu\selectMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\selectMenuPause.cs" />
     <Compile Include="Assets\Scripts\Menu\sizeButton.cs" />
@@ -128,6 +132,7 @@
     <Compile Include="Assets\Scripts\Spells\TraitFeu.cs" />
     <Compile Include="Assets\Scripts\Spells\Velocity_Trait_Feu.cs" />
     <Compile Include="Assets\Scripts\Spells\Wave.cs" />
+    <Compile Include="Assets\Scripts\SubCamAnimation\MageCinematique.cs" />
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm1.cs" />
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm2.cs" />
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimIntro.cs" />
@@ -149,6 +154,7 @@
     <Compile Include="Assets\Scripts\WallDestruction.cs" />
     <Compile Include="Assets\Scripts\WindWall.cs" />
     <Compile Include="Assets\Scripts\boss\Script_MageRenegat.cs" />
+    <Compile Include="Assets\Scripts\boss\scriptPillier.cs" />
     <Compile Include="Assets\Scripts\cameraController.cs" />
     <Compile Include="Assets\Scripts\playerChoixElement.cs" />
     <Compile Include="Assets\Scripts\subCameraController.cs" />
