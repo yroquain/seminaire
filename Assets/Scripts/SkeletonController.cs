@@ -93,7 +93,7 @@ public class SkeletonController : MonoBehaviour {
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             transform.rotation = rotation;
 
-            if (!IsAttacking && !IsCasting)
+            if (!IsAttacking && !IsCasting && playerTarget.transform.position.z > -335)
             {
                 transform.Translate(0, 0,  Time.deltaTime * speed);
                 IsMoving = true;

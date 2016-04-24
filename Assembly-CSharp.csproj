@@ -109,6 +109,7 @@
      <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm1.cs" />
      <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm2.cs" />
      <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimIntro.cs" />
+     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimPostEnigm1.cs" />
      <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimPreBoss.cs" />
      <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimSkeleton.cs" />
      <Compile Include="Assets\Scripts\TriggerEnigme2.cs" />
@@ -132,6 +133,7 @@
      <Compile Include="Assets\Scripts\playerChoixElement.cs" />
      <Compile Include="Assets\Scripts\subCameraController.cs" />
      <Compile Include="Assets\Scripts\triggerEnigme1.cs" />
+     <Compile Include="Assets\yui.cs" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Assets\Rocks and Boulders 2\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />

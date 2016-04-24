@@ -49,7 +49,10 @@ public class SubCamAnimIntro : NetworkBehaviour
             }
             if (Time.time > timer2 + 0.2f)
             {
-                CmdSwitchRespawnBegin();
+                if (GameObject.Find("LOCAL Player").gameObject.GetComponent<Sorts_simple>().numeroJoueur == 0)
+                {
+                    CmdSwitchRespawnBegin();
+                }
                 CanvasJoueur.SetActive(true);
                 SubCamera.SetActive(false);
                 AmbiantSound.SetActive(true);
