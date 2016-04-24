@@ -219,6 +219,8 @@ public class PlayerController : NetworkBehaviour
             if (Input.GetButtonDown("Sort 1") && Time.time > WaitBeforeReady + 2f)
             {
                 CmdIsReady(numeroJoueur);
+                //let the solo test
+               // StartGame();
                 refresh = Time.time;
             }
             if (GameObject.Find("networkManager").GetComponent<GameController>().isReady[numeroJoueur])

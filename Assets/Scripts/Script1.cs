@@ -25,8 +25,6 @@ public class Script1 : MonoBehaviour {
     public GameObject mageEau;
     public GameObject mageFeu;
 
-    public float retirerTemps = 7.0f;
-
 
     // Use this for initialization
     void Start () {
@@ -74,7 +72,6 @@ public class Script1 : MonoBehaviour {
                 SubCamera.SetActive(true);
                 timer = Time.time;
 
-                SubCamera.GetComponent<subCameraController>().changeMusic("postEnigm1");
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -365.91f);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-173.37f, 0.5f, -367.98f);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-146.89f, 0.5f, -329.47f);
@@ -83,12 +80,14 @@ public class Script1 : MonoBehaviour {
                 Once = true;
 
             }
-            if(Time.time - timer > (7f-retirerTemps) && !thrice)
+            if (Time.time - timer > 2f && !thrice)
             {
                 thrice = true;
-                SubCamera.GetComponent<subCameraController>().changeMusic("postenigm1");
+                SubCamera.GetComponent<subCameraController>().changeMusic("postEnigm1");
             }
-            if (Time.time - timer > (22.9f-retirerTemps) && !skip && !twice)
+
+
+            if (Time.time - timer > 17.1f && !skip && !twice)
             {
                 CanvasJoueur.SetActive(true);
                 Cube4.SetActive(false);
