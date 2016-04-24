@@ -61,14 +61,19 @@ public class SubCamAnimEnigm1 : MonoBehaviour
                 Once = true;
 
             }
-
-            if (Time.time - timer > 29.4f && !skip)
+            
+                if (Time.time - timer > 29.4f && !skip)
+                {
+                    CanvasJoueur.SetActive(true);
+                    GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = false;
+                    SubCamera.SetActive(false);
+                }
+            if(Time.time - timer > 31.4f && !skip)
             {
-                CanvasJoueur.SetActive(true);
-                col.GetComponent<PlayerController>().IsUnderCine = false;
-                SubCamera.SetActive(false);
-                Destroy(gameObject);
+                    Destroy(gameObject);
+
             }
+
         }
     }
 }

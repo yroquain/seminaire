@@ -43,8 +43,6 @@ public class SubCamAnimPreBoss : MonoBehaviour {
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
-                SubCamera.GetComponent<Animation>().enabled = false;
-                SubCamera.GetComponent<Animator>().enabled = false;
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("prepreBoss");
                // SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
@@ -60,9 +58,13 @@ public class SubCamAnimPreBoss : MonoBehaviour {
             if (Time.time - timer > 26.7f && !skip)
             {
                 CanvasJoueur.SetActive(true);
-                col.GetComponent<PlayerController>().IsUnderCine = false;
+                GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = false;
                 SubCamera.SetActive(false);
+            }
+            if (Time.time - timer > 28.7f && !skip)
+            {
                 Destroy(gameObject);
+
             }
         }
     }

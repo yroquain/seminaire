@@ -47,8 +47,6 @@ public class SubCamAnimEnigm2 : MonoBehaviour {
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
-                SubCamera.GetComponent<Animation>().enabled = false;
-                SubCamera.GetComponent<Animator>().enabled = false;
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("enigme2");
                 SubCamera.transform.position = new Vector3(-190f, 6.96f, -224.23f);
@@ -63,9 +61,13 @@ public class SubCamAnimEnigm2 : MonoBehaviour {
             if (Time.time - timer > 31.1f && !skip)
             {
                 CanvasJoueur.SetActive(true);
-                col.GetComponent<PlayerController>().IsUnderCine = false;
+                GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = false;
                 SubCamera.SetActive(false);
+            }
+            if (Time.time - timer > 33.1f && !skip)
+            {
                 Destroy(gameObject);
+
             }
         }
     }

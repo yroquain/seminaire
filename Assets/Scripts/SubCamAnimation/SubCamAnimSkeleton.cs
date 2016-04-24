@@ -11,10 +11,12 @@ public class SubCamAnimSkeleton : MonoBehaviour {
     public GameObject AmbiantMusic;
     public GameObject CombatMusic;
     private GameObject CanvasJoueur;
+    private bool twice;
     public bool skip;
     // Use this for initialization
     void Start()
     {
+        twice = false;
         isIntroPassed = false;
         timer = 0.0f;
         skip = false;
@@ -47,8 +49,6 @@ public class SubCamAnimSkeleton : MonoBehaviour {
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
-                SubCamera.GetComponent<Animation>().enabled = false;
-                SubCamera.GetComponent<Animator>().enabled = false;
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("battle");
               //  SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
@@ -57,10 +57,11 @@ public class SubCamAnimSkeleton : MonoBehaviour {
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -271f);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-179.84f, 0.5f, -271f);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-183.72f, 0.5f, -271f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.rotation = Quaternion.Euler(0, 0, 0);
                 Once = true;
 
             }
-
+            
             if (Time.time - timer > 38f && !skip)
             {
                 CanvasJoueur.SetActive(true);
@@ -68,15 +69,24 @@ public class SubCamAnimSkeleton : MonoBehaviour {
                 SubCamera.SetActive(false);
                 AmbiantMusic.SetActive(false);
                 CombatMusic.SetActive(true);
-                Destroy(gameObject);
-              
-                GameObject.Find("LOCAL Player").GetComponent<ManagementHpMana>().addMaxHp(10);
-                GameObject.Find("LOCAL Player").GetComponent<ManagementHpMana>().addMaxMana(10);
+                if (!twice)
+                {
+                    GameObject.Find("LOCAL Player").GetComponent<ManagementHpMana>().addMaxHp(10);
+                    GameObject.Find("LOCAL Player").GetComponent<ManagementHpMana>().addMaxMana(10);
 
-                GameObject.Find("Mage(Clone)").GetComponent<ManagementHpMana>().addMaxHp(10);
-                GameObject.Find("Mage(Clone)").GetComponent<ManagementHpMana>().addMaxMana(10);
-                
+                    GameObject.Find("Mage(Clone)").GetComponent<ManagementHpMana>().addMaxHp(10);
+                    GameObject.Find("Mage(Clone)").GetComponent<ManagementHpMana>().addMaxMana(10);
+                    twice = true;
+                }
+
             }
+            if(Time.time - timer > 40f && !skip)
+            {
+
+                Destroy(gameObject);
+            }
+        
         }
+
     }
 }

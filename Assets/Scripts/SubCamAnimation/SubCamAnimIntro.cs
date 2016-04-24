@@ -36,7 +36,7 @@ public class SubCamAnimIntro : NetworkBehaviour
             skip = true;
 
         }
-        if(skip)
+        if (skip)
         {
             if (!Twice)
             {
@@ -70,7 +70,7 @@ public class SubCamAnimIntro : NetworkBehaviour
                 CanvasJoueur.SetActive(false);
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
-                
+
                 SubCamera.GetComponent<subCameraController>().changeMusic("intro");
                 SubCamera.SetActive(true);
                 timer = Time.time;
@@ -90,13 +90,20 @@ public class SubCamAnimIntro : NetworkBehaviour
 
             if (Time.time - timer > 32.0f && !skip)
             {
-                CmdSwitchRespawnBegin();
+                if (GameObject.Find("LOCAL Player").gameObject.GetComponent<Sorts_simple>().numeroJoueur == 0)
+                {
+                    CmdSwitchRespawnBegin();
+                }
                 CanvasJoueur.SetActive(true);
-                col.GetComponent<PlayerController>().IsUnderCine = false;
+                GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = false;
                 SubCamera.SetActive(false);
                 AmbiantSound.SetActive(true);
+            }
+            if (Time.time - timer > 34.0f && !skip)
+            {
                 Destroy(gameObject);
             }
+
         }
     }
 
@@ -108,4 +115,3 @@ public class SubCamAnimIntro : NetworkBehaviour
 
 
 }
-
