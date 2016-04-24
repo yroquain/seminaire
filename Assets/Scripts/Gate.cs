@@ -7,6 +7,8 @@ public class Gate : MonoBehaviour {
     private int count;
     private bool IsActive;
     public GameObject wind;
+    public GameObject AmbiantMusic;
+    public GameObject BossMusic;
 	// Use this for initialization
 	void Start () {
         wind.SetActive(false);
@@ -82,6 +84,9 @@ public class Gate : MonoBehaviour {
             {
                 wind.SetActive(true);
                 IsActive = true;
+                AmbiantMusic.SetActive(false);
+                BossMusic.SetActive(true);
+                GameObject.Find("Mage_renegat").GetComponent<Script_MageRenegat>().setActive(true);
             }
         }
 	}
