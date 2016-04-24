@@ -51,15 +51,11 @@ public class SubCamAnimEnigm1 : MonoBehaviour
                 timer = Time.time;
 
                 SubCamera.GetComponent<subCameraController>().changeMusic("enigm1");
-                /*
-                SubCamera.transform.position = new Vector3(-190f, 7.4f, -363.5f);
-                SubCamera.transform.rotation = Quaternion.Euler(25, 90, 0);
-                */
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -365.91f);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-173.37f, 0.5f, -367.98f);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-164.5f, 0.5f, -370.6f);
 
-                mageAir.GetComponent<MageCinematique>().rotateMage(0.5f);
+                mageAir.GetComponent<MageCinematique>().rotateMage(1f);
                 mageFeu.GetComponent<MageCinematique>().moveMage(0f, 1f, 1f);
 
                 Once = true;

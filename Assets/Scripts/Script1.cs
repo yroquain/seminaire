@@ -20,6 +20,14 @@ public class Script1 : MonoBehaviour {
     public GameObject Cube4;
     private bool thrice;
     private GameObject CanvasJoueur;
+
+    public GameObject mageAir;
+    public GameObject mageEau;
+    public GameObject mageFeu;
+
+    public float retirerTemps = 7.0f;
+
+
     // Use this for initialization
     void Start () {
         thrice = false;
@@ -64,24 +72,23 @@ public class Script1 : MonoBehaviour {
                 GameObject.Find("LOCAL Player").GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
-                SubCamera.GetComponent<Animation>().enabled = false;
-                SubCamera.GetComponent<Animator>().enabled = false;
                 timer = Time.time;
-                SubCamera.transform.position = new Vector3(-195f, 7.4f, -358.5f);
-                SubCamera.transform.rotation = Quaternion.Euler(25, 90, 0);
-                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -366f);
-                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-179.84f, 0.5f, -366f);
-                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-146.7f, 0.5f, -329.09f);
+
+                SubCamera.GetComponent<subCameraController>().changeMusic("postEnigm1");
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -365.91f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-173.37f, 0.5f, -367.98f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-146.89f, 0.5f, -329.47f);
+
+                mageFeu.transform.rotation = new Quaternion(0, 10, 0, 0);
                 Once = true;
 
             }
-            if(Time.time - timer > 7f && !thrice)
+            if(Time.time - timer > (7f-retirerTemps) && !thrice)
             {
                 thrice = true;
-                SubCamera.GetComponent<subCameraController>().changeMusic("Postenigme1");
-                //SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
+                SubCamera.GetComponent<subCameraController>().changeMusic("postenigm1");
             }
-            if (Time.time - timer > 22.9f && !skip && !twice)
+            if (Time.time - timer > (22.9f-retirerTemps) && !skip && !twice)
             {
                 CanvasJoueur.SetActive(true);
                 Cube4.SetActive(false);

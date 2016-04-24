@@ -16,11 +16,13 @@ public class MageCinematique : MonoBehaviour {
 
     private float x;
     private float z;
-    private float speed;
+
+    public float rotateSpeed { get; set; }
+    public float speed { get; set; }
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         IsAttacking = false;
         IsMoving = false;
@@ -29,7 +31,8 @@ public class MageCinematique : MonoBehaviour {
         IsCasting = false;
         IsRotating = false;
 
-        speed = 6;
+        speed = 6.0f;
+        rotateSpeed = 50.0f;
 
         anim = GetComponent<Animator>();
 	}
@@ -43,7 +46,6 @@ public class MageCinematique : MonoBehaviour {
             delay -= Time.deltaTime;
             if (delay > 0)
             {
-                // 6 = vitesse déplacement
                 transform.Translate(x * Time.deltaTime * speed, 0, z * Time.deltaTime * speed);
             }
             else
@@ -58,8 +60,7 @@ public class MageCinematique : MonoBehaviour {
             delay -= Time.deltaTime;
             if (delay > 0)
             {
-                // 50.0f = speed
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, 2, 0.0f), Time.deltaTime * 50.0f * 2);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, 2, 0.0f), Time.deltaTime * rotateSpeed * 2);
             }
             else
             {
@@ -83,14 +84,7 @@ public class MageCinematique : MonoBehaviour {
         IsRotating = true;
     }
 
-    public void setSpeed(float speed)
-    {
-        this.speed = speed;
-    }
-    public float getSpeed(float speed)
-    {
-        return this.speed;
-    }
+
 
     private void miseAJourVarAnimation()
     {
