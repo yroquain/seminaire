@@ -139,7 +139,11 @@ public class scriptHUD : MonoBehaviour {
         if (GameObject.Find("Mage_renegat").GetComponent<Script_MageRenegat>().dead)
         {
             menuFinJeu.SetActive(true);
-            Destroy(GameObject.Find("skeleton_animated(Clone)"));
+            while (GameObject.Find("skeleton_animated(Clone)") != null)
+            {
+                Destroy(GameObject.Find("skeleton_animated(Clone)"));
+            }
+           
         }
 
         

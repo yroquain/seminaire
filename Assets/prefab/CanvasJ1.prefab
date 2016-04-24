@@ -6751,6 +6751,7 @@ MonoBehaviour:
   mageEauAllie: {fileID: 21300000, guid: d9532d01aa971074bb2c297cd757edff, type: 3}
   mageFeuAllie: {fileID: 21300000, guid: 7639dd761d2424b45b9fff3e42bd7d8f, type: 3}
   menuPause: {fileID: 141198}
+  menuFinJeu: {fileID: 158916}
 --- !u!114 &11497836
 MonoBehaviour:
   m_ObjectHideFlags: 1
