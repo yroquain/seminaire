@@ -36,7 +36,7 @@ public class Plateforme1 : MonoBehaviour {
         {
 
             float step = speed * Time.deltaTime / 5;
-            transform.position = Vector3.MoveTowards(startMarker.position, endMarker.position, step);
+            transform.position = Vector3.MoveTowards(startMarker.position, endMarker.position, step*3);
         }
     }
     void OnTriggerEnter(Collider coll)

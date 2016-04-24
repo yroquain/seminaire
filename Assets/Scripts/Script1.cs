@@ -43,7 +43,7 @@ public class Script1 : MonoBehaviour {
         if (IsActivated)
         {
             float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(startMarker.position, endMarker.position, step);
+            transform.position = Vector3.MoveTowards(startMarker.position, endMarker.position, step*3);
         }
         if (transform.position.y < -0.40)
         {
