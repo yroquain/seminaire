@@ -218,7 +218,6 @@ public class PlayerController : NetworkBehaviour
             }
             if (Input.GetButtonDown("Sort 1") && Time.time > WaitBeforeReady + 2f)
             {
-                StartGame();
                 CmdIsReady(numeroJoueur);
                 refresh = Time.time;
             }
