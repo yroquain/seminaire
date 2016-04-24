@@ -66,26 +66,26 @@ public class selectMenu : MonoBehaviour
         {
             case 0:
                 newGame.color = Color.red;
-                tutorial.color = Color.black;
-                options.color = Color.black;
-                quitGame.color = Color.black;
+                tutorial.color = Color.white;
+                options.color = Color.white;
+                quitGame.color = Color.white;
                 break;
             case 1:
-                newGame.color = Color.black;
+                newGame.color = Color.white;
                 tutorial.color = Color.red;
-                options.color = Color.black;
-                quitGame.color = Color.black;
+                options.color = Color.white;
+                quitGame.color = Color.white;
                 break;
             case 2:
-                newGame.color = Color.black;
-                tutorial.color = Color.black;
+                newGame.color = Color.white;
+                tutorial.color = Color.white;
                 options.color = Color.red;
-                quitGame.color = Color.black;
+                quitGame.color = Color.white;
                 break;
             case 3:
-                newGame.color = Color.black;
-                tutorial.color = Color.black;
-                options.color = Color.black;
+                newGame.color = Color.white;
+                tutorial.color = Color.white;
+                options.color = Color.white;
                 quitGame.color = Color.red;
                 break;
             default:
