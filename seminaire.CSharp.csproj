@@ -136,6 +136,7 @@
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm1.cs" />
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimEnigm2.cs" />
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimIntro.cs" />
+    <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimPostEnigm1.cs" />
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimPreBoss.cs" />
     <Compile Include="Assets\Scripts\SubCamAnimation\SubCamAnimSkeleton.cs" />
     <Compile Include="Assets\Scripts\TriggerEnigme2.cs" />

@@ -19,14 +19,6 @@ public class SubCamAnimIntro : NetworkBehaviour
     public GameObject mageEau;
     public GameObject mageFeu;
 
-    /* à ajouter aux autres triggers
-    private bool isEnigm1EventPassed;
-    private bool isEnigm2EventPassed;
-    private bool isSkeletonEventPassed;
-    private bool isPreBossEventPassed;
-    */
-
-
     // Use this for initialization
     void Start()
     {
@@ -34,18 +26,11 @@ public class SubCamAnimIntro : NetworkBehaviour
         isIntroPassed = false;
         timer = 0.0f;
         skip = false;
-        /*
-        isEnigm1EventPassed = false;
-        isEnigm2EventPassed = false;
-        isSkeletonEventPassed = false;
-        isPreBossEventPassed = false;
-        */
     }
 
     // Update is called once per frame
     void Update()
     {
-       // if(Input.GetButtonDown("Pause"))
         if (Input.GetButtonDown("EscapeAnimation") && Once)
         {
             skip = true;
@@ -85,11 +70,23 @@ public class SubCamAnimIntro : NetworkBehaviour
                 CanvasJoueur.SetActive(false);
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
+                
+                SubCamera.GetComponent<subCameraController>().changeMusic("enigm1");
+                //SubCamera.GetComponent<subCameraController>().playAnimation("enigm1");
+                
+                //SubCamera.GetComponent<Animation>().Play("enigm1Anim");
                 SubCamera.SetActive(true);
                 timer = Time.time;
-                SubCamera.GetComponent<subCameraController>().changeMusic("intro");
-                SubCamera.GetComponent<subCameraController>().playAnimation("intro");
-                //mageFeu.GetComponent<MageCinematique>().moveMage(0f,1f,3f);
+
+                //position initiale des mages
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -438.625f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-179.84f, 0.5f, -438.625f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-183.72f, 0.5f, -438.625f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.rotation = new Quaternion(0, 0, 0, 0);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.rotation = new Quaternion(0, 0, 0, 0);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+
                 Once = true;
 
             }

@@ -51,7 +51,7 @@ public class SubCamAnimSkeleton : MonoBehaviour {
                 SubCamera.GetComponent<Animator>().enabled = false;
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("battle");
-                SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
+              //  SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
                 SubCamera.transform.position = new Vector3(-178.29f, 5.96f, -287.09f);
                 SubCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -271f);

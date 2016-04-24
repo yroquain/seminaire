@@ -8,9 +8,14 @@ public class SubCamAnimEnigm1 : MonoBehaviour
     private float timer;
     public GameObject MainCamera;
     public GameObject SubCamera;
-    private GameObject CanvasJoueur;
     public bool skip;
-    // Use this for initialization
+    public GameObject AmbiantSound;
+    private GameObject CanvasJoueur;
+
+    public GameObject mageAir;
+    public GameObject mageEau;
+    public GameObject mageFeu;
+
     void Start()
     {
         isIntroPassed = false;
@@ -43,16 +48,23 @@ public class SubCamAnimEnigm1 : MonoBehaviour
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 SubCamera.SetActive(true);
+                /*
                 SubCamera.GetComponent<Animation>().enabled = false;
                 SubCamera.GetComponent<Animator>().enabled = false;
+                */
                 timer = Time.time;
-                SubCamera.GetComponent<subCameraController>().changeMusic("enigme1");
-                SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
+                
+                SubCamera.GetComponent<subCameraController>().changeMusic("enigm1");
+                //SubCamera.GetComponent<subCameraController>().playAnimation("enigm1");
+                /*
                 SubCamera.transform.position = new Vector3(-190f, 7.4f, -363.5f);
                 SubCamera.transform.rotation = Quaternion.Euler(25, 90, 0);
+                */
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -366f);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_eau.transform.position = new Vector3(-179.84f, 0.5f, -366f);
-                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-183.72f, 0.5f, -366f);
+                GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_feu.transform.position = new Vector3(-164.5f, 0.5f, -370.6f);
+                mageFeu.GetComponent<MageCinematique>().moveMage(0f, 1f, 1f);
+
                 Once = true;
 
             }

@@ -51,7 +51,7 @@ public class SubCamAnimEnigm2 : MonoBehaviour {
                 SubCamera.GetComponent<Animator>().enabled = false;
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("enigme2");
-                SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
+               // SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
                 SubCamera.transform.position = new Vector3(-190f, 6.96f, -224.23f);
                 SubCamera.transform.rotation = Quaternion.Euler(0, 30, 0);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -207.59f);

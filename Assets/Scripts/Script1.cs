@@ -79,7 +79,7 @@ public class Script1 : MonoBehaviour {
             {
                 thrice = true;
                 SubCamera.GetComponent<subCameraController>().changeMusic("Postenigme1");
-                SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
+                //SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
             }
             if (Time.time - timer > 22.9f && !skip && !twice)
             {

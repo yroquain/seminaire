@@ -47,7 +47,7 @@ public class SubCamAnimPreBoss : MonoBehaviour {
                 SubCamera.GetComponent<Animator>().enabled = false;
                 timer = Time.time;
                 SubCamera.GetComponent<subCameraController>().changeMusic("prepreBoss");
-                SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
+               // SubCamera.GetComponent<subCameraController>().playAnimation("Defaut");
                 SubCamera.transform.position = new Vector3(-180.6f, 7.4f, -84.15f);
                 SubCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
                 GameObject.Find("networkManager").GetComponent<GameController>().Mage_offline_air.transform.position = new Vector3(-176.29f, 0.5f, -68.1f);

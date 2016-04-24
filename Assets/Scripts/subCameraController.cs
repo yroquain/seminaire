@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 public class subCameraController : MonoBehaviour
 {
 
+    //Musiques
     public AudioClip introMusic;
     public AudioClip ambianceMusic;
     public AudioClip battleMusic;
@@ -20,8 +21,11 @@ public class subCameraController : MonoBehaviour
     public AudioClip AvantBoss;
     public AudioClip Boss;
 
+
+    //Animations
     public AnimationClip introAnim;
     public AnimationClip enigm1Anim;
+    public AnimationClip postEnigm1Anim;
     public AnimationClip skeletonAnim;
     public AnimationClip enigm2Anim;
     public AnimationClip preBossAnim;
@@ -30,6 +34,7 @@ public class subCameraController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -73,31 +78,28 @@ public class subCameraController : MonoBehaviour
                 AudioSource.PlayClipAtPoint(music, transform.position, 0.1f);
                 break;
 
-            case "enigme1":
+            case "enigm1":
                 music = Preenigme1;
                 AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 1f);
                 break;
 
-            case "enigme2":
-                music = enigme2;
+            case "postEnigm1":
+                music = Postenigme1;
                 AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 1f);
                 break;
 
-            case "Postenigme1":
-                music = Postenigme1;
+            case "enigm2":
+                music = enigme2;
                 AudioSource.PlayClipAtPoint(music, GameObject.Find("LOCAL Player").transform.position, 1f);
                 break;
 
             default:
                 break;
         }
-
-        //GetComponent<AudioSource>().clip = music;
     }
-
+    /*
     public void playAnimation(string nameAnim)
     {
-        //AnimationClip anim = introAnim;
         switch (nameAnim)
         {
             case "intro":
@@ -106,6 +108,10 @@ public class subCameraController : MonoBehaviour
 
             case "enigm1":
                 GetComponent<Animation>().clip = enigm1Anim;
+                break;
+
+            case "postEnigm1":
+                GetComponent<Animation>().clip = postEnigm1Anim;
                 break;
 
             case "skeleton":
@@ -128,4 +134,5 @@ public class subCameraController : MonoBehaviour
                 break;
         }
     }
+    */
 }
