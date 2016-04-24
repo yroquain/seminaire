@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\playerChoixElement.cs" />
     <Compile Include="Assets\Scripts\subCameraController.cs" />
     <Compile Include="Assets\Scripts\triggerEnigme1.cs" />
+    <Compile Include="Assets\yui.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Assets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />

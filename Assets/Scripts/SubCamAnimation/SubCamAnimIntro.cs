@@ -71,10 +71,7 @@ public class SubCamAnimIntro : NetworkBehaviour
                 col.GetComponent<PlayerController>().IsUnderCine = true;
                 MainCamera = GameObject.Find("Main Camera");
                 
-                SubCamera.GetComponent<subCameraController>().changeMusic("enigm1");
-                //SubCamera.GetComponent<subCameraController>().playAnimation("enigm1");
-                
-                //SubCamera.GetComponent<Animation>().Play("enigm1Anim");
+                SubCamera.GetComponent<subCameraController>().changeMusic("intro");
                 SubCamera.SetActive(true);
                 timer = Time.time;
 
